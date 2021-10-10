@@ -38,7 +38,7 @@ Check out the `resources` directory to find templates.
 
 ## Git convention
 
-- Before doing lab, please `git pull` to update the latest repo
+- Before doing lab, please `git pull` to update the latest version
 - Add a `.gitignore` which specifies files that Git ignores like your local, temporary and log files, _e.g., files and folders start with `.` or `_`like`.idea`or`.vscode`\_
 - For creating and naming branch, git workflow, please refer to the _Lab00_ class material document.
 - Only @theobmgit controls **release** and **main** branch in order to prevent merge hell.
