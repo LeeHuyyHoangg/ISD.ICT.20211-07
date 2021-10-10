@@ -25,7 +25,7 @@ This repository stores ITSS Software Development course's capstone project.
 
 ## Naming convention
 - File names: **ThisIsAFile_AdditionalInfo**, _e.g. **rentbike-use-case-outline** should be **RentBike_Outline**_
-- Source code: Follow Java naming convention. [Read more](https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html)
+- Source code: Follow [Java naming convention](https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html)
 
 ## Git convention
 - Before doing lab, please `git pull` to update the latest repo
