@@ -20,7 +20,7 @@ This repository stores ITSS Software Development course's capstone project.
 | Name           | Github          | Contribution             |
 | -------------- | --------------- | ------------------------ |
 | Le Huy Hoang   | @Hoang.lh194766 | `Show bike info` outline |
-| Nguyen Vu Minh |                 | `Rent bike` outline      |
+| Nguyen Vu Minh | @minhnv194801   | `Rent bike` outline      |
 | Bui Manh Tu    | @theobmgit      | `Return bike` outline    |
 
 ### Revisions
