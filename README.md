@@ -25,9 +25,31 @@ This repository stores ITSS Software Development course's capstone project.
 
 ### Revisions
 
-## Lab 02
+## Lab 02 - Software Requirement Specification
+
+### Tasks
+
+- Write `Rent Bike`, `Show Bike Info`, `Return Bike`, and `Make Transaction` use case specifications.
+- Draw their activity diagrams
+- Complete EcoBikeRental SRS document
+
+### Contributions
+
+| Name           | Github          | Contribution                                                                  |
+| -------------- | --------------- | ----------------------------------------------------------------------------- |
+| Le Huy Hoang   | @Hoang.lh194766 | **1. Introduction** and `Show Bike Info` specification                        |
+| Nguyen Vu Minh | @minhnv194801   | **2. Overall Description** and `Rent Bike`, `Make Transaction` specifications |
+| Bui Manh Tu    | @theobmgit      | **4. Supplementary Specification** and `Return bike` specification            |
+
+### Revisions
+
+| Name        | Github     | Revision                               |
+| ----------- | ---------- | -------------------------------------- |
+| Bui Manh Tu | @theobmgit | SRS document and `UseCaseDiagram` file |
 
 # Conventions
+
+The `UseCaseDiagram` file under `Requirement Analysis\Use case diagram` has all project diagrams _(activity, class,...)_
 
 Check out the `resources` directory to find templates.
 
