@@ -49,7 +49,7 @@ This repository stores ITSS Software Development course's capstone project.
 
 # Conventions
 
-The `UseCaseDiagram` file under `Requirement Analysis\Use case diagram` has all project diagrams _(activity, class,...)_
+The [UseCaseDiagram](Requirement Analysis/Use case diagram) file has all project diagrams _(activity, class,...)_
 
 Check out the `resources` directory to find templates.
 
