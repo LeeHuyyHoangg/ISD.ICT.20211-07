@@ -1,57 +1,77 @@
 # ITSS Software Development Capstone: EcobikeRental
 
-# Overview
+# 🙆‍♂️ Overview
 
 This repository stores ITSS Software Development course's capstone project.
 
-**EcobikeRental** is a platform which allows novice users to rent and return bikes inside Ecopark township.
+🚵 **EcobikeRental** is a platform which allows novice users to rent and return bikes inside Ecopark township.
 
-# Project tracking
+‼️ **Important Note:** The [EcoBikeRental Diagrams](Requirement%20Analysis/EcoBikeRental%20Diagrams.asta) file has all project diagrams _(activity, class,...)_
 
-## Lab 01 - Use Case Diagram
+# 🧑‍💻 Project tracking
+
+## 1️⃣ Lab 01 - Use Case Diagram
 
 ### Tasks
 
 - Draw use case diagram
-- Outline `Rent Bike`, `Show Bike Info` and `Return Bike` use cases.
+- Outline `Rent Bike`, `View Bike Info` and `Return Bike` use cases.
 
 ### Contributions
 
-| Name           | Github          | Contribution             |
-| -------------- | --------------- | ------------------------ |
-| Le Huy Hoang   | @Hoang.lh194766 | `Show bike info` outline |
-| Nguyen Vu Minh | @minhnv194801   | `Rent bike` outline      |
-| Bui Manh Tu    | @theobmgit      | `Return bike` outline    |
+| Name           | Contribution             |
+| -------------- | ------------------------ |
+| Le Huy Hoang   | `View bike info` outline |
+| Nguyen Vu Minh | `Rent bike` outline      |
+| Bui Manh Tu    | `Return bike` outline    |
 
 ### Revisions
 
-## Lab 02 - Software Requirement Specification
+## 2️⃣ Lab 02 - Software Requirement Specification
 
 ### Tasks
 
-- Write `Rent Bike`, `Show Bike Info`, `Return Bike`, and `Make Transaction` use case specifications.
+- Write `Rent Bike`, `View Bike Info`, `Return Bike`, and `Make Transaction` use case specifications.
 - Draw their activity diagrams
 - Complete EcoBikeRental SRS document
 
 ### Contributions
 
-| Name           | Github          | Contribution                                                                  |
-| -------------- | --------------- | ----------------------------------------------------------------------------- |
-| Le Huy Hoang   | @Hoang.lh194766 | **1. Introduction** and `Show Bike Info` specification                        |
-| Nguyen Vu Minh | @minhnv194801   | **2. Overall Description** and `Rent Bike`, `Make Transaction` specifications |
-| Bui Manh Tu    | @theobmgit      | **4. Supplementary Specification** and `Return bike` specification            |
+| Name           | Contribution                                                                  |
+| -------------- | ----------------------------------------------------------------------------- |
+| Le Huy Hoang   | **1. Introduction** and `View Bike Info` specification                        |
+| Nguyen Vu Minh | **2. Overall Description** and `Rent Bike`, `Make Transaction` specifications |
+| Bui Manh Tu    | **4. Supplementary Specification** and `Return bike` specification            |
 
 ### Revisions
 
-| Name        | Github     | Revision                               |
-| ----------- | ---------- | -------------------------------------- |
-| Bui Manh Tu | @theobmgit | SRS document and `UseCaseDiagram` file |
+| Name        | Revision                                                                                             |
+| ----------- | ---------------------------------------------------------------------------------------------------- |
+| Bui Manh Tu | SRS document and [EcoBikeRental Diagrams](Requirement%20Analysis/EcoBikeRental%20Diagrams.asta) file |
 
-# Conventions
+## 3️⃣ Lab 03 - Interaction Diagram
+
+### Tasks
+
+- Complete `Rent Bike`, `View Bike Info`, `View Station Info`, `Return Bike`, and `Make Transaction` interaction diagrams.
+
+### Contributions
+
+| Name           | Contribution                                      |
+| -------------- | ------------------------------------------------- |
+| Le Huy Hoang   | `View Bike Info` and `View Station Info` diagrams |
+| Nguyen Vu Minh | `Rent Bike` and `Make Transaction` diagrams       |
+| Bui Manh Tu    | `Return bike` diagrams                            |
+
+### Revisions
+
+| Name        | Revision                                                                                             |
+| ----------- | ---------------------------------------------------------------------------------------------------- |
+| Bui Manh Tu | All diagrams and [EcoBikeRental Diagrams](Requirement%20Analysis/EcoBikeRental%20Diagrams.asta) file |
+
+# 📐 Conventions
 
 The [EcoBikeRental Diagrams](Requirement%20Analysis/EcoBikeRental%20Diagrams.asta) file has all project diagrams _(activity, class,...)_
-
-Check out the `resources` directory to find templates.
 
 ## Naming convention
 
