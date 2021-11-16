@@ -100,6 +100,19 @@ For detailed information on each screen's contribution, please read **4. Detaile
 | Bui Manh Tu    | [GUI Design Specifications](Requirement%20Analysis/Detailed%20Design/Interface%20Design/GUI%20Design%20Specifications.pdf) document and all UI designs |
 | Nguyen Vu Minh | Interbank subsystem                                                                                                                                    |
 
+## 6️⃣ Lab 06 - Class Design
+
+### Tasks
+
+Design classes relating to `View station info`, `View bike info`, `Rent bike`, `Return bike`, `Make transaction`
+
+### Contributions
+
+| Name           | Contribution                                                |
+| -------------- | ----------------------------------------------------------- |
+| Le Huy Hoang   | `View station info`, `View bike info` classes               |
+| Nguyen Vu Minh | `Rent bike`, `Make transaction`                             |
+| Bui Manh Tu    | `Return bike`                                               |
 # 📐 Conventions
 
 The [EcoBikeRental Diagrams](Requirement%20Analysis/EcoBikeRental%20Diagrams.asta) file has all project diagrams _(activity, class,...)_
