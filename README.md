@@ -117,10 +117,30 @@ Design classes relating to `View station info`, `View bike info`, `Rent bike`, `
 
 The [EcoBikeRental Diagrams](Requirement%20Analysis/EcoBikeRental%20Diagrams.asta) file has all project diagrams _(activity, class,...)_
 
-## Naming convention
+## 6️⃣ Lab 07 - Data Modelling
 
-- File names: **ThisIsAFile_AdditionalInfo**, _e.g. **rentbike-use-case-outline** should be **RentBike_Spec**_
-- Source code: Follow [Java naming convention](https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html)
+### Tasks
+
+Design database relating to `View station info`, `View bike info`, `Rent bike`, `Return bike`, `Make transaction`
+
+### Contributions
+
+| Name           | Contribution                                                |
+| -------------- | ----------------------------------------------------------- |
+| Le Huy Hoang   | `Bike`, `Station`               |
+| Nguyen Vu Minh | `PaymentTransaction`, `CreditCard`                            |
+| Bui Manh Tu    | `BikeDetails`, `Order`, `Payment`                                               |
+
+### Revisions
+
+| Name           | Contribution                                                |
+| -------------- | ----------------------------------------------------------- |
+| Nguyen Vu Minh |  `Bike`, `Station`
+| Bui Manh Tu    | Other entities & Report |
+
+# 📐 Conventions
+
+The [EcoBikeRental Diagrams](Requirement%20Analysis/EcoBikeRental%20Diagrams.asta) file has all project diagrams _(activity, class,...)_
 
 ## Git convention
 
