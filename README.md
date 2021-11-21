@@ -113,11 +113,8 @@ Design classes relating to `View station info`, `View bike info`, `Rent bike`, `
 | Le Huy Hoang   | `View station info`, `View bike info` classes               |
 | Nguyen Vu Minh | `Rent bike`, `Make transaction`                             |
 | Bui Manh Tu    | `Return bike`                                               |
-# 📐 Conventions
 
-The [EcoBikeRental Diagrams](Requirement%20Analysis/EcoBikeRental%20Diagrams.asta) file has all project diagrams _(activity, class,...)_
-
-## 6️⃣ Lab 07 - Data Modelling
+## 7️⃣ Lab 07 - Data Modelling
 
 ### Tasks
 
