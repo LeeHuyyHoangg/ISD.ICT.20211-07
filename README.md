@@ -108,11 +108,11 @@ Design classes relating to `View station info`, `View bike info`, `Rent bike`, `
 
 ### Contributions
 
-| Name           | Contribution                                                |
-| -------------- | ----------------------------------------------------------- |
-| Le Huy Hoang   | `View station info`, `View bike info` classes               |
-| Nguyen Vu Minh | `Rent bike`, `Make transaction`                             |
-| Bui Manh Tu    | `Return bike`                                               |
+| Name           | Contribution                                  |
+| -------------- | --------------------------------------------- |
+| Le Huy Hoang   | `View station info`, `View bike info` classes |
+| Nguyen Vu Minh | `Rent bike`, `Make transaction`               |
+| Bui Manh Tu    | `Return bike`                                 |
 
 ## 7️⃣ Lab 07 - Data Modelling
 
@@ -122,18 +122,37 @@ Design database relating to `View station info`, `View bike info`, `Rent bike`, 
 
 ### Contributions
 
-| Name           | Contribution                                                |
-| -------------- | ----------------------------------------------------------- |
-| Le Huy Hoang   | `Bike`, `Station`               |
-| Nguyen Vu Minh | `PaymentTransaction`, `CreditCard`                            |
-| Bui Manh Tu    | `BikeDetails`, `Order`, `Payment`                                               |
+| Name           | Contribution                       |
+| -------------- | ---------------------------------- |
+| Le Huy Hoang   | `Bike`, `Station`                  |
+| Nguyen Vu Minh | `PaymentTransaction`, `CreditCard` |
+| Bui Manh Tu    | `BikeDetails`, `Order`, `Payment`  |
 
 ### Revisions
 
-| Name           | Contribution                                                |
-| -------------- | ----------------------------------------------------------- |
-| Nguyen Vu Minh |  `Bike`, `Station`
+| Name           | Contribution            |
+| -------------- | ----------------------- |
+| Nguyen Vu Minh | `Bike`, `Station`       |
 | Bui Manh Tu    | Other entities & Report |
+
+## 8️⃣ Lab 08 - Unit Test
+
+### Tasks
+
+Design unit test relating to `View station info`, `View bike info`, `Rent bike`, `Return bike`, `Make transaction`
+
+### Contributions
+
+| Name           | Contribution                                  |
+| -------------- | --------------------------------------------- |
+| Le Huy Hoang   | `ViewStationController`                       |
+| Nguyen Vu Minh | `RentBikeController`, `TransactionController` |
+
+### Revisions
+
+| Name        | Contribution |
+| ----------- | ------------ |
+| Bui Manh Tu | Everything   |
 
 # 📐 Conventions
 
