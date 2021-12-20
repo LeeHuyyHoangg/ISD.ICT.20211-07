@@ -160,7 +160,7 @@ Design unit test relating to `View station info`, `View bike info`, `Rent bike`,
 | ----------- |--------------|
 | Bui Manh Tu | Revision     |
 
-## 8️⃣ Lab 10 - Good Design
+## 🔟 Lab 10 - Good Design
 
 ### Tasks
 
