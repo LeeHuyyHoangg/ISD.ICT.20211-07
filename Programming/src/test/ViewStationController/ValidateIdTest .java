@@ -1,3 +1,5 @@
+package test.ViewStationController;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -6,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import controller.PlaceOrderController;
 
-class ValidateStationTest {
+class ValidateIdTest {
 
 	private ViewStationController viewStationController;
 
@@ -18,16 +20,17 @@ class ValidateStationTest {
 	@ParameterizedTest
 	@CsvSource({
 		"jdhcbudy,true",
-		"156 Dai Co Viet,true",
-		"156 Dai Co Viet Hai Ba Trung Ha Noi,true",
-		"@DongNai!,false",
-		"tp. Ho Chi Minh,true",
+		"asdf154,true",
+		"51864,true",
+		"asfa15 54,false",
+		"@a1das85!,false",
+		"321564!,false",
 		"          ,false",
 		",false"
 	})
 
-	public void test(String location, boolean expected) {
-		assertEquals(expected, viewStationController.validateLocation(location));
+	public void test(String id, boolean expected) {
+		assertEquals(expected, viewStationController.validateId(id));
 	}
 
 }

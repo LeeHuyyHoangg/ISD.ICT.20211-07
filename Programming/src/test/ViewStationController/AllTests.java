@@ -1,9 +1,11 @@
+package test.ViewStationController;
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ValidateAddressTest.class, ValidateIdTest.class})
+@SuiteClasses({ValidateStationTest.class, ValidateIdTest.class})
 public class AllTests {
 
 }

@@ -1,4 +1,4 @@
-package RentBikeController;
+package test.RentBikeController;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

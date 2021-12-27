@@ -1,4 +1,4 @@
-package RentBikeController;
+package test.RentBikeController;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
