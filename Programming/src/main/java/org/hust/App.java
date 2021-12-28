@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.hust.utils.Configs;
@@ -31,6 +32,7 @@ public class App extends Application {
             // initialize the scene
             AnchorPane root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Configs.SPLASH_SCREEN_PATH)));
             Scene scene = new Scene(root);
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(Configs.CSS_PATH + "style.css")).toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(Configs.IMG_PATH + "logo.jpg"))));
             primaryStage.show();
