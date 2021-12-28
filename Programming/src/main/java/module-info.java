@@ -1,4 +1,4 @@
-module ECOB.main {
+module Programming {
     requires javafx.controls;
     requires javafx.fxml;
 
