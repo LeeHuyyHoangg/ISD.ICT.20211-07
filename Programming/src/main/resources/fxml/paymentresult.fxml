@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="109.0" layoutY="152.0" text="Payment" />
+      <Label fx:id="transactionResultLabel" layoutX="109.0" layoutY="196.0" text="Transaction result" />
+      <Label layoutX="109.0" layoutY="250.0" text="Transaction ID:" />
+      <Label layoutX="109.0" layoutY="295.0" text="Card Holder:" />
+      <Label layoutX="109.0" layoutY="335.0" text="Amount" />
+      <Label layoutX="109.0" layoutY="375.0" text="Description:" />
+      <Label layoutX="109.0" layoutY="415.0" text="Transaction Time: " />
+      <Label fx:id="transactionIdLabel" layoutX="266.0" layoutY="250.0" text="Label" />
+      <Label fx:id="cardHolderLabel" layoutX="266.0" layoutY="295.0" text="Label" />
+      <Label fx:id="transactionAmountLabel" layoutX="266.0" layoutY="335.0" text="Label" />
+      <Label fx:id="transactionContentsLabel" layoutX="266.0" layoutY="375.0" text="Label" />
+      <Label fx:id="transactionTimeLabel" layoutX="266.0" layoutY="415.0" text="Label" />
+      <Button fx:id="confirmButton" layoutX="651.0" layoutY="725.0" mnemonicParsing="false" text="Confirm" />
+   </children>
+</AnchorPane>
