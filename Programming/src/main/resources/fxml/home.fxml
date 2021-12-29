@@ -20,7 +20,7 @@
    <children>
       <VBox prefHeight="768.0" prefWidth="1366.0">
          <children>
-            <HBox alignment="CENTER" maxHeight="120.0" maxWidth="1366.0" spacing="180.0">
+            <HBox alignment="CENTER" maxHeight="120.0" maxWidth="1366.0" spacing="200.0">
                <children>
                   <ImageView fitHeight="86.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -29,7 +29,7 @@
                   </ImageView>
                   <HBox alignment="CENTER" prefHeight="120.0" spacing="20.0">
                      <children>
-                        <TextField fx:id="searchTextField" prefWidth="300.0">
+                        <TextField fx:id="searchTextField" prefWidth="250.0">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -41,12 +41,64 @@
                         </Button>
                      </children>
                   </HBox>
-                  <ButtonBar>
+                  <ButtonBar prefWidth="300.0">
                     <buttons>
-                        <Button fx:id="nowButton" mnemonicParsing="false" text="Now" />
-                        <Button fx:id="pricingButton" mnemonicParsing="false" text="Pricing" />
-                      <Button fx:id="scanButton" mnemonicParsing="false" text="Scan" />
-                        <Button fx:id="historyButton" mnemonicParsing="false" text="History" />
+                        <VBox fx:id="nowButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="77.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/InRent.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Now">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="scanButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="77.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/Barcode.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Scan">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="priceButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="77.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/Pricing.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Price">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="historyButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="77.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/History.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="History">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
                     </buttons>
                   </ButtonBar>
                </children>
