@@ -32,6 +32,7 @@ public class BarcodeScreen extends BaseScreenHandler {
     backButton.setOnAction(event -> {
       getPreviousScreen().show();
     });
+    barcodeTextField.setText("01234567");
   }
   
   public void submitBarcode() {

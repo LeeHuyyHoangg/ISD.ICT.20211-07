@@ -3,7 +3,12 @@ package org.hust.entity.payment;
 
 import java.lang.reflect.Field;
 
+import org.bson.Document;
+import org.bson.types.ObjectId;
+import org.hust.entity.db.EcoBikeRentalDatabase;
 import org.hust.utils.Utils;
+
+import com.mongodb.client.MongoDatabase;
 
 /**
  * This class represent a payment transaction.
@@ -60,7 +65,39 @@ public class PaymentTransaction {
   }
   
   public void save() {
-    System.out.println("Payment transaction saved");
+    MongoDatabase db = EcoBikeRentalDatabase.getConnection();
+    Document creditCard = new Document("_id", new ObjectId());
+    Document dbCreditCard = new Document();
+    boolean isExist = false;
+    for (Field field : card.getClass().getDeclaredFields()) {
+      try {
+        field.setAccessible(true);
+        Object value = field.get(card);
+        if (field.getName() == "cardCode") {
+          dbCreditCard = db.getCollection("credit_cards").find(new Document("cardCode", value.toString())).first();
+          if (dbCreditCard != null) {
+            isExist = true;
+            break;
+          }
+        }
+        creditCard.append(field.getName(), value.toString());
+        field.setAccessible(false);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+    Document paymentTransaction = new Document("_id", new ObjectId());
+    paymentTransaction.append("createAt", this.createdAt);
+    paymentTransaction.append("amount", this.amount);
+    if (!isExist) {
+      db.getCollection("credit_cards").insertOne(creditCard);
+      paymentTransaction.append("creditCard", creditCard);
+    } else {
+      paymentTransaction.append("creditCard", dbCreditCard);
+    }
+    paymentTransaction.append("method", this.command);
+    paymentTransaction.append("content", this.transactionContent);
+    db.getCollection("payment_transactions").insertOne(paymentTransaction);
   }
 
   /**

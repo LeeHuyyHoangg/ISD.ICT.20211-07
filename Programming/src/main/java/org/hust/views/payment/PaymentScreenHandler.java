@@ -79,6 +79,10 @@ public class PaymentScreenHandler extends BaseScreenHandler{
     scanButton.setOnMouseClicked(event -> {
       requestToScanBarcode();
     });
+    firstTextField.setText("ict_group7_2021");
+    secondTextField.setText("Group 7");
+    thirdTextField.setText("1125");
+    fifthTextField.setText("279");
   }
   
   /**
