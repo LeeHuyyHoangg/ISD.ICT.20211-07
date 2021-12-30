@@ -42,7 +42,7 @@ public class PaymentResultScreenHandler extends BaseScreenHandler {
   public PaymentResultScreenHandler(Stage stage, String screenPath) throws IOException {
     super(stage, screenPath);
     confirmButton.setOnAction(event -> {
-      this.stage.close();
+      homeScreenHandler.show();
     });
   }
 

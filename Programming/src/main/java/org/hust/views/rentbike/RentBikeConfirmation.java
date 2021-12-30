@@ -67,7 +67,7 @@ public class RentBikeConfirmation extends BaseScreenHandler {
     show();
   }
   
-  public void confirmToRentBike() {
+  private void confirmToRentBike() {
     RentBikeController controller = (RentBikeController) getBController();
     controller.rentBike(currentlyShowBike);
   }

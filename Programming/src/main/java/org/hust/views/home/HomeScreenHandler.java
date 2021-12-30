@@ -58,7 +58,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     private void requestToScanBarcode() {
       try {
         BarcodeScreen barcodeScreen = new BarcodeScreen(this.stage, Configs.BARCODE_PATH);
-        barcodeScreen.setBController(new RentBikeController());
+        barcodeScreen.setHomeScreenHandler(this);
         barcodeScreen.setPreviousScreen(this);
         barcodeScreen.show();
       } catch (IOException e) {

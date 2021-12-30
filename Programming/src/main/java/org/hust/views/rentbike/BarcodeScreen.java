@@ -25,6 +25,7 @@ public class BarcodeScreen extends BaseScreenHandler {
   
   public BarcodeScreen(Stage stage, String screenPath) throws IOException {
     super(stage, screenPath);
+    setBController(new RentBikeController(this));
     submitButton.setOnAction(event -> {
       submitBarcode();
     });
@@ -36,7 +37,7 @@ public class BarcodeScreen extends BaseScreenHandler {
   public void submitBarcode() {
     try {
       RentBikeController controller = (RentBikeController) getBController();
-      controller.rentBike(barcodeTextField.getText());
+      controller.requestToRentBike(barcodeTextField.getText());
     } catch (InvalidBarcodeException e) {
       try {
         PopupScreen.error(e.getMessage());

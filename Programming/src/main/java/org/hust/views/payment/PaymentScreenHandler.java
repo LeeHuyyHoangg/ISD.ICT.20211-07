@@ -9,12 +9,14 @@ import org.hust.entity.payment.PaymentTransaction;
 import org.hust.utils.Configs;
 import org.hust.views.BaseScreenHandler;
 import org.hust.views.popup.PopupScreen;
+import org.hust.views.rentbike.BarcodeScreen;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -48,6 +50,9 @@ public class PaymentScreenHandler extends BaseScreenHandler{
   
   @FXML
   private CheckBox methodCheckBox;
+  
+  @FXML
+  private VBox scanButton;
 
   /**
    * Initialize PaymentScreenHandler.
@@ -58,17 +63,22 @@ public class PaymentScreenHandler extends BaseScreenHandler{
   public PaymentScreenHandler(Stage stage, String screenPath) throws IOException {
     super(stage, screenPath);
     stage.setOnCloseRequest(event -> {
+      isSuccess = false;
       prepareToClose();
     });
     primaryButton.setOnAction(event -> {
       submitTransactionInfo();
     });
     secondaryButton.setOnAction(event -> {
+      isSuccess = false;
       prepareToClose();
-      stage.close();
+      getPreviousScreen().show();
     });
     methodCheckBox.setSelected(true);
     methodCheckBox.setDisable(true);
+    scanButton.setOnMouseClicked(event -> {
+      requestToScanBarcode();
+    });
   }
   
   /**
@@ -106,11 +116,12 @@ public class PaymentScreenHandler extends BaseScreenHandler{
     	  fifthTextField.getText(),
     	  thirdTextField.getText());
       loadingPopup.close(0);
-      Platform.exitNestedEventLoop(key, null);
       transaction.save();
-      stage.setOnCloseRequest(null);
+      isSuccess = true;
+      prepareToClose();
       PaymentResultScreenHandler resultScreen = 
           new PaymentResultScreenHandler(stage, Configs.PAYMENT_RESULT_PATH);
+      resultScreen.setHomeScreenHandler(homeScreenHandler);
       resultScreen.show(transaction);
     } catch (InvalidFormatException e) {
       try {
@@ -120,12 +131,13 @@ public class PaymentScreenHandler extends BaseScreenHandler{
       }
     } catch (Exception e) {
       try {
-        stage.setOnCloseRequest(null);
+        isSuccess = false;
+        prepareToClose();
         PaymentResultScreenHandler resultScreen = 
  	        new PaymentResultScreenHandler(stage, Configs.PAYMENT_RESULT_PATH);
+        resultScreen.setHomeScreenHandler(homeScreenHandler);
         resultScreen.showError(e);
         isSuccess = false;
-        Platform.exitNestedEventLoop(key, null);
         e.printStackTrace();
       } catch (Exception ex) {
     	ex.printStackTrace();
@@ -136,14 +148,25 @@ public class PaymentScreenHandler extends BaseScreenHandler{
   }
   
   private void prepareToClose() {
-    if (this instanceof PaymentScreenHandler) {
-      isSuccess = false;
-      Platform.exitNestedEventLoop(key, null);
-    }
+    stage.setOnCloseRequest(null);
+    Platform.exitNestedEventLoop(key, null);
   }
   
   @Override
   public void show() {
     super.show();
+  }
+  
+  private void requestToScanBarcode() {
+    try {
+      isSuccess = false;
+      prepareToClose();
+      BarcodeScreen barcodeScreen = new BarcodeScreen(this.stage, Configs.BARCODE_PATH);
+      barcodeScreen.setHomeScreenHandler(homeScreenHandler);
+      barcodeScreen.setPreviousScreen(this);
+      barcodeScreen.show();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }
