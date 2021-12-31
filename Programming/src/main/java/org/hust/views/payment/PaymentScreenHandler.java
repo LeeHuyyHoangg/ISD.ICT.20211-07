@@ -135,6 +135,7 @@ public class PaymentScreenHandler extends BaseScreenHandler{
       }
     } catch (Exception e) {
       try {
+        e.printStackTrace();
         isSuccess = false;
         prepareToClose();
         PaymentResultScreenHandler resultScreen = 

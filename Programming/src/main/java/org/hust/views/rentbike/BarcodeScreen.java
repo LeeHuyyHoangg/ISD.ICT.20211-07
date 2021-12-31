@@ -18,18 +18,18 @@ public class BarcodeScreen extends BaseScreenHandler {
   private TextField barcodeTextField;
   
   @FXML
-  private Button submitButton;
+  private Button primaryButton;
   
   @FXML
-  private Button backButton;
+  private Button secondaryButton;
   
   public BarcodeScreen(Stage stage, String screenPath) throws IOException {
     super(stage, screenPath);
     setBController(new RentBikeController(this));
-    submitButton.setOnAction(event -> {
+    primaryButton.setOnAction(event -> {
       submitBarcode();
     });
-    backButton.setOnAction(event -> {
+    secondaryButton.setOnAction(event -> {
       getPreviousScreen().show();
     });
     barcodeTextField.setText("01234567");

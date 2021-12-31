@@ -4,12 +4,14 @@ import java.io.IOException;
 
 import org.hust.controller.RentBikeController;
 import org.hust.entity.bike.Bike;
+import org.hust.utils.Utils;
 import org.hust.views.BaseScreenHandler;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -35,6 +37,9 @@ public class RentBikeConfirmation extends BaseScreenHandler {
   
   @FXML
   private ScrollPane infoScrollPane;
+  
+  @FXML
+  private ImageView image;
 
   private Bike currentlyShowBike;
   
@@ -62,7 +67,7 @@ public class RentBikeConfirmation extends BaseScreenHandler {
     vb.getChildren().add(new Label("Color: " + bike.getColor()));
     vb.getChildren().add(new Label("Weight: " + bike.getWeight()));
     int deposit = bike.getValue() / 100 * 40;
-    vb.getChildren().add(new Label("Deposit: " + deposit));
+    vb.getChildren().add(new Label("Deposit: " + Utils.getCurrencyFormat(deposit)));
     infoScrollPane.setContent(vb);
     show();
   }
@@ -72,8 +77,4 @@ public class RentBikeConfirmation extends BaseScreenHandler {
     controller.rentBike(currentlyShowBike);
   }
   
-  @Override
-  public void show() {
-    super.show();
-  }
 }
