@@ -3,6 +3,7 @@ package org.hust.entity.bike;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.hust.common.exception.InvalidBarcodeException;
+import org.hust.controller.RentBikeController;
 import org.hust.entity.db.Database;
 
 import com.mongodb.BasicDBObject;
@@ -34,6 +35,8 @@ public class Bike {
 
     Database.getConnection().getCollection("bikes").updateOne(query, updateObject);
     status = true;
+    
+    RentBikeController.setCurrentlyRentedBike(this);
   }
   
   public void getBike(String barcode) throws InvalidBarcodeException {
