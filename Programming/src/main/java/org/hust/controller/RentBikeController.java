@@ -34,8 +34,7 @@ public class RentBikeController extends BaseController {
     if (!validateBarcode(barcode)) {
       throw new InvalidBarcodeException();
     }
-    Bike bike = new Bike();
-    bike.getBike(barcode);
+    Bike bike = Bike.getBike(barcode);
     try {
       RentBikeConfirmation bikeScreen = new RentBikeConfirmation(new Stage(), Configs.RENT_BIKE_CONFIRM_PATH);
       bikeScreen.setBController(this);

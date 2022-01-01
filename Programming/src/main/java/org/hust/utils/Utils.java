@@ -10,6 +10,13 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Logger;
 
+import org.bson.Document;
+
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.SneakyThrows;
+
 /**
  * @author nguyenlm Contains helper functions
  */
@@ -68,5 +75,30 @@ public class Utils {
         }
         return digest;
     }
+    
+    /**
+     * Return a {object of generic type T} that where casted from input document
+     * the fields in the object which not exist in the document will have initial value
+     *
+     * @author hoang.lh194766
+     * @param document - the document needed to cast.
+     * @param objectClass - the class of the object needed to be transfer to
+     * @return cipher text as {@link java.lang.String String}.
+     */
+    @SneakyThrows
+    public static <T> T documentToObject(Document document, Class objectClass){
+        String oidAsString = document.getObjectId("_id").toString();
+        document.put("_id", oidAsString);
+        final String json = document.toJson();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
+        try {
+          return (T) mapper.readValue(json, objectClass);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+        
+        return null;
+    }
 }

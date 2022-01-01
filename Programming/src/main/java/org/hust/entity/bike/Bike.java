@@ -1,5 +1,7 @@
 package org.hust.entity.bike;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.hust.common.exception.InvalidBarcodeException;
@@ -10,22 +12,27 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
-public class Bike {
-  private ObjectId id;
-  private String model;
-  private String type;
-  private int battery;
-  private boolean status;
-  private int usageTime;
-  private double speed;
-  private String color;
-  private double weight;
-  private String description;
-  private int value;
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
+public abstract class Bike {
+	private ObjectId _id;
+    private Class bikeType;
+    private String model;
+    private String type;
+    private boolean status;
+    private double speed;
+    private String color;
+    private double weight;
+    private String description;
+    private int value;
+    private String barcode;
   
   public void unlock() {
     BasicDBObject query = new BasicDBObject();
-    query.put("_id", this.id);
+    query.put("_id", this._id);
 
     BasicDBObject newDocument = new BasicDBObject();
     newDocument.put("status", true);
@@ -39,30 +46,47 @@ public class Bike {
     RentBikeController.setCurrentlyRentedBike(this);
   }
   
-  public void getBike(String barcode) throws InvalidBarcodeException {
-    MongoDatabase db = Database.getConnection();
-    MongoCollection<Document> bikeCollection = db.getCollection("bikes");
-    Document bike = bikeCollection.find(new Document("barcode", barcode)).first();
-    if (bike == null) {
-      throw new InvalidBarcodeException();
-    }
-    MongoCollection<Document> bikeDetailsCollection = db.getCollection("bike_details");
-    Document bikeDetails = bikeDetailsCollection.find(new Document("_id", bike.get("details"))).first();
-    this.id = bike.getObjectId("_id");
-    this.model = bike.getString("model");
-    this.type = bike.getString("type");
-    this.battery = bike.getInteger("battery");
-    this.status = bike.getBoolean("status");
-    this.usageTime = bike.getInteger("usageTime");
-    this.speed = bikeDetails.getDouble("speed");
-    this.color = bikeDetails.getString("color");
-    this.weight = bikeDetails.getDouble("weight");
-    this.description = bikeDetails.getString("description");
-    this.value = bikeDetails.getInteger("value");
-    if (this.status == true) {
-      throw new InvalidBarcodeException();
-    }
+  public static Bike getBike(String barcode) throws InvalidBarcodeException {
+	  
+	  MongoDatabase db = Database.getConnection();
+      MongoCollection<Document> bikeCollection = db.getCollection("bikes");
+      Document bike = bikeCollection.find(new Document("barcode", barcode)).first();
+      if (bike == null) {
+          throw new InvalidBarcodeException();
+      }
+
+      try {
+          Class bikeType = Class.forName(bike.getString("bikeType"));
+          return ((Bike) bikeType.getDeclaredConstructor().newInstance()).documentToBike(bike);
+      } catch (Exception e) {
+          return (new NormalBike()).documentToBike(bike);
+      }
   }
+
+  public static Bike getBikeByID(String id) throws InvalidBarcodeException, NoSuchMethodException {
+      MongoDatabase db = Database.getConnection();
+      MongoCollection<Document> bikeCollection = db.getCollection("bikes");
+      Document bike = bikeCollection.find(new Document("_id", new ObjectId(id))).first();
+      if (bike == null) {
+          throw new InvalidBarcodeException();
+      }
+
+      try {
+          Class bikeType = Class.forName(bike.getString("bikeType"));
+          return ((Bike) bikeType.getDeclaredConstructor().newInstance()).documentToBike(bike);
+      } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+          return (new NormalBike()).documentToBike(bike);
+      }
+  }
+
+  /**
+   * the abstract function require the children class to generate a function
+   * to set a document to that children class
+   *
+   * @param document the document needed to be cast
+   * @return the child class object
+   */
+  protected abstract Bike documentToBike(Document document);
   
   public String getModel() {
     return this.model;
@@ -70,14 +94,6 @@ public class Bike {
   
   public String getType() {
     return this.type;
-  }
-  
-  public int getBattery() {
-    return this.battery;
-  }
-  
-  public int getUsageTime() {
-    return this.usageTime;
   }
   
   public double getSpeed() {

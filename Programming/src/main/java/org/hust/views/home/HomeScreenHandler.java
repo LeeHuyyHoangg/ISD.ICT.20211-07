@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import org.hust.controller.HomeController;
-import org.hust.controller.RentBikeController;
 import org.hust.utils.Configs;
 import org.hust.utils.Utils;
 import org.hust.views.BaseScreenHandler;
