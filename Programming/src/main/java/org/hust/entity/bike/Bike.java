@@ -3,7 +3,7 @@ package org.hust.entity.bike;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.hust.common.exception.InvalidBarcodeException;
-import org.hust.entity.db.EcoBikeRentalDatabase;
+import org.hust.entity.db.Database;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
@@ -32,12 +32,12 @@ public class Bike {
     BasicDBObject updateObject = new BasicDBObject();
     updateObject.put("$set", newDocument);
 
-    EcoBikeRentalDatabase.getConnection().getCollection("bikes").updateOne(query, updateObject);
+    Database.getConnection().getCollection("bikes").updateOne(query, updateObject);
     status = true;
   }
   
   public void getBike(String barcode) throws InvalidBarcodeException {
-    MongoDatabase db = EcoBikeRentalDatabase.getConnection();
+    MongoDatabase db = Database.getConnection();
     MongoCollection<Document> bikeCollection = db.getCollection("bikes");
     Document bike = bikeCollection.find(new Document("barcode", barcode)).first();
     if (bike == null) {

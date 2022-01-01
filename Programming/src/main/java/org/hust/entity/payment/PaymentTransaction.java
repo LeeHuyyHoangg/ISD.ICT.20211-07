@@ -5,7 +5,7 @@ import java.lang.reflect.Field;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
-import org.hust.entity.db.EcoBikeRentalDatabase;
+import org.hust.entity.db.Database;
 import org.hust.utils.Utils;
 
 import com.mongodb.client.MongoDatabase;
@@ -65,7 +65,7 @@ public class PaymentTransaction {
   }
   
   public void save() {
-    MongoDatabase db = EcoBikeRentalDatabase.getConnection();
+    MongoDatabase db = Database.getConnection();
     Document creditCard = new Document("_id", new ObjectId());
     Document dbCreditCard = new Document();
     boolean isExist = false;
