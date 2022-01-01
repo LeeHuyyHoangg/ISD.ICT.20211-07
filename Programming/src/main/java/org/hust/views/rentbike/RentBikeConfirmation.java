@@ -2,10 +2,12 @@ package org.hust.views.rentbike;
 
 import java.io.IOException;
 
+import org.hust.common.exception.AlreadyRentBikeException;
 import org.hust.controller.RentBikeController;
 import org.hust.entity.bike.Bike;
 import org.hust.utils.Utils;
 import org.hust.views.BaseScreenHandler;
+import org.hust.views.popup.PopupScreen;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -74,7 +76,15 @@ public class RentBikeConfirmation extends BaseScreenHandler {
   
   private void confirmToRentBike() {
     RentBikeController controller = (RentBikeController) getBController();
-    controller.rentBike(currentlyShowBike);
+    try {
+      controller.rentBike(currentlyShowBike);
+    } catch (AlreadyRentBikeException e) {
+      try {
+        PopupScreen.error(e.getMessage());
+      } catch (Exception ex) {
+        ex.printStackTrace();
+      }
+    }
   }
   
 }

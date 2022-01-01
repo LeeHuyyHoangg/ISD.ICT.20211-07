@@ -2,10 +2,11 @@ package org.hust.controller;
 
 import java.io.IOException;
 
-import org.hust.views.BaseScreenHandler;
+import org.hust.common.exception.AlreadyRentBikeException;
 import org.hust.common.exception.InvalidBarcodeException;
 import org.hust.entity.bike.Bike;
 import org.hust.utils.Configs;
+import org.hust.views.BaseScreenHandler;
 import org.hust.views.payment.PaymentScreenHandler;
 import org.hust.views.popup.PopupScreen;
 import org.hust.views.rentbike.RentBikeConfirmation;
@@ -58,8 +59,12 @@ public class RentBikeController extends BaseController {
    * Process to make payment transaction and rent bike, this should only be called from
    * RentBikeConfirmPopup.
    * @param bike - bike to be rent
+   * @throws AlreadyRentBikeException - if the customer try to rent a bike while already rented a bike
    */
-  public void rentBike(Bike bike) {
+  public void rentBike(Bike bike) throws AlreadyRentBikeException {
+    if (currentlyRentedBike != null) {
+      throw new AlreadyRentBikeException();
+    }
     String transactionContents = "Fee for rent bike " + bike.getModel();
     int transactionAmount = bike.getValue() / 100 * 40;
     try {
