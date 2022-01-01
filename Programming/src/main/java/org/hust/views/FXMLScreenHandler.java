@@ -2,6 +2,9 @@ package org.hust.views;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
+
+import org.hust.utils.Configs;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
@@ -29,8 +32,7 @@ public class FXMLScreenHandler {
     }
 
     public void setImage(ImageView imv, String path){
-        File file = new File(path);
-        Image img = new Image(file.toURI().toString());
+        Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream(path)));
         imv.setImage(img);
     }
 }

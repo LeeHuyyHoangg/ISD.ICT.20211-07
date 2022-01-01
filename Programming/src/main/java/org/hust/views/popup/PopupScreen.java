@@ -39,15 +39,15 @@ public class PopupScreen extends BaseScreenHandler {
     }
 
     public static void success(String message) throws IOException {
-        popup(message, Configs.IMAGE_PATH + "/" + "check.png", true).show(true);
+        popup(message, Configs.IMAGE_PATH + "check.png", true).show(true);
     }
 
     public static void error(String message) throws IOException {
-        popup(message, Configs.IMAGE_PATH + "/" + "cancel.png", false).show(false);
+        popup(message, Configs.IMAGE_PATH + "cancel.png", false).show(false);
     }
 
     public static PopupScreen loading(String message) throws IOException {
-        return popup(message, Configs.IMAGE_PATH + "/" + "loading.gif", true);
+        return popup(message, Configs.IMAGE_PATH + "loading.gif", true);
     }
 
     public void setImage(String path) {
