@@ -7,6 +7,7 @@ import org.hust.common.exception.InvalidBarcodeException;
 import org.hust.entity.bike.Bike;
 import org.hust.utils.Configs;
 import org.hust.views.payment.PaymentScreenHandler;
+import org.hust.views.popup.PopupScreen;
 import org.hust.views.rentbike.RentBikeConfirmation;
 
 import javafx.stage.Stage;
@@ -14,6 +15,8 @@ import javafx.stage.Stage;
 public class RentBikeController extends BaseController {
 
   private BaseScreenHandler screenThatCallRentBike;
+  
+  private static Bike currentlyRentedBike;
   
   /**
    * For test only, do not use this.
@@ -66,6 +69,7 @@ public class RentBikeController extends BaseController {
       paymentScreen.setBController(new TransactionController());
       if (paymentScreen.requestToMakeTransaction(transactionAmount, transactionContents)) {
         bike.unlock();
+        PopupScreen.success("Rent Successfully!");
       }
     } catch (IOException e) {
       e.printStackTrace();
@@ -86,5 +90,12 @@ public class RentBikeController extends BaseController {
       return false;
     }
     return true;
+  }
+  
+  public static Bike getCurrentlyRentedBike() {
+    return currentlyRentedBike;
+  }
+  public static void setCurrentlyRentedBike(Bike bike) {
+    currentlyRentedBike = bike;
   }
 }
