@@ -62,5 +62,13 @@ public class BaseScreenHandler extends FXMLScreenHandler {
     public void setHomeScreenHandler(HomeScreenHandler HomeScreenHandler) {
         this.homeScreenHandler = HomeScreenHandler;
     }
+    
+    public Stage getStage() {
+        return this.stage;
+    }
+    
+    public HomeScreenHandler getHomeScreenHandler() {
+        return this.homeScreenHandler;
+    }
 }
 

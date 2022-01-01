@@ -30,16 +30,17 @@ public class TransactionControllerTest {
 
     @ParameterizedTest
     @CsvSource({
-            "11,25,true",
-            "13,25,false",
-            "1a,25,false",
-            "11,2b,false",
-            "113,265,false",
-            "11,246,false",
-            "6,26,false",
-            ",,false"
+    		"0623,true",
+            "1125,true",
+            "1325,false",
+            "1a25,false",
+            "112b,false",
+            "113265,false",
+            "11246,false",
+            "626,false",
+            ",false"
     })
-    public void validateExpiredDate(String expiredMonth, String expiredYear, boolean expected) {
-        assertEquals(expected, transactionController.validateExpiredDate(expiredMonth, expiredYear));
+    public void validateExpiredDate(String expiredDate, boolean expected) {
+        assertEquals(expected, transactionController.validateExpiredDate(expiredDate));
     }
 }

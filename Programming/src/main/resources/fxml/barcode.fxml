@@ -128,7 +128,7 @@
 				</HBox>
 				<VBox maxWidth="800.0">
 					<children>
-						<Label fx:id="titleLabel" text="Payment" wrapText="true">
+						<Label fx:id="titleLabel" text="Barcode" wrapText="true">
 							<textFill>
 								<LinearGradient endX="1.0" endY="1.0"
 									startX="1.0">
@@ -158,87 +158,12 @@
 							</font>
 						</Label>
 						<Label fx:id="subtitleLabel" layoutX="10.0" layoutY="271.0"
-							text="Select a payment method:" wrapText="true">
+							text="Enter barcode to rent" wrapText="true">
 							<font>
 								<Font size="36.0" />
 							</font>
 						</Label>
-						<HBox>
-							<children>
-								<CheckBox fx:id="methodCheckBox"
-									mnemonicParsing="false" text="Credit Card">
-									<font>
-										<Font size="18.0" />
-									</font>
-								</CheckBox>
-							</children>
-						</HBox>
-						<VBox fx:id="formVBox" maxWidth="600.0" spacing="25.0">
-							<VBox.margin>
-								<Insets top="20.0" />
-							</VBox.margin>
-							<children>
-								<HBox spacing="50.0" VBox.vgrow="ALWAYS">
-									<children>
-										<Label fx:id="firstLabel" minWidth="95.0"
-											text="Card Number">
-											<font>
-												<Font size="14.0" />
-											</font>
-										</Label>
-										<TextField fx:id="firstTextField"
-											HBox.hgrow="ALWAYS" />
-									</children>
-								</HBox>
-								<HBox spacing="50.0" VBox.vgrow="ALWAYS">
-									<children>
-										<Label fx:id="secondLabel" minWidth="95.0"
-											text="Card Holder">
-											<font>
-												<Font size="14.0" />
-											</font>
-										</Label>
-										<TextField fx:id="secondTextField"
-											HBox.hgrow="ALWAYS" />
-									</children>
-								</HBox>
-								<HBox spacing="50.0" VBox.vgrow="ALWAYS">
-									<children>
-										<Label fx:id="thirdLabel" text="Expiration Date">
-											<font>
-												<Font size="14.0" />
-											</font>
-										</Label>
-										<TextField fx:id="thirdTextField"
-											HBox.hgrow="ALWAYS" />
-									</children>
-								</HBox>
-								<HBox spacing="50.0">
-									<children>
-										<Label fx:id="fourthLabel" minWidth="95.0"
-											text="Issueing Bank">
-											<font>
-												<Font size="14.0" />
-											</font>
-										</Label>
-										<TextField fx:id="fourthTextField"
-											HBox.hgrow="ALWAYS" />
-									</children>
-								</HBox>
-								<HBox spacing="50.0">
-									<children>
-										<Label fx:id="fifthLabel" minWidth="95.0"
-											text="Security Code">
-											<font>
-												<Font size="14.0" />
-											</font>
-										</Label>
-										<TextField fx:id="fifthTextField"
-											HBox.hgrow="ALWAYS" />
-									</children>
-								</HBox>
-							</children>
-						</VBox>
+						<TextField fx:id="barcodeTextField" layoutX="410.0" layoutY="338.0" prefHeight="40.0" prefWidth="315.0" AnchorPane.leftAnchor="101.0" AnchorPane.topAnchor="282.0" />
 						<ButtonBar fx:id="buttonGroup">
 							<buttons>
 								<Button fx:id="secondaryButton" mnemonicParsing="false"
@@ -248,7 +173,7 @@
 									</font>
 								</Button>
 								<Button fx:id="primaryButton" mnemonicParsing="false"
-									style="-fx-background-color: #2ECC71;" text="Confirm"
+									style="-fx-background-color: #2ECC71;" text="View Bike Info"
 									textFill="WHITE">
 									<font>
 										<Font name="System Bold" size="16.0" />
