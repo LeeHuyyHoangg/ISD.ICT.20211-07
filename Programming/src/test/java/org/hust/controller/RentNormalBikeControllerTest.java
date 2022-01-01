@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class RentBikeControllerTest {
+class RentNormalBikeControllerTest {
     private RentBikeController rentBikeController;
 
     @BeforeEach

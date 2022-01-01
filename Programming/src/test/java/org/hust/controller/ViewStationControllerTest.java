@@ -16,7 +16,7 @@ public class ViewStationControllerTest {
 
     @ParameterizedTest
     @CsvSource({
-            "jdhcbudy,true",
+            "Jdhcbudy,true",
             "asdf154,true",
             "51864,true",
             "asfa15 54,false",
@@ -31,7 +31,7 @@ public class ViewStationControllerTest {
 
     @ParameterizedTest
     @CsvSource({
-            "jdhcbudy,true",
+            "Jdhcbudy,true",
             "156 Dai Co Viet,true",
             "156 Dai Co Viet Hai Ba Trung Ha Noi,true",
             "@DongNai!,false",

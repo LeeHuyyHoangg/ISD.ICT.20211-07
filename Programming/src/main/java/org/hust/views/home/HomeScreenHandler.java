@@ -18,6 +18,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         super(stage, screenPath);
     }
 
+    @Override
     public HomeController getBController() {
         return (HomeController) super.getBController();
     }

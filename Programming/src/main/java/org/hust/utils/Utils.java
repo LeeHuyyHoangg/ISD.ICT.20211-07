@@ -1,5 +1,10 @@
 package org.hust.utils;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
+import org.bson.Document;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -26,8 +31,8 @@ public class Utils {
     }
 
     public static String getCurrencyFormat(int num) {
-        Locale vietname = new Locale("vi", "VN");
-        NumberFormat defaultFormat = NumberFormat.getCurrencyInstance(vietname);
+        Locale vietnam = new Locale("vi", "VN");
+        NumberFormat defaultFormat = NumberFormat.getCurrencyInstance(vietnam);
         return defaultFormat.format(num);
     }
 
@@ -52,7 +57,7 @@ public class Utils {
      * @return cipher text as {@link java.lang.String String}.
      */
     public static String md5(String message) {
-        String digest = null;
+        String digest;
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] hash = md.digest(message.getBytes("UTF-8"));
@@ -67,6 +72,26 @@ public class Utils {
             digest = "";
         }
         return digest;
+    }
+
+    /**
+     * Return a {object of generic type T} that where casted from input document
+     * the fields in the object which not exist in the document will have initial value
+     *
+     * @author hoang.lh194766
+     * @param document - the document needed to cast.
+     * @param objectClass - the class of the object needed to be transfer to
+     * @return cipher text as {@link java.lang.String String}.
+     */
+    @SneakyThrows
+    public static <T> T documentToObject(Document document, Class objectClass){
+        String oidAsString = document.getObjectId("_id").toString();
+        document.put("_id", oidAsString);
+        final String json = document.toJson();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        return (T) mapper.readValue(json, objectClass);
     }
 
 }

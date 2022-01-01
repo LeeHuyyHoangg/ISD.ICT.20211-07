@@ -32,7 +32,9 @@ public class PopupScreen extends BaseScreenHandler {
 
     private static PopupScreen popup(String message, String imagepath, Boolean undecorated) throws IOException {
         PopupScreen popup = new PopupScreen(new Stage());
-        if (undecorated) popup.stage.initStyle(StageStyle.UNDECORATED);
+        if (undecorated) {
+            popup.stage.initStyle(StageStyle.UNDECORATED);
+        }
         popup.message.setText(message);
         popup.setImage(imagepath);
         return popup;
@@ -56,7 +58,9 @@ public class PopupScreen extends BaseScreenHandler {
 
     public void show(Boolean autoclose) {
         super.show();
-        if (autoclose) close(1);
+        if (autoclose) {
+            close(1);
+        }
     }
 
     public void show(double time) {
