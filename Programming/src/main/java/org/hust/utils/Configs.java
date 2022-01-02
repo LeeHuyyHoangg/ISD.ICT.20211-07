@@ -8,5 +8,5 @@ public class Configs {
     public static final String PAYMENT_PATH = "/fxml/payment.fxml";
     public static final String BARCODE_PATH = "/fxml/barcode.fxml";
     public static final String RENT_BIKE_CONFIRM_PATH = "/fxml/confirm.fxml";
-    public static final String PAYMENT_RESULT_PATH = "/fxml/paymentresult.fxml";
+    public static final String PAYMENT_RESULT_PATH = "/fxml/payment-result.fxml";
 }
