@@ -63,8 +63,8 @@ public class RentBikeConfirmation extends BaseScreenHandler {
     subtitleLabel.setText("Location");
     smallTextLabel.setText(bike.getType());
     VBox vb = new VBox();
-    vb.getChildren().add(new Label("Battery: " + bike.getBattery()));
-    vb.getChildren().add(new Label("Usage Time: " + bike.getUsageTime()));
+//    vb.getChildren().add(new Label("Battery: " + bike.getBattery()));
+//    vb.getChildren().add(new Label("Usage Time: " + bike.getUsageTime()));
     vb.getChildren().add(new Label("Speed: " + bike.getSpeed()));
     vb.getChildren().add(new Label("Color: " + bike.getColor()));
     vb.getChildren().add(new Label("Weight: " + bike.getWeight()));

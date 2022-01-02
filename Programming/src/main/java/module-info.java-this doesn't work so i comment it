@@ -2,6 +2,13 @@ module Programming {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.logging;
+    requires lombok;
+    requires mongo.java.driver;
+    requires gson;
+    requires reflections;
+    requires jackson.databind;
+    requires jackson.core;
+    requires commons.lang3;
 
     opens org.hust to javafx.fxml;
     opens org.hust.views to javafx.fxml;

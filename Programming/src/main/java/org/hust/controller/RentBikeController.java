@@ -2,6 +2,7 @@ package org.hust.controller;
 
 import java.io.IOException;
 
+import org.bson.Document;
 import org.hust.common.exception.AlreadyRentBikeException;
 import org.hust.common.exception.InvalidBarcodeException;
 import org.hust.entity.bike.Bike;
@@ -23,7 +24,6 @@ public class RentBikeController extends BaseController {
    * For test only, do not use this.
    */
   public RentBikeController() {
-    ;
   }
   
   public RentBikeController(BaseScreenHandler screenThatCallRentBike) {
@@ -34,8 +34,13 @@ public class RentBikeController extends BaseController {
     if (!validateBarcode(barcode)) {
       throw new InvalidBarcodeException();
     }
-    Bike bike = new Bike();
-    bike.getBike(barcode);
+    Bike bike = new Bike() {
+      @Override
+      public Bike documentToBike(Document document) {
+        return null;
+      }
+    };
+    Bike.getBike(barcode);
     try {
       RentBikeConfirmation bikeScreen = new RentBikeConfirmation(new Stage(), Configs.RENT_BIKE_CONFIRM_PATH);
       bikeScreen.setBController(this);
