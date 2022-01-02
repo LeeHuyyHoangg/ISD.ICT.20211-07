@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import lombok.Getter;
@@ -14,6 +15,7 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.hust.common.exception.InvalidBarcodeException;
 import org.hust.common.exception.InvalidIdException;
+import org.hust.controller.RentBikeController;
 import org.hust.entity.db.Database;
 import org.hust.entity.station.Station;
 import org.reflections.Reflections;
@@ -61,8 +63,19 @@ public abstract class Bike {
     }
 
     public void unlock() {
-        System.out.println("Bike unlocked");
-        status = false;
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", this._id);
+
+        BasicDBObject newDocument = new BasicDBObject();
+        newDocument.put("status", false);
+
+        BasicDBObject updateObject = new BasicDBObject();
+        updateObject.put("$set", newDocument);
+
+        Database.getConnection().getCollection("bikes").updateOne(query, updateObject);
+        status = true;
+
+        RentBikeController.setCurrentlyRentedBike(this);
     }
 
     public static Bike getBike(String barcode) throws InvalidBarcodeException {
@@ -154,6 +167,10 @@ public abstract class Bike {
 
     public long getRentTime(){
         return 10;
+    }
+
+    public boolean isAvailable() {
+        return status;
     }
 
     public String getType() {

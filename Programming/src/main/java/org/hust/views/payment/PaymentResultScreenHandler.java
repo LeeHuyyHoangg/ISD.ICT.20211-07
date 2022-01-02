@@ -48,6 +48,15 @@ public class PaymentResultScreenHandler extends BaseScreenHandler {
   @FXML
   private VBox scanButton;
 
+  @FXML
+  private VBox nowButton;
+
+  /**
+   * Initialize PaymentResultScreenHandler.
+
+   * @param stage      - stage to show the GUI
+   * @param screenPath - path to GUI's FXML file
+   */
   public PaymentResultScreenHandler(Stage stage, String screenPath) throws IOException {
     super(stage, screenPath);
     primaryButton.setOnAction(event -> {
@@ -59,6 +68,10 @@ public class PaymentResultScreenHandler extends BaseScreenHandler {
     scanButton.setOnMouseClicked(event -> {
       requestToScanBarcode();
     });
+    nowButton.setOnMouseClicked(event -> {
+      getHomeScreenHandler().setViewCurrentBike();
+      getHomeScreenHandler().show();
+    });
   }
 
   @Override
@@ -67,7 +80,7 @@ public class PaymentResultScreenHandler extends BaseScreenHandler {
   }
 
   /**
-   * Show the result of a successful payment transaction with infos.
+   * Show the result of a successful payment transaction with info.
 
    * @param transaction - transaction to be show
    */
@@ -80,8 +93,11 @@ public class PaymentResultScreenHandler extends BaseScreenHandler {
     transactionTimeLabel.setText(transaction.getTime());
     show();
   }
-  
-  public void showError(Exception e) {
+
+  /**
+   * Show the result of a fail payment transaction.
+   */
+  public void showError() {
     subtitleLabel.setText("Transaction fail!");
     show();
   }

@@ -2,9 +2,11 @@ package org.hust.views.rentbike;
 
 import java.io.IOException;
 
+import javafx.scene.image.Image;
 import org.hust.common.exception.AlreadyRentBikeException;
 import org.hust.controller.RentBikeController;
 import org.hust.entity.bike.Bike;
+import org.hust.entity.bike.EBike;
 import org.hust.utils.Utils;
 import org.hust.views.BaseScreenHandler;
 import org.hust.views.popup.PopupScreen;
@@ -60,14 +62,19 @@ public class RentBikeConfirmation extends BaseScreenHandler {
   public void show(Bike bike) {
     this.currentlyShowBike = bike;
     titleLabel.setText(bike.getModel());
-    subtitleLabel.setText("Location");
+    subtitleLabel.setText(bike.getLocation());
     smallTextLabel.setText(bike.getType());
+    image.setImage(new Image(bike.getImgUrl()));
     VBox vb = new VBox();
-//    vb.getChildren().add(new Label("Battery: " + bike.getBattery()));
-//    vb.getChildren().add(new Label("Usage Time: " + bike.getUsageTime()));
     vb.getChildren().add(new Label("Speed: " + bike.getSpeed()));
     vb.getChildren().add(new Label("Color: " + bike.getColor()));
     vb.getChildren().add(new Label("Weight: " + bike.getWeight()));
+    vb.getChildren().add(new Label("Status: " + bike.isStatus()));
+    if (bike instanceof EBike) {
+      EBike eBike = (EBike) bike;
+      vb.getChildren().add(new Label("Battery: " + eBike.getBattery()));
+      vb.getChildren().add(new Label("Usage Time: " + eBike.getUsageTime()));
+    }
     int deposit = bike.getValue() / 100 * 40;
     vb.getChildren().add(new Label("Deposit: " + Utils.getCurrencyFormat(deposit)));
     infoScrollPane.setContent(vb);

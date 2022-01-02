@@ -2,6 +2,7 @@ package org.hust.views.rentbike;
 
 import java.io.IOException;
 
+import javafx.scene.layout.VBox;
 import org.hust.common.exception.InvalidBarcodeException;
 import org.hust.controller.RentBikeController;
 import org.hust.views.BaseScreenHandler;
@@ -22,6 +23,9 @@ public class BarcodeScreen extends BaseScreenHandler {
   
   @FXML
   private Button secondaryButton;
+
+  @FXML
+  private VBox nowButton;
   
   public BarcodeScreen(Stage stage, String screenPath) throws IOException {
     super(stage, screenPath);
@@ -31,6 +35,10 @@ public class BarcodeScreen extends BaseScreenHandler {
     });
     secondaryButton.setOnAction(event -> {
       getPreviousScreen().show();
+    });
+    nowButton.setOnMouseClicked(event -> {
+      getHomeScreenHandler().setViewCurrentBike();
+      getHomeScreenHandler().show();
     });
     barcodeTextField.setText("01234567");
   }

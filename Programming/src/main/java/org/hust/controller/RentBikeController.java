@@ -14,6 +14,9 @@ import org.hust.views.rentbike.RentBikeConfirmation;
 
 import javafx.stage.Stage;
 
+/**
+ * Controller for rent bike use case.
+ */
 public class RentBikeController extends BaseController {
 
   private BaseScreenHandler screenThatCallRentBike;
@@ -25,32 +28,28 @@ public class RentBikeController extends BaseController {
    */
   public RentBikeController() {
   }
-  
+
+  /**
+   * Constructor for creating a RentBikeController instance.
+
+   * @param screenThatCallRentBike - the screen that need to initiate rent bike use case
+   */
   public RentBikeController(BaseScreenHandler screenThatCallRentBike) {
     this.screenThatCallRentBike = screenThatCallRentBike;
   }
 
+  /**
+   * Request to rent bike, which will call the rent bike confirm screen to show the bike's info and wait for user
+   * confirmation.
+
+   * @param barcode - barcode of the bike that is requested to be rent
+   * @throws InvalidBarcodeException - if there are no bike with the correspond barcode
+   */
   public void requestToRentBike(String barcode) throws InvalidBarcodeException {
     if (!validateBarcode(barcode)) {
       throw new InvalidBarcodeException();
     }
-    Bike bike = new Bike() {
-      @Override
-      public Bike documentToBike(Document document) {
-        return null;
-      }
-    };
-    Bike.getBike(barcode);
-    try {
-      RentBikeConfirmation bikeScreen = new RentBikeConfirmation(new Stage(), Configs.RENT_BIKE_CONFIRM_PATH);
-      bikeScreen.setBController(this);
-      bikeScreen.show(bike);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-  
-  public void requestToRentBike(Bike bike) {
+    Bike bike = Bike.getBike(barcode);
     try {
       RentBikeConfirmation bikeScreen = new RentBikeConfirmation(new Stage(), Configs.RENT_BIKE_CONFIRM_PATH);
       bikeScreen.setBController(this);
@@ -63,12 +62,17 @@ public class RentBikeController extends BaseController {
   /**
    * Process to make payment transaction and rent bike, this should only be called from
    * RentBikeConfirmPopup.
+
    * @param bike - bike to be rent
    * @throws AlreadyRentBikeException - if the customer try to rent a bike while already rented a bike
+   *                                    or bike not available
    */
   public void rentBike(Bike bike) throws AlreadyRentBikeException {
     if (currentlyRentedBike != null) {
-      throw new AlreadyRentBikeException();
+      throw new AlreadyRentBikeException("You are already renting a bike");
+    }
+    if (!bike.isAvailable()) {
+      throw new AlreadyRentBikeException("Bike not available");
     }
     String transactionContents = "Fee for rent bike " + bike.getModel();
     int transactionAmount = bike.getValue() / 100 * 40;
@@ -85,7 +89,14 @@ public class RentBikeController extends BaseController {
       e.printStackTrace();
     }
   }
-  
+
+  /**
+   * Validate the format of user's input barcode.
+
+   * @param barcode - user's input barcode
+   * @return true  - if the barcode is in correct format
+   *         false - if otherwise
+   */
   public boolean validateBarcode(String barcode) {
     if (barcode == null) {
       return false;
@@ -101,7 +112,12 @@ public class RentBikeController extends BaseController {
     }
     return true;
   }
-  
+
+  /**
+   * Return the currently rented bike.
+   
+   * @return currently rented bike.
+   */
   public static Bike getCurrentlyRentedBike() {
     return currentlyRentedBike;
   }

@@ -15,7 +15,6 @@ public class Database {
 
     private static final MongoDatabase DATABASE;
     static {
-
         ConnectionString connectionString = new ConnectionString("mongodb+srv://Group_7_User:ahaha123@cluster0.hpjzw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
         MongoClientSettings settings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)

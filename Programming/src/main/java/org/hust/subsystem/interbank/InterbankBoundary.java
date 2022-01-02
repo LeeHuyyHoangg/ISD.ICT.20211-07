@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  *
  */
 public class InterbankBoundary {
-  
+
   private final String interbankUrl = "https://ecopark-system-api.herokuapp.com";
   private static Logger LOGGER = Logger.getLogger(InterbankBoundary.class.getName());
 
@@ -38,7 +38,7 @@ public class InterbankBoundary {
     }
     return new Response(responseText);
   }
-  
+
   /**
    * Send a GET request to interbank.
 
@@ -81,7 +81,7 @@ public class InterbankBoundary {
     } else {
       payload = data.toString();
     }
-    LOGGER.info("Request Info:\nRequest URL: " + interbankUrl + "\n" 
+    LOGGER.info("Request Info:\nRequest URL: " + interbankUrl + "\n"
         + "Payload Data: " + payload + "\n");
     HttpURLConnection conn = setupConnection(interbankUrl + path);
     conn.setRequestMethod("PATCH");
@@ -104,7 +104,7 @@ public class InterbankBoundary {
     LOGGER.info("Respone Info: " + response.toString());
     return response.toString();
   }
-  
+
   private HttpURLConnection setupConnection(String url) throws MalformedURLException, IOException {
     URL lineApiUrl = new URL(url);
     HttpURLConnection conn = (HttpURLConnection) lineApiUrl.openConnection();
@@ -112,7 +112,7 @@ public class InterbankBoundary {
     conn.setDoOutput(true);
     return conn;
   }
-  
+
   private String resetBalance() throws IOException {
     String data = "{\"cardCode\":\"ict_group7_2021\","
         + "\"owner\":\"Group 7\",\"cvvCode\":\"279\",\"dateExpired\":\"1125\"}";
@@ -124,7 +124,7 @@ public class InterbankBoundary {
       Field methodsField = HttpURLConnection.class.getDeclaredField("methods");
       System.setProperty("illegal-access", "permit");
       methodsField.setAccessible(true);
-      
+
       VarHandle modifiers;
       try {
         var lookup = MethodHandles.privateLookupIn(Field.class, MethodHandles.lookup());
@@ -132,7 +132,7 @@ public class InterbankBoundary {
       } catch (IllegalAccessException | NoSuchFieldException ex) {
         throw new RuntimeException(ex);
       }
-      
+
       int mods = methodsField.getModifiers();
       if (Modifier.isFinal(mods)) {
         modifiers.set(methodsField, mods & ~Modifier.FINAL);
@@ -149,7 +149,7 @@ public class InterbankBoundary {
     }
   }
   
-  /*
+
   //Used to reset credit card's balance
   public static void main(String args[]) {
     try {
@@ -158,5 +158,5 @@ public class InterbankBoundary {
       e.printStackTrace();
     }
   }
-  */
+
 }

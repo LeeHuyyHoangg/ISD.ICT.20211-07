@@ -28,8 +28,7 @@ public class TransactionController extends BaseController {
    * @param cardCode     - the credit card's code
    * @param cardOwner    - the credit card's owner
    * @param cardCvv      - the credit card's security code
-//   * @param expiredMonth - the credit card's expired month
-//   * @param expiredYear  - the credit card's expired year
+   * @param expiredDate  - the credit card's expired date
    * @return payment transaction if success
    * @throws PaymentException      - if transaction fail with known reasons
    * @throws UnrecognizedException - if transaction fail with unknown reasons
@@ -47,8 +46,7 @@ public class TransactionController extends BaseController {
    * @param cardCode     - the credit card's code
    * @param cardOwner    - the credit card's owner
    * @param cardCvv      - the credit card's security code
-//   * @param expiredMonth - the credit card's expired month
-//   * @param expiredYear  - the credit card's expired year
+   * @param expiredDate  - the credit card's expired date
    * @throws InvalidFormatException - if the credit card info is in an invalid format
    */
   public void checkTransactionInfo(String cardCode, String cardOwner,

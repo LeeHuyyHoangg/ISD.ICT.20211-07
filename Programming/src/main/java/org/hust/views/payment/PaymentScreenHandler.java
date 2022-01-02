@@ -54,6 +54,9 @@ public class PaymentScreenHandler extends BaseScreenHandler{
   @FXML
   private VBox scanButton;
 
+  @FXML
+  private VBox nowButton;
+
   /**
    * Initialize PaymentScreenHandler.
 
@@ -78,6 +81,10 @@ public class PaymentScreenHandler extends BaseScreenHandler{
     methodCheckBox.setDisable(true);
     scanButton.setOnMouseClicked(event -> {
       requestToScanBarcode();
+    });
+    nowButton.setOnMouseClicked(event -> {
+      getHomeScreenHandler().setViewCurrentBike();
+      getHomeScreenHandler().show();
     });
     firstTextField.setText("ict_group7_2021");
     secondTextField.setText("Group 7");
@@ -141,7 +148,8 @@ public class PaymentScreenHandler extends BaseScreenHandler{
         PaymentResultScreenHandler resultScreen = 
  	        new PaymentResultScreenHandler(stage, Configs.PAYMENT_RESULT_PATH);
         resultScreen.setHomeScreenHandler(homeScreenHandler);
-        resultScreen.showError(e);
+        resultScreen.showError();
+        PopupScreen.error(e.getMessage());
         isSuccess = false;
         e.printStackTrace();
       } catch (Exception ex) {

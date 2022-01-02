@@ -19,9 +19,11 @@ import org.hust.controller.ViewStationController;
 import org.hust.entity.bike.Bike;
 import org.hust.entity.bike.EBike;
 import org.hust.entity.station.Station;
+import org.hust.utils.Configs;
 import org.hust.utils.Utils;
 import org.hust.views.BaseScreenHandler;
 import org.hust.views.popup.PopupScreen;
+import org.hust.views.rentbike.BarcodeScreen;
 
 import java.io.IOException;
 import java.net.URL;
@@ -55,6 +57,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
     @FXML
     VBox nowButton;
+
+    @FXML
+    VBox scanButton;
 
     /**
      * Save the station List, either by initial or filtered with user search,
@@ -93,10 +98,12 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         });
 
         nowButton.setOnMouseClicked(mouseEvent -> {
-            selectedBike = ViewBikeController.getInstance().checkUserRentedBike();
             setViewCurrentBike();
         });
 
+        scanButton.setOnMouseClicked(event -> {
+            requestToScanBarcode();
+        });
     }
 
     @Override
@@ -156,7 +163,11 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
     }
 
-    private void setViewCurrentBike(){
+    public void setViewCurrentBike(){
+        selectedBike = ViewBikeController.getInstance().checkUserRentedBike();
+        if (selectedBike == null) {
+            return;
+        }
         smallTextLabel.setText(selectedBike.toString());
 
         VBox vBox = new VBox();
@@ -189,6 +200,10 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     }
 
     private void setViewStation() {
+        if (selectedStation == null) {
+            setViewStationList();
+            return;
+        }
         smallTextLabel.setText(selectedStation.toString());
 
         VBox vBox = new VBox();
@@ -236,4 +251,14 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         secondaryButton.setVisible(false);
     }
 
+    private void requestToScanBarcode() {
+        try {
+            BarcodeScreen barcodeScreen = new BarcodeScreen(this.stage, Configs.BARCODE_PATH);
+            barcodeScreen.setHomeScreenHandler(this);
+            barcodeScreen.setPreviousScreen(this);
+            barcodeScreen.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
