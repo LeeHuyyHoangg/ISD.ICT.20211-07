@@ -23,7 +23,9 @@ import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
- * @author nguyenlm Contains helper functions
+ * The Utils class contains helper functions
+ *
+ * @author hoang.lh194766
  */
 public class Utils {
 
@@ -38,8 +40,8 @@ public class Utils {
     }
 
     public static String getCurrencyFormat(int num) {
-        Locale vietname = new Locale("vi", "VN");
-        NumberFormat defaultFormat = NumberFormat.getCurrencyInstance(vietname);
+        Locale vietnam = new Locale("vi", "VN");
+        NumberFormat defaultFormat = NumberFormat.getCurrencyInstance(vietnam);
         return defaultFormat.format(num);
     }
 

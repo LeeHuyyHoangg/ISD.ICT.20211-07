@@ -6,9 +6,9 @@ import org.bson.Document;
 import org.hust.utils.Utils;
 
 /**
- * @author hoang.lh194766
+ * TwinBike class specifies twin bike type which is built for two cyclists, extended from Bike abstract class
  *
- * class specified for TwinBike bike type, extended from Bike abstract class
+ * @author hoang.lh194766
  */
 @Getter
 @NoArgsConstructor

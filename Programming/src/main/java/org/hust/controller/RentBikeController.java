@@ -2,7 +2,6 @@ package org.hust.controller;
 
 import java.io.IOException;
 
-import org.bson.Document;
 import org.hust.common.exception.AlreadyRentBikeException;
 import org.hust.common.exception.InvalidBarcodeException;
 import org.hust.entity.bike.Bike;

@@ -24,14 +24,19 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 
 /**
+ * Bike class is an abstract class that all types of bike need to extend from
+ *
+ * @implNote
+ * To operate properly, the child class need to have:
+ * <ul>
+ *     <li><code>@Getter</code> annotation</li>
+ *     <li><code>@NoArgsConstructor</code> annotation</li>
+ *     <li><code>documentToBike()</code> implemented</li>
+ *     <li><code>priceCoefficient()</code> implemented</li>
+ * </ul>
+ *
  * @author hoang.lh194766
  *
- * this class is an abstract class that all types of bike need to extends
- * to operate properly, the child class need to have :
- *      -@Getter annotation
- *      -@NoArgsContructor annotation
- *      -function documentToBike implemented
- *      -function priceCoefficient implemented
  */
 @Getter
 @NoArgsConstructor

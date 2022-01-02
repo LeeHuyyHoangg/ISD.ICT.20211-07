@@ -21,9 +21,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @author hoang.lh194766
+ * Station class represents station entity
  *
- * the class for the station
+ * @author hoang.lh194766
  */
 @Getter
 @NoArgsConstructor

@@ -6,9 +6,9 @@ import org.bson.Document;
 import org.hust.utils.Utils;
 
 /**
- * @author hoang.lh194766
+ * EBike class specifies electronic bike, extended from Bike abstract class
  *
- * class specified for Ebiketype, extended from Bike abstract class
+ * @author hoang.lh194766
  */
 @Getter
 @NoArgsConstructor

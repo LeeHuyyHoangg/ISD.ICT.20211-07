@@ -22,7 +22,7 @@ import java.util.Set;
  * this class is use to inject data into the database for testing purpose
  * @author hoang.lh
  */
-public class DataInjecter {
+public class DataInjector {
     private static final String[] bikeUrl = new String[3];
     static {
         //bike
@@ -114,7 +114,7 @@ public class DataInjecter {
     }
 
     public static void main(String[] args) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-//        DataInjecter.injectBike();
-        DataInjecter.injectSation();
+//        DataInjector.injectBike();
+        DataInjector.injectSation();
     }
 }
