@@ -1,22 +1,18 @@
 package org.hust.entity.bike;
 
-import java.lang.reflect.InvocationTargetException;
-import java.time.Duration;
-import java.util.Date;
-
+import com.mongodb.BasicDBObject;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import lombok.Getter;
+import lombok.ToString;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.hust.common.exception.InvalidBarcodeException;
 import org.hust.controller.RentBikeController;
-import org.hust.entity.bike.NormalBike.NormalBike;
 import org.hust.entity.db.Database;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-
-import lombok.Getter;
-import lombok.ToString;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Date;
 
 @Getter
 @ToString

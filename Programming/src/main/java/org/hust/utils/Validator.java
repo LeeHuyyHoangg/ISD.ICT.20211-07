@@ -1,14 +1,11 @@
 package org.hust.utils;
 
-import org.junit.platform.commons.util.StringUtils;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Validator {
     public static boolean validateNoSpecialCharacterString(String string) {
-        if (StringUtils.isBlank(string)) {
+        if (string.isBlank()) {
             return false;
         }
 
@@ -21,7 +18,7 @@ public class Validator {
     }
 
     public static boolean validateSomeSpecialCharacterString(String string, char... allowedSpecialCharacters) {
-        if (StringUtils.isBlank(string)) {
+        if (string.isBlank()) {
             return false;
         }
 

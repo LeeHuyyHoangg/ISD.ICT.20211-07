@@ -53,6 +53,11 @@
             <artifactId>mongo-java-driver</artifactId>
             <version>3.8.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-commons</artifactId>
+            <version>1.7.0</version>
+        </dependency>
     </dependencies>
 
     <build>
