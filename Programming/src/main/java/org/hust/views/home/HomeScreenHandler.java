@@ -9,7 +9,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.hust.common.exception.AlreadyRentBikeException;
 import org.hust.controller.HomeController;
@@ -33,33 +32,32 @@ import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
 public class HomeScreenHandler extends BaseScreenHandler implements Initializable {
-
     @FXML
-    TextField searchTextField;
-
+    private TextField searchTextField;
     @FXML
-    Button searchButton;
-
+    private Button searchButton;
     @FXML
-    ScrollPane infoScrollPane;
-
+    private VBox nowButton;
     @FXML
-    Label smallTextLabel;
-
+    private VBox scanButton;
     @FXML
-    ImageView image;
-
+    private VBox priceButton;
     @FXML
-    Button primaryButton;
-
+    private VBox historyButton;
     @FXML
-    Button secondaryButton;
-
+    private Button primaryButton;
     @FXML
-    VBox nowButton;
-
+    private Button secondaryButton;
     @FXML
-    VBox scanButton;
+    private Label titleLabel;
+    @FXML
+    private Label subtitleLabel;
+    @FXML
+    private ScrollPane infoScrollPane;
+    @FXML
+    private Label smallTextLabel;
+    @FXML
+    private ImageView image;
 
     /**
      * Save the station List, either by initial or filtered with user search,
@@ -89,7 +87,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
         searchButton.setOnMouseClicked(mouseEvent -> {
             String location = searchTextField.getText();
-            if(StringUtils.isEmpty(location)) {
+            if (StringUtils.isEmpty(location)) {
                 stationList = ViewStationController.getInstance().listStation();
             } else {
                 stationList = ViewStationController.getInstance().searchStationByLocation(location);
@@ -97,13 +95,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             setViewStationList();
         });
 
-        nowButton.setOnMouseClicked(mouseEvent -> {
-            setViewCurrentBike();
-        });
+        nowButton.setOnMouseClicked(mouseEvent -> setViewCurrentBikeInUse());
 
-        scanButton.setOnMouseClicked(event -> {
-            requestToScanBarcode();
-        });
+        scanButton.setOnMouseClicked(event -> requestToScanBarcode());
     }
 
     @Override
@@ -121,7 +115,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         setBController(new HomeController());
     }
 
-    private void setViewBike(){
+    private void setViewBike() {
         smallTextLabel.setText(selectedBike.toString());
 
         VBox vBox = new VBox();
@@ -131,8 +125,8 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                 new Label("Color: " + selectedBike.getColor()),
                 new Label("Weight: " + selectedBike.getWeight()),
                 new Label("Description: " + selectedBike.getDescription()),
-                new Label("Value: " + selectedBike. getValue()));
-        if(selectedBike instanceof EBike){
+                new Label("Value: " + selectedBike.getValue()));
+        if (selectedBike instanceof EBike) {
             vBox.getChildren().addAll(
                     new Label("Battery: " + ((EBike) selectedBike).getBattery()),
                     new Label("UsageTime: " + ((EBike) selectedBike).getUsageTime())
@@ -163,7 +157,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
     }
 
-    public void setViewCurrentBike(){
+    public void setViewCurrentBikeInUse() {
         selectedBike = ViewBikeController.getInstance().checkUserRentedBike();
         if (selectedBike == null) {
             return;
@@ -177,10 +171,10 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                 new Label("Color: " + selectedBike.getColor()),
                 new Label("Weight: " + selectedBike.getWeight()),
                 new Label("Description: " + selectedBike.getDescription()),
-                new Label("Value: " + selectedBike. getValue()),
+                new Label("Value: " + selectedBike.getValue()),
                 new Label("Rent time: " + TimeUnit.MILLISECONDS.toMinutes(selectedBike.getRentTime()) + " minutes"),
                 new Label("Current fee: " + 10));
-        if(selectedBike instanceof EBike){
+        if (selectedBike instanceof EBike) {
             vBox.getChildren().addAll(
                     new Label("Battery: " + ((EBike) selectedBike).getBattery()),
                     new Label("UsageTime: " + ((EBike) selectedBike).getUsageTime())
@@ -207,7 +201,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         smallTextLabel.setText(selectedStation.toString());
 
         VBox vBox = new VBox();
-        for(Bike bike : selectedStation.stationBikes()){
+        for (Bike bike : selectedStation.stationBikes()) {
             Button button = new Button(bike.toString());
             button.setPrefWidth(infoScrollPane.getWidth());
             button.setOnMouseClicked(mouseClick -> selectedBike = bike);
@@ -223,7 +217,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         secondaryButton.setText("Back");
         secondaryButton.setVisible(true);
         secondaryButton.setOnMouseClicked(mouseEvent -> {
-            if(stationList.size() != 0){
+            if (stationList.size() != 0) {
                 setViewStationList();
             }
         });
@@ -233,7 +227,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         smallTextLabel.setText("");
 
         VBox vBox = new VBox();
-        for(Station station : stationList){
+        for (Station station : stationList) {
             Button button = new Button(station.toString());
             button.setPrefWidth(infoScrollPane.getPrefWidth());
 

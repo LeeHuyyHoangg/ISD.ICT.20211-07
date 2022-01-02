@@ -17,5 +17,6 @@ module Programming {
     opens org.hust.views.popup to javafx.fxml;
     opens org.hust.views.rentbike to javafx.fxml;
     opens org.hust.entity.station to jackson.databind;
+    opens org.hust.entity.bike to jackson.databind;
     exports org.hust;
 }

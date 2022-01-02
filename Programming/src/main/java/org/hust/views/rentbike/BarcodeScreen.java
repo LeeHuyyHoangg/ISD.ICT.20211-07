@@ -37,7 +37,7 @@ public class BarcodeScreen extends BaseScreenHandler {
       getPreviousScreen().show();
     });
     nowButton.setOnMouseClicked(event -> {
-      getHomeScreenHandler().setViewCurrentBike();
+      getHomeScreenHandler().setViewCurrentBikeInUse();
       getHomeScreenHandler().show();
     });
     barcodeTextField.setText("01234567");

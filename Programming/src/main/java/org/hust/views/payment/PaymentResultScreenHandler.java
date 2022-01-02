@@ -69,7 +69,7 @@ public class PaymentResultScreenHandler extends BaseScreenHandler {
       requestToScanBarcode();
     });
     nowButton.setOnMouseClicked(event -> {
-      getHomeScreenHandler().setViewCurrentBike();
+      getHomeScreenHandler().setViewCurrentBikeInUse();
       getHomeScreenHandler().show();
     });
   }

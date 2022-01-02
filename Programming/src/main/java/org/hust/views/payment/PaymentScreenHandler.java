@@ -83,7 +83,7 @@ public class PaymentScreenHandler extends BaseScreenHandler{
       requestToScanBarcode();
     });
     nowButton.setOnMouseClicked(event -> {
-      getHomeScreenHandler().setViewCurrentBike();
+      getHomeScreenHandler().setViewCurrentBikeInUse();
       getHomeScreenHandler().show();
     });
     firstTextField.setText("ict_group7_2021");
