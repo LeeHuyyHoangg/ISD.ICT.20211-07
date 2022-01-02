@@ -172,7 +172,7 @@
                   </VBox>
                   <ImageView fx:id="image" fitHeight="561.0" fitWidth="556.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/map.png" />
+                        <Image fx:id="imageContent" url="@../img/map.png" />
                      </image>
                   </ImageView>
                </children>

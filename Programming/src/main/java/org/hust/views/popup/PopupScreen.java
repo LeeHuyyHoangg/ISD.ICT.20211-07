@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import lombok.SneakyThrows;
 import org.hust.utils.Configs;
 import org.hust.views.BaseScreenHandler;
 
@@ -23,7 +24,6 @@ public class PopupScreen extends BaseScreenHandler {
 
     @FXML
     Button primaryButton;
-
 
     public PopupScreen(Stage stage) throws IOException {
         super(stage, Configs.POPUP_PATH);

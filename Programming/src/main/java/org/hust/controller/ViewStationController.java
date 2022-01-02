@@ -1,20 +1,30 @@
 package org.hust.controller;
 
-import org.hust.exception.InvalidLocationException;
+import lombok.SneakyThrows;
+import org.hust.entity.Station;
 import org.hust.exception.InvalidLocationFormatException;
-import org.hust.model.Station;
 import org.hust.utils.Validator;
+import org.hust.views.popup.PopupScreen;
+
+import java.util.List;
 
 public class ViewStationController extends BaseController {
 
-    public Station searchStationByLocation(String location)
-            throws InvalidLocationException, InvalidLocationFormatException {
+    private static ViewStationController instance;
+
+    @SneakyThrows
+    public List<Station> searchStationByLocation(String location) {
 
         if(validateLocation(location)){
-            return (new Station()).getStationByLocation(location);
+            return Station.getStationByLocation(location);
         } else {
-            throw new InvalidLocationFormatException();
+            PopupScreen.error(new InvalidLocationFormatException().getMessage());
+            return null;
         }
+    }
+
+    public List<Station> listStation(){
+        return Station.listAllStation();
     }
 
     public boolean validateId(String id) {
@@ -25,4 +35,10 @@ public class ViewStationController extends BaseController {
         return Validator.validateSomeSpecialCharacterString(location,',','.',' ');
     }
 
+    public static ViewStationController getInstance() {
+        if(instance == null){
+            instance = new ViewStationController();
+        }
+        return instance;
+    }
 }
