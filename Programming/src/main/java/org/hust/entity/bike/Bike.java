@@ -1,11 +1,14 @@
 package org.hust.entity.bike;
 
 import java.lang.reflect.InvocationTargetException;
+import java.time.Duration;
+import java.util.Date;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.hust.common.exception.InvalidBarcodeException;
 import org.hust.controller.RentBikeController;
+import org.hust.entity.bike.NormalBike.NormalBike;
 import org.hust.entity.db.Database;
 
 import com.mongodb.BasicDBObject;
@@ -29,6 +32,7 @@ public abstract class Bike {
     private String description;
     private int value;
     private String barcode;
+    private Date startRentTime;
   
   public void unlock() {
     BasicDBObject query = new BasicDBObject();
@@ -44,10 +48,10 @@ public abstract class Bike {
     status = true;
     
     RentBikeController.setCurrentlyRentedBike(this);
+    this.startRentTime = new Date();
   }
   
   public static Bike getBike(String barcode) throws InvalidBarcodeException {
-	  
 	  MongoDatabase db = Database.getConnection();
       MongoCollection<Document> bikeCollection = db.getCollection("bikes");
       Document bike = bikeCollection.find(new Document("barcode", barcode)).first();
@@ -116,4 +120,12 @@ public abstract class Bike {
     return this.value;
   }
   
+  /**
+   * This method return the time this bike has been rented.
+   * @return rentTime - the time this bike has been rented in miliseconds
+   */
+  public long getRentTime() {
+    long rentTime = new Date().getTime() - this.startRentTime.getTime();
+    return rentTime;
+  }
 }
