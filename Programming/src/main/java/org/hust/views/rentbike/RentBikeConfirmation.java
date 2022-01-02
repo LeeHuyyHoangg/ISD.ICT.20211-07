@@ -60,8 +60,9 @@ public class RentBikeConfirmation extends BaseScreenHandler {
   public void show(Bike bike) {
     this.currentlyShowBike = bike;
     titleLabel.setText(bike.getModel());
-    subtitleLabel.setText("Location");
+    subtitleLabel.setText(bike.getLocation());
     smallTextLabel.setText(bike.getType());
+    super.setImage(image, bike.getImageUrl());
     VBox vb = new VBox();
     vb.getChildren().add(new Label("Speed: " + bike.getSpeed()));
     vb.getChildren().add(new Label("Color: " + bike.getColor()));

@@ -120,6 +120,14 @@ public abstract class Bike {
     return this.value;
   }
   
+  public String getImageUrl() {
+    return "ImageUrl";
+  }
+  
+  public String getLocation() {
+    return "Location";
+  }
+  
   /**
    * This method return the time this bike has been rented.
    * @return rentTime - the time this bike has been rented in miliseconds
