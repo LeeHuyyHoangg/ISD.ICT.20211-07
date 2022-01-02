@@ -1,8 +1,8 @@
 package org.hust.common.exception;
 
-public class HaveNotRentBikeException extends Exception{
+public class HaveNotRentBikeException extends Exception {
     @Override
-    public String getMessage(){
-        return ("User have not yet rent a bike");
+    public String getMessage() {
+        return ("You haven't rented any bike! Don't hesitate to rent one!");
     }
 }

@@ -26,22 +26,19 @@ import java.util.Objects;
 /**
  * Bike class is an abstract class that all types of bike need to extend from
  *
- * @implNote
- * To operate properly, the child class need to have:
+ * @author hoang.lh194766
+ * @implNote To operate properly, the child class need to have:
  * <ul>
  *     <li><code>@Getter</code> annotation</li>
  *     <li><code>@NoArgsConstructor</code> annotation</li>
  *     <li><code>documentToBike()</code> implemented</li>
  *     <li><code>priceCoefficient()</code> implemented</li>
  * </ul>
- *
- * @author hoang.lh194766
- *
  */
 @Getter
 @NoArgsConstructor
 public abstract class Bike {
-    public ObjectId _id = new ObjectId();
+    private final ObjectId _id = new ObjectId();
     protected Class bikeType;
     private String model;
     private boolean status;
@@ -65,22 +62,6 @@ public abstract class Bike {
         this.value = value;
         this.barcode = barcode;
         this.imgUrl = imgUrl;
-    }
-
-    public void unlock() {
-        BasicDBObject query = new BasicDBObject();
-        query.put("_id", this._id);
-
-        BasicDBObject newDocument = new BasicDBObject();
-        newDocument.put("status", false);
-
-        BasicDBObject updateObject = new BasicDBObject();
-        updateObject.put("$set", newDocument);
-
-        Database.getConnection().getCollection("bikes").updateOne(query, updateObject);
-        status = true;
-
-        RentBikeController.setCurrentlyRentedBike(this);
     }
 
     public static Bike getBike(String barcode) throws InvalidBarcodeException {
@@ -126,6 +107,22 @@ public abstract class Bike {
         }
     }
 
+    public void unlock() {
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", this._id);
+
+        BasicDBObject newDocument = new BasicDBObject();
+        newDocument.put("status", false);
+
+        BasicDBObject updateObject = new BasicDBObject();
+        updateObject.put("$set", newDocument);
+
+        Database.getConnection().getCollection("bikes").updateOne(query, updateObject);
+        status = true;
+
+        RentBikeController.setCurrentlyRentedBike(this);
+    }
+
     /**
      * the abstract function require the children class to generate a function
      * to set a document to that children class
@@ -134,6 +131,32 @@ public abstract class Bike {
      * @return the child class object
      */
     public abstract Bike documentToBike(Document document);
+
+    @Override
+    public String toString() {
+        return model + " - " + this.getBikeType();
+    }
+
+    public String getLocation() {
+        return Objects.requireNonNull(Station.getStationContainBike(this._id.toString())).getLocation();
+    }
+
+    public long getRentTime() {
+        return 10;
+    }
+
+    public boolean isAvailable() {
+        return status;
+    }
+
+    public String getType() {
+        String type = this.bikeType.toString();
+        return type.substring(type.lastIndexOf('.') + 1);
+    }
+
+    public abstract double getPriceCoefficient();
+
+    public abstract String getBikeType();
 
     public static class BikeDeserializer extends StdDeserializer<Bike> {
         public BikeDeserializer() {
@@ -159,29 +182,4 @@ public abstract class Bike {
             return mapper.treeToValue(node, NormalBike.class);
         }
     }
-
-    @Override
-    public String toString() {
-        String type = this.bikeType.toString();
-        return type.substring(type.lastIndexOf('.') + 1) + "-" + this.model;
-    }
-
-    public String getLocation(){
-        return Objects.requireNonNull(Station.getStationContainBike(this._id.toString())).getLocation();
-    }
-
-    public long getRentTime(){
-        return 10;
-    }
-
-    public boolean isAvailable() {
-        return status;
-    }
-
-    public String getType() {
-        String type = this.bikeType.toString();
-        return type.substring(type.lastIndexOf('.') + 1);
-    }
-
-    public abstract double priceCoefficient();
 }

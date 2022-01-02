@@ -1,11 +1,13 @@
 package org.hust.views.home;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -23,61 +25,39 @@ import org.hust.utils.Utils;
 import org.hust.views.BaseScreenHandler;
 import org.hust.views.popup.PopupScreen;
 import org.hust.views.rentbike.BarcodeScreen;
+import org.hust.views.returnbike.ReturnBikeScreenHandler;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
 public class HomeScreenHandler extends BaseScreenHandler implements Initializable {
-    @FXML
-    private TextField searchTextField;
-    @FXML
-    private Button searchButton;
-    @FXML
-    private VBox nowButton;
-    @FXML
-    private VBox scanButton;
-    @FXML
-    private VBox priceButton;
-    @FXML
-    private VBox historyButton;
-    @FXML
-    private Button primaryButton;
-    @FXML
-    private Button secondaryButton;
-    @FXML
-    private Label titleLabel;
-    @FXML
-    private Label subtitleLabel;
+    /**
+     * Save the station List, either by initial or filtered with user search,
+     * used as a cache memory for runtime utility purpose
+     */
+    List<Station> stationList;
+    /**
+     * Save the station selected by user from the list
+     * used as a cache memory for runtime utility purpose
+     */
+    Station selectedStation;
+    /**
+     * Save the bike selected by user from the list
+     * used as a cache memory for runtime utility purpose
+     */
+    Bike selectedBike;
+    RentBikeController rentBikeController = new RentBikeController(this);
     @FXML
     private ScrollPane infoScrollPane;
     @FXML
     private Label smallTextLabel;
     @FXML
     private ImageView image;
-
-    /**
-     * Save the station List, either by initial or filtered with user search,
-     * used as a cache memory for runtime utility purpose
-     */
-    List<Station> stationList;
-
-    /**
-     * Save the station selected by user from the list
-     * used as a cache memory for runtime utility purpose
-     */
-    Station selectedStation;
-
-    /**
-     * Save the bike selected by user from the list
-     * used as a cache memory for runtime utility purpose
-     */
-    Bike selectedBike;
-
-    RentBikeController rentBikeController = new RentBikeController(this);
 
 
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
@@ -115,33 +95,39 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         setBController(new HomeController());
     }
 
-    private void setViewBike() {
-        smallTextLabel.setText(selectedBike.toString());
-
-        VBox vBox = new VBox();
-        vBox.getChildren().addAll(
-                new Label("Status: " + selectedBike.isStatus()),
-                new Label("Speed: " + selectedBike.getSpeed()),
-                new Label("Color: " + selectedBike.getColor()),
-                new Label("Weight: " + selectedBike.getWeight()),
-                new Label("Description: " + selectedBike.getDescription()),
-                new Label("Value: " + selectedBike.getValue()));
-        if (selectedBike instanceof EBike) {
-            vBox.getChildren().addAll(
-                    new Label("Battery: " + ((EBike) selectedBike).getBattery()),
-                    new Label("UsageTime: " + ((EBike) selectedBike).getUsageTime())
-            );
+    public void setViewCurrentBikeInUse() {
+        selectedBike = ViewBikeController.getInstance().checkUserRentedBike();
+        if (selectedBike == null) {
+            return;
         }
-        infoScrollPane.setContent(vBox);
-
-        image.setImage(Utils.getImageFromUrl(selectedBike.getImgUrl()));
-        System.out.println(selectedBike.getImgUrl());
-
+        resetStyle();
+        renderBikeInfo();
+        subtitleLabel.setText("In Use");
         primaryButton.setVisible(true);
-        primaryButton.setText("Rent this");
+        primaryButton.setText("Return this bike");
+        primaryButton.setOnAction(actionEvent -> {
+            try {
+                ReturnBikeScreenHandler returnBikeScreenHandler = new ReturnBikeScreenHandler(this.stage, Configs.HOME_PATH);
+                returnBikeScreenHandler.setPreviousScreen(this);
+                returnBikeScreenHandler.setHomeScreenHandler(this);
+                returnBikeScreenHandler.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        secondaryButton.setText("Back");
+        secondaryButton.setVisible(true);
+        secondaryButton.setOnMouseClicked(mouseEvent -> setViewStation());
+    }
+
+    private void setViewBike() {
+        resetStyle();
+        renderBikeInfo();
+        primaryButton.setVisible(true);
+        primaryButton.setText("Rent this bike");
         primaryButton.setOnMouseClicked(mouseEvent -> {
             try {
-                rentBikeController.rentBike(selectedBike);
+                rentBikeController.requestToRentBike(selectedBike);
             } catch (AlreadyRentBikeException e) {
                 try {
                     PopupScreen.error(e.getMessage());
@@ -150,47 +136,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                 }
             }
         });
-
         secondaryButton.setText("Back");
         secondaryButton.setVisible(true);
         secondaryButton.setOnMouseClicked(mouseEvent -> setViewStation());
-
-    }
-
-    public void setViewCurrentBikeInUse() {
-        selectedBike = ViewBikeController.getInstance().checkUserRentedBike();
-        if (selectedBike == null) {
-            return;
-        }
-        smallTextLabel.setText(selectedBike.toString());
-
-        VBox vBox = new VBox();
-        vBox.getChildren().addAll(
-                new Label("Status: " + selectedBike.isStatus()),
-                new Label("Speed: " + selectedBike.getSpeed()),
-                new Label("Color: " + selectedBike.getColor()),
-                new Label("Weight: " + selectedBike.getWeight()),
-                new Label("Description: " + selectedBike.getDescription()),
-                new Label("Value: " + selectedBike.getValue()),
-                new Label("Rent time: " + TimeUnit.MILLISECONDS.toMinutes(selectedBike.getRentTime()) + " minutes"),
-                new Label("Current fee: " + 10));
-        if (selectedBike instanceof EBike) {
-            vBox.getChildren().addAll(
-                    new Label("Battery: " + ((EBike) selectedBike).getBattery()),
-                    new Label("UsageTime: " + ((EBike) selectedBike).getUsageTime())
-            );
-        }
-        infoScrollPane.setContent(vBox);
-
-        image.setImage(Utils.getImageFromUrl(selectedBike.getImgUrl()));
-        System.out.println(selectedBike.getImgUrl());
-
-        primaryButton.setVisible(false);
-
-        secondaryButton.setText("Back");
-        secondaryButton.setVisible(true);
-        secondaryButton.setOnMouseClicked(mouseEvent -> setViewStation());
-
     }
 
     private void setViewStation() {
@@ -198,18 +146,23 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
             setViewStationList();
             return;
         }
-        smallTextLabel.setText(selectedStation.toString());
+        resetStyle();
+        titleLabel.setText("Station");
+        subtitleLabel.setText(selectedStation.getLocation());
+        int bikeCount = selectedStation.getBikeIds().size();
+        smallTextLabel.setText(bikeCount + " bikes, " + (Station.CAPACITY - bikeCount) + " empty docks");
 
-        VBox vBox = new VBox();
-        for (Bike bike : selectedStation.stationBikes()) {
-            Button button = new Button(bike.toString());
-            button.setPrefWidth(infoScrollPane.getWidth());
-            button.setOnMouseClicked(mouseClick -> selectedBike = bike);
-            vBox.getChildren().add(button);
-        }
-        infoScrollPane.setContent(vBox);
+        ObservableList<Bike> bikesObservableList = FXCollections.observableList(selectedStation.getStationBikes());
+        ListView<Bike> bikesListView = new ListView<>(bikesObservableList);
+        bikesListView.setStyle("-fx-font-size: 16");
+        bikesListView.setPrefWidth(infoScrollPane.getPrefWidth());
+        bikesListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        bikesListView.getFocusModel().focus(0);
+        bikesListView.getSelectionModel().selectedItemProperty().addListener((observableValue, station, selected) -> selectedBike = selected);
 
-        image.setImage(Utils.getImageFromUrl(Objects.requireNonNull(getClass().getResource("/img/map.png")).toString()));
+        infoScrollPane.setContent(bikesListView);
+
+        image.setImage(Utils.getImageFromUrl(Objects.requireNonNull(getClass().getResource(Configs.IMAGE_PATH + "station.png")).toString()));
 
         primaryButton.setText("View Bike");
         primaryButton.setVisible(true);
@@ -224,20 +177,20 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     }
 
     private void setViewStationList() {
+        resetStyle();
         smallTextLabel.setText("");
 
-        VBox vBox = new VBox();
-        for (Station station : stationList) {
-            Button button = new Button(station.toString());
-            button.setPrefWidth(infoScrollPane.getPrefWidth());
+        ObservableList<Station> stationObservableList = FXCollections.observableList(stationList);
+        ListView<Station> stationListView = new ListView<>(stationObservableList);
+        stationListView.setStyle("-fx-font-size: 16");
+        stationListView.setPrefWidth(infoScrollPane.getPrefWidth());
+        stationListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        stationListView.getFocusModel().focus(0);
+        stationListView.getSelectionModel().selectedItemProperty().addListener((observableValue, station, selected) -> selectedStation = selected);
 
-            button.setOnMouseClicked(mouseClick -> selectedStation = station);
-            vBox.getChildren().add(button);
-        }
-        infoScrollPane.setContent(vBox);
+        infoScrollPane.setContent(stationListView);
 
-        image.setImage(Utils.getImageFromUrl(Objects.requireNonNull(getClass().getResource("/img/map.png")).toString()));
-
+        image.setImage(Utils.getImageFromUrl(Objects.requireNonNull(getClass().getResource(Configs.IMAGE_PATH + "map.png")).toString()));
 
         primaryButton.setText("View Station");
         primaryButton.setVisible(true);
@@ -254,5 +207,38 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void renderBikeInfo() {
+        titleLabel.setText(selectedBike.getModel().toUpperCase(Locale.ROOT));
+        subtitleLabel.setText(selectedBike.isStatus() ? "Available" : "Unavailable");
+        if (subtitleLabel.getText().equals("Available"))
+            subtitleLabel.setStyle("-fx-text-fill: green");
+        else
+            subtitleLabel.setStyle("-fx-text-fill: red");
+        smallTextLabel.setText(selectedBike.getBikeType());
+
+        VBox vBox = new VBox();
+        String info = String.format("Speed: %.2f km/h\nColor: %s\nWeight: %.2f kg\nDescription: %s\nValue: %s\nRent time: %s minutes\nCurrent fee: %s\n",
+                selectedBike.getSpeed() * 100,
+                selectedBike.getColor(),
+                selectedBike.getWeight() * 100,
+                selectedBike.getDescription(),
+                Utils.getCurrencyFormat(selectedBike.getValue()),
+                TimeUnit.MILLISECONDS.toMinutes(selectedBike.getRentTime()),
+                Utils.getCurrencyFormat(10));
+        if (selectedBike instanceof EBike) {
+            info += String.format("Battery: %s%%\nUsage time: %s minutes", ((EBike) selectedBike).getBattery(), ((EBike) selectedBike).getUsageTime());
+        }
+        Label bikeInfo = new Label(info);
+        bikeInfo.setStyle("-fx-wrap-text: true; -fx-line-spacing: 10; -fx-font-size: 16");
+        vBox.getChildren().add(bikeInfo);
+        infoScrollPane.setContent(vBox);
+
+        image.setImage(Utils.getImageFromUrl(selectedBike.getImgUrl()));
+    }
+
+    private void resetStyle() {
+        subtitleLabel.setStyle("-fx-text-fill: black");
     }
 }

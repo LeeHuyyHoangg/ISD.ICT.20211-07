@@ -3,6 +3,7 @@ package org.hust.views;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -17,6 +18,26 @@ public class BaseScreenHandler extends FXMLScreenHandler {
     protected final Stage stage;
     protected HomeScreenHandler homeScreenHandler;
     protected Hashtable<String, String> messages;
+    @FXML
+    protected TextField searchTextField;
+    @FXML
+    protected Button searchButton;
+    @FXML
+    protected VBox nowButton;
+    @FXML
+    protected VBox scanButton;
+    @FXML
+    protected VBox priceButton;
+    @FXML
+    protected VBox historyButton;
+    @FXML
+    protected Button primaryButton;
+    @FXML
+    protected Button secondaryButton;
+    @FXML
+    protected Label titleLabel;
+    @FXML
+    protected Label subtitleLabel;
     private Scene scene;
     private BaseScreenHandler prev;
     private BaseController bController;
@@ -63,16 +84,16 @@ public class BaseScreenHandler extends FXMLScreenHandler {
         this.messages = messages;
     }
 
-    public void setHomeScreenHandler(HomeScreenHandler HomeScreenHandler) {
-        this.homeScreenHandler = HomeScreenHandler;
-    }
-    
     public Stage getStage() {
         return this.stage;
     }
-    
+
     public HomeScreenHandler getHomeScreenHandler() {
         return this.homeScreenHandler;
+    }
+
+    public void setHomeScreenHandler(HomeScreenHandler HomeScreenHandler) {
+        this.homeScreenHandler = HomeScreenHandler;
     }
 }
 

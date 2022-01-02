@@ -32,7 +32,12 @@ public class NormalBike extends Bike {
     }
 
     @Override
-    public double priceCoefficient() {
+    public double getPriceCoefficient() {
         return 1;
+    }
+
+    @Override
+    public String getBikeType() {
+        return "Bike";
     }
 }

@@ -29,7 +29,7 @@
                   </ImageView>
                   <HBox alignment="CENTER" prefHeight="120.0" spacing="20.0">
                      <children>
-                        <TextField fx:id="searchTextField" prefWidth="250.0">
+                        <TextField fx:id="searchTextField" prefWidth="250.0" promptText="Search for stations around you">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -52,7 +52,7 @@
                               </ImageView>
                               <Label text="Now">
                                  <font>
-                                    <Font name="System Bold" size="14.0" />
+                                    <Font size="14.0" />
                                  </font>
                               </Label>
                            </children>
@@ -66,7 +66,7 @@
                               </ImageView>
                               <Label text="Scan">
                                  <font>
-                                    <Font name="System Bold" size="14.0" />
+                                    <Font size="14.0" />
                                  </font>
                               </Label>
                            </children>
@@ -80,7 +80,7 @@
                               </ImageView>
                               <Label text="Price">
                                  <font>
-                                    <Font name="System Bold" size="14.0" />
+                                    <Font size="14.0" />
                                  </font>
                               </Label>
                            </children>
@@ -94,7 +94,7 @@
                               </ImageView>
                               <Label text="History">
                                  <font>
-                                    <Font name="System Bold" size="14.0" />
+                                    <Font size="14.0" />
                                  </font>
                               </Label>
                            </children>
@@ -133,12 +133,12 @@
                               </LinearGradient>
                            </textFill>
                            <font>
-                              <Font size="64.0" />
+                              <Font name="System Bold" size="64.0" />
                            </font>
                         </Label>
                         <Label fx:id="subtitleLabel" layoutX="10.0" layoutY="271.0" text="Stations around you:" wrapText="true">
                            <font>
-                              <Font size="36.0" />
+                              <Font name="System Bold" size="36.0" />
                            </font>
                         </Label>
                         <Label fx:id="smallTextLabel" style="-fx-text-fill: gray;" wrapText="true">
@@ -146,19 +146,19 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ScrollPane fx:id="infoScrollPane" prefWidth="500.0" VBox.vgrow="ALWAYS">
+                        <ScrollPane fx:id="infoScrollPane" hbarPolicy="NEVER" prefWidth="500.0" style="-fx-background: white; -fx-background-color: white;" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
                         </ScrollPane>
                         <ButtonBar fx:id="buttonGroup">
                           <buttons>
-                            <Button fx:id="secondaryButton" mnemonicParsing="false" style="-fx-background-color: #E9E9E9;" text="Scan barcode">
+                            <Button fx:id="secondaryButton" mnemonicParsing="false" style="-fx-background-color: #E9E9E9; -fx-cursor: hand;" text="Scan barcode">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="primaryButton" mnemonicParsing="false" style="-fx-background-color: #2ECC71;" text="View station info" textFill="WHITE">
+                              <Button fx:id="primaryButton" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: #2ECC71; -fx-cursor: hand;" text="View station info" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>

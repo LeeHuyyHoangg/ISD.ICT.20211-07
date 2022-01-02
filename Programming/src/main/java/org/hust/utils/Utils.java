@@ -31,6 +31,7 @@ public class Utils {
 
     public static DateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     private static Logger LOGGER = getLogger(Utils.class.getName());
+
     static {
         System.setProperty("java.util.logging.SimpleFormatter.format", "[%4$-4s] [%1$tF %1$tT] [%2$-7s] %5$s %n");
     }
@@ -48,8 +49,8 @@ public class Utils {
     /**
      * Return a {@link java.lang.String String} that represents the current time in the format of yyyy-MM-dd HH:mm:ss.
      *
-     * @author hieudm
      * @return the current time as {@link java.lang.String String}.
+     * @author hieudm
      */
     public static String getToday() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -61,9 +62,9 @@ public class Utils {
      * Return a {@link java.lang.String String} that represents the cipher text
      * encrypted by md5 algorithm.
      *
-     * @author hieudm vnpay
      * @param message - plain text as {@link java.lang.String String}.
      * @return cipher text as {@link java.lang.String String}.
+     * @author hieudm vnpay
      */
     public static String md5(String message) {
         String digest = null;
@@ -87,13 +88,13 @@ public class Utils {
      * Return a {object of generic type T} that where casted from input document
      * the fields in the object which not exist in the document will have initial value
      *
-     * @author hoang.lh194766
-     * @param document - the document needed to cast.
+     * @param document    - the document needed to cast.
      * @param objectClass - the class of the object needed to be transfer to
      * @return cipher text as {@link java.lang.String String}.
+     * @author hoang.lh194766
      */
     @SneakyThrows
-    public static <T> T documentToObject(Document document, Class objectClass){
+    public static <T> T documentToObject(Document document, Class objectClass) {
         String id = document.get("_id").toString();
         document.put("_id", id);
         final ObjectMapper mapper = new ObjectMapper();
@@ -111,11 +112,11 @@ public class Utils {
      * this function was created for the purpose of casting station/bike to document
      * to be saved to the Database
      *
-     * @author hoang.lh194766
      * @param object the object needed to be cast
      * @return {@Link org.bson.Document Document}
+     * @author hoang.lh194766
      */
-    public static Document objectToDocument(Object object){
+    public static Document objectToDocument(Object object) {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         try {
             String json = ow.writeValueAsString(object);
@@ -130,14 +131,14 @@ public class Utils {
 
     /**
      * return a image of the url
+     *
      * @param source - the url of the image
      * @return Image
      */
     @SneakyThrows
     public static Image getImageFromUrl(String source) {
         URL url = new URL(source);
-        Image image = new Image(url.openStream());
-        return image;
+        return new Image(url.openStream());
     }
 
 }
