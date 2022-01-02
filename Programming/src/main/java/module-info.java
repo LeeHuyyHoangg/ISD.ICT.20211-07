@@ -4,8 +4,8 @@ module Programming {
     requires java.logging;
     requires lombok;
     requires mongo.java.driver;
-    requires jackson.databind;
-    requires jackson.core;
+    requires com.fasterxml.jackson.databind;
+    requires com.fasterxml.jackson.core;
     requires commons.lang3;
     requires reflections;
     requires java.sql;
@@ -16,7 +16,7 @@ module Programming {
     opens org.hust.views.payment to javafx.fxml;
     opens org.hust.views.popup to javafx.fxml;
     opens org.hust.views.rentbike to javafx.fxml;
-    opens org.hust.entity.station to jackson.databind;
-    opens org.hust.entity.bike to jackson.databind;
+    opens org.hust.entity.station to com.fasterxml.jackson.databind;
+    opens org.hust.entity.bike to com.fasterxml.jackson.databind;
     exports org.hust;
 }
