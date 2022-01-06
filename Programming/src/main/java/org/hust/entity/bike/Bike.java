@@ -131,7 +131,7 @@ public abstract class Bike {
         updateObject.put("$set", newDocument);
 
         Database.getConnection().getCollection("bikes").updateOne(query, updateObject);
-        status = true;
+        status = false;
 
         RentBikeController.setCurrentlyRentedBike(this);
     }
