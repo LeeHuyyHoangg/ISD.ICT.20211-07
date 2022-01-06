@@ -2,7 +2,6 @@ package org.hust.views.popup;
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -20,10 +19,6 @@ public class PopupScreen extends BaseScreenHandler {
 
     @FXML
     Label message;
-
-    @FXML
-    Button primaryButton;
-
 
     public PopupScreen(Stage stage) throws IOException {
         super(stage, Configs.POPUP_PATH);

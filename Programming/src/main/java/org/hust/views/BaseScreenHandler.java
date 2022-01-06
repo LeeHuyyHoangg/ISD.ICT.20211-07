@@ -8,16 +8,40 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.hust.controller.BaseController;
+import org.hust.controller.ViewStationController;
+import org.hust.entity.bike.Bike;
+import org.hust.entity.station.Station;
+import org.hust.utils.Configs;
 import org.hust.views.home.HomeScreenHandler;
+import org.hust.views.menu.PricingPolicyPopup;
+import org.hust.views.menu.RentingHistoryPopup;
 
 import java.io.IOException;
 import java.util.Hashtable;
+import java.util.List;
 
 public class BaseScreenHandler extends FXMLScreenHandler {
 
     protected final Stage stage;
     protected HomeScreenHandler homeScreenHandler;
     protected Hashtable<String, String> messages;
+
+    /**
+     * Save the station List, either by initial or filtered with user search,
+     * used as a cache memory for runtime utility purpose
+     */
+    protected List<Station> stationList;
+    /**
+     * Save the station selected by user from the list
+     * used as a cache memory for runtime utility purpose
+     */
+    protected Station selectedStation;
+    /**
+     * Save the bike selected by user from the list
+     * used as a cache memory for runtime utility purpose
+     */
+    protected Bike selectedBike;
+
     @FXML
     protected TextField searchTextField;
     @FXML
@@ -50,6 +74,7 @@ public class BaseScreenHandler extends FXMLScreenHandler {
     public BaseScreenHandler(Stage stage, String screenPath) throws IOException {
         super(screenPath);
         this.stage = stage;
+        stationList = ViewStationController.getInstance().listStation();
     }
 
     public BaseScreenHandler getPreviousScreen() {
@@ -58,6 +83,24 @@ public class BaseScreenHandler extends FXMLScreenHandler {
 
     public void setPreviousScreen(BaseScreenHandler prev) {
         this.prev = prev;
+        priceButton.setOnMouseClicked(mouseEvent -> {
+            Stage newStage = new Stage();
+            try {
+                PricingPolicyPopup pricingPolicyPopup = new PricingPolicyPopup(newStage, Configs.PRICING_PATH);
+                pricingPolicyPopup.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        historyButton.setOnMouseClicked(mouseEvent -> {
+            Stage newStage = new Stage();
+            try {
+                RentingHistoryPopup rentingHistoryPopup = new RentingHistoryPopup(newStage, Configs.PRICING_PATH);
+                rentingHistoryPopup.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void show() {

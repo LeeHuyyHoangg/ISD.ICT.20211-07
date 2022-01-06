@@ -101,6 +101,14 @@ public class Station {
         return result;
     }
 
+    public boolean isFull() {
+        return CAPACITY == bikeIds.size();
+    }
+
+    public int getEmptyDocksCount() {
+        return CAPACITY - bikeIds.size();
+    }
+
     @Override
     public String toString() {
         return "Station at: " + this.location;

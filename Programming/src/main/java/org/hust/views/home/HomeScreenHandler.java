@@ -29,29 +29,14 @@ import org.hust.views.returnbike.ReturnBikeScreenHandler;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
 
 public class HomeScreenHandler extends BaseScreenHandler implements Initializable {
-    /**
-     * Save the station List, either by initial or filtered with user search,
-     * used as a cache memory for runtime utility purpose
-     */
-    List<Station> stationList;
-    /**
-     * Save the station selected by user from the list
-     * used as a cache memory for runtime utility purpose
-     */
-    Station selectedStation;
-    /**
-     * Save the bike selected by user from the list
-     * used as a cache memory for runtime utility purpose
-     */
-    Bike selectedBike;
+
     RentBikeController rentBikeController = new RentBikeController(this);
+
     @FXML
     private ScrollPane infoScrollPane;
     @FXML
@@ -62,7 +47,8 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
-        stationList = ViewStationController.getInstance().listStation();
+        setHomeScreenHandler(this);
+        setPreviousScreen(this);
         setViewStationList();
 
         searchButton.setOnMouseClicked(mouseEvent -> {
@@ -97,6 +83,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
     public void setViewCurrentBikeInUse() {
         selectedBike = ViewBikeController.getInstance().checkUserRentedBike();
+
         if (selectedBike == null) {
             return;
         }
@@ -108,8 +95,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         primaryButton.setOnAction(actionEvent -> {
             try {
                 ReturnBikeScreenHandler returnBikeScreenHandler = new ReturnBikeScreenHandler(this.stage, Configs.HOME_PATH);
-                returnBikeScreenHandler.setPreviousScreen(this);
                 returnBikeScreenHandler.setHomeScreenHandler(this);
+                returnBikeScreenHandler.setPreviousScreen(this);
+                returnBikeScreenHandler.runBike(30);
                 returnBikeScreenHandler.show();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -150,7 +138,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         titleLabel.setText("Station");
         subtitleLabel.setText(selectedStation.getLocation());
         int bikeCount = selectedStation.getBikeIds().size();
-        smallTextLabel.setText(bikeCount + " bikes, " + (Station.CAPACITY - bikeCount) + " empty docks");
+        smallTextLabel.setText(bikeCount + " bikes, " + selectedStation.getEmptyDocksCount() + " empty docks");
 
         ObservableList<Bike> bikesObservableList = FXCollections.observableList(selectedStation.getStationBikes());
         ListView<Bike> bikesListView = new ListView<>(bikesObservableList);
@@ -176,7 +164,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         });
     }
 
-    private void setViewStationList() {
+    public void setViewStationList() {
         resetStyle();
         smallTextLabel.setText("");
 
@@ -219,16 +207,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         smallTextLabel.setText(selectedBike.getBikeType());
 
         VBox vBox = new VBox();
-        String info = String.format("Speed: %.2f km/h\nColor: %s\nWeight: %.2f kg\nDescription: %s\nValue: %s\nRent time: %s minutes\nCurrent fee: %s\n",
-                selectedBike.getSpeed() * 100,
-                selectedBike.getColor(),
-                selectedBike.getWeight() * 100,
-                selectedBike.getDescription(),
-                Utils.getCurrencyFormat(selectedBike.getValue()),
-                TimeUnit.MILLISECONDS.toMinutes(selectedBike.getRentTime()),
-                Utils.getCurrencyFormat(10));
+        String info = selectedBike.toDetailedString();
         if (selectedBike instanceof EBike) {
-            info += String.format("Battery: %s%%\nUsage time: %s minutes", ((EBike) selectedBike).getBattery(), ((EBike) selectedBike).getUsageTime());
+            info += String.format("Battery: %s%%", ((EBike) selectedBike).getBattery());
         }
         Label bikeInfo = new Label(info);
         bikeInfo.setStyle("-fx-wrap-text: true; -fx-line-spacing: 10; -fx-font-size: 16");

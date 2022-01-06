@@ -14,14 +14,12 @@ import org.hust.utils.Utils;
 @NoArgsConstructor
 public class EBike extends Bike {
     private int battery;
-    private int usageTime;
 
     public EBike(String model, boolean status, double speed, String color,
                  double weight, String description, int value, String barcode, String imgUrl,
                  int battery) {
         super(model, status, speed, color, weight, description, value, barcode, imgUrl);
         this.battery = battery;
-        this.usageTime = this.getUsageTime();
         this.bikeType = EBike.class;
     }
 
@@ -33,9 +31,7 @@ public class EBike extends Bike {
      */
     @Override
     public EBike documentToBike(Document document) {
-        EBike result = Utils.documentToObject(document, EBike.class);
-        result.usageTime = result.getUsageTime();
-        return result;
+        return Utils.documentToObject(document, EBike.class);
     }
 
     @Override
@@ -44,11 +40,13 @@ public class EBike extends Bike {
     }
 
     @Override
-    public String getBikeType() {
-        return "Electronic Bike";
+    public void run(int runtime) {
+        super.usageTime += runtime;
+        battery -= (runtime / 5);
     }
 
-    public int getUsageTime() {
-        return this.battery * 2;
+    @Override
+    public String getBikeType() {
+        return "Electronic Bike";
     }
 }

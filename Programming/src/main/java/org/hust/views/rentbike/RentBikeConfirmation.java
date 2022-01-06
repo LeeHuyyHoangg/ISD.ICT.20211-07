@@ -65,17 +65,17 @@ public class RentBikeConfirmation extends BaseScreenHandler implements Initializ
         smallTextLabel.setText(bike.getBikeType());
         image.setImage(new Image(bike.getImgUrl()));
         VBox vb = new VBox();
-        vb.getChildren().add(new Label("Speed: " + bike.getSpeed()));
-        vb.getChildren().add(new Label("Color: " + bike.getColor()));
-        vb.getChildren().add(new Label("Weight: " + bike.getWeight()));
-        vb.getChildren().add(new Label("Status: " + bike.isStatus()));
+        String info = String.format("Speed: %.2f km/h\nColor: %s\nWeight: %.2f kg\nDescription: %s\nValue: %s\nDeposit: %s\n",
+                bike.getSpeed() * 100,
+                bike.getColor(),
+                bike.getWeight() * 100,
+                bike.getDescription(),
+                Utils.getCurrencyFormat(bike.getValue()),
+                Utils.getCurrencyFormat(bike.getDeposit()));
         if (bike instanceof EBike) {
-            EBike eBike = (EBike) bike;
-            vb.getChildren().add(new Label("Battery: " + eBike.getBattery()));
-            vb.getChildren().add(new Label("Usage Time: " + eBike.getUsageTime()));
+            info += "Battery: " + ((EBike) bike).getBattery();
         }
-        int deposit = bike.getValue() / 100 * 40;
-        vb.getChildren().add(new Label("Deposit: " + Utils.getCurrencyFormat(deposit)));
+        vb.getChildren().add(new Label(info));
         infoScrollPane.setContent(vb);
     }
 

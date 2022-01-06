@@ -43,7 +43,7 @@
                   </HBox>
                   <ButtonBar prefWidth="300.0">
                     <buttons>
-                        <VBox fx:id="nowButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="nowButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-cursor: hand;">
                            <children>
                               <ImageView fitHeight="77.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -57,7 +57,7 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox fx:id="scanButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="scanButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-cursor: hand;">
                            <children>
                               <ImageView fitHeight="77.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -71,7 +71,7 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox fx:id="priceButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="priceButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-cursor: hand;">
                            <children>
                               <ImageView fitHeight="77.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -85,7 +85,7 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox fx:id="historyButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="historyButton" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-cursor: hand;">
                            <children>
                               <ImageView fitHeight="77.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -106,7 +106,7 @@
                   <Insets bottom="20.0" left="100.0" right="100.0" top="20.0" />
                </padding>
             </HBox>
-            <HBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="1366.0" spacing="100.0">
+            <HBox fx:id="mainHBox" alignment="TOP_CENTER" prefHeight="600.0" prefWidth="1366.0" spacing="100.0">
                <children>
                   <VBox>
                      <children>

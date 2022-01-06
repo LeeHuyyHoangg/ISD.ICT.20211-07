@@ -18,15 +18,17 @@ import org.hust.common.exception.InvalidIdException;
 import org.hust.controller.RentBikeController;
 import org.hust.entity.db.Database;
 import org.hust.entity.station.Station;
+import org.hust.utils.Utils;
 import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Bike class is an abstract class that all types of bike need to extend from
  *
- * @author hoang.lh194766
+ * @author hoang.lh194766, tu.bm194870
  * @implNote To operate properly, the child class need to have:
  * <ul>
  *     <li><code>@Getter</code> annotation</li>
@@ -38,8 +40,19 @@ import java.util.Objects;
 @Getter
 @NoArgsConstructor
 public abstract class Bike {
+    /**
+     * INITIAL_CHARGE is the starting price in the first 30 minutes
+     */
+    protected static final int INITIAL_CHARGE = 10000;
+    /**
+     * UNIT_FEE is the price for each additional 15-minute
+     */
+    protected static final int UNIT_FEE = 3000;
+
     private final ObjectId _id = new ObjectId();
     protected Class bikeType;
+    protected int usageTime;
+    protected int fee;
     private String model;
     private boolean status;
     private double speed;
@@ -132,17 +145,24 @@ public abstract class Bike {
      */
     public abstract Bike documentToBike(Document document);
 
+    public String toDetailedString() {
+        return String.format("Speed: %.2f km/h\nColor: %s\nWeight: %.2f kg\nDescription: %s\nValue: %s\nRent time: %s minutes\nCurrent fee: %s\n",
+                speed * 100,
+                color,
+                weight * 100,
+                description,
+                Utils.getCurrencyFormat(value),
+                TimeUnit.MILLISECONDS.toMinutes(getUsageTime()),
+                Utils.getCurrencyFormat(getFee()));
+    }
+
     @Override
     public String toString() {
-        return model + " - " + this.getBikeType();
+        return model + " - " + getBikeType();
     }
 
     public String getLocation() {
         return Objects.requireNonNull(Station.getStationContainBike(this._id.toString())).getLocation();
-    }
-
-    public long getRentTime() {
-        return 10;
     }
 
     public boolean isAvailable() {
@@ -154,9 +174,42 @@ public abstract class Bike {
         return type.substring(type.lastIndexOf('.') + 1);
     }
 
+    /**
+     * Price coefficient differs in each bike type
+     *
+     * @return price coefficient based on bike type
+     */
     public abstract double getPriceCoefficient();
 
+    /**
+     * Deposit must be at least 40 percent of bike value
+     *
+     * @return deposit money
+     */
+    public int getDeposit() {
+        return value * 40 / 100;
+    }
+
+    /**
+     * Total charge is the total price to pay including deposit, fee, tax...
+     * <p>
+     * In case <code>total charge < 0</code>, customer is refunded
+     *
+     * @return total charge
+     */
+    public int getTotalCharge() {
+        return fee - getDeposit();
+    }
+
+    public void calculateFee() {
+        fee = (int) (getPriceCoefficient() * (usageTime <= 30 ? INITIAL_CHARGE : INITIAL_CHARGE + UNIT_FEE * (usageTime - 30)));
+    }
+
     public abstract String getBikeType();
+
+    public void run(int runtime) {
+        this.usageTime += runtime;
+    }
 
     public static class BikeDeserializer extends StdDeserializer<Bike> {
         public BikeDeserializer() {

@@ -107,7 +107,7 @@ public class RentBikeController extends BaseController {
      */
     public void rentBike(Bike bike) throws AlreadyRentBikeException {
         String transactionContents = "Fee for rent bike " + bike.getModel();
-        int transactionAmount = bike.getValue() / 100 * 40;
+        int transactionAmount = bike.getDeposit();
         try {
             PaymentScreenHandler paymentScreen = new PaymentScreenHandler(screenThatCallRentBike.getStage(), Configs.PAYMENT_PATH);
             paymentScreen.setHomeScreenHandler(screenThatCallRentBike.getHomeScreenHandler());
