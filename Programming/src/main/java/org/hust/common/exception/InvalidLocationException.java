@@ -1,8 +1,8 @@
 package org.hust.common.exception;
 
-public class InvalidLocationException extends Exception{
+public class InvalidLocationException extends Exception {
     @Override
-    public String getMessage(){
+    public String getMessage() {
         return "Nothing found in that location";
     }
 }

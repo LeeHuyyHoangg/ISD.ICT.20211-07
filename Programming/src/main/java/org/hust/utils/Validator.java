@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @author hoang.lh194766
- *
+ * <p>
  * this class is create for the purpose to decrease the similarity
  * of validate fuction in the controllers
  */
@@ -32,7 +32,7 @@ public class Validator {
         }
 
         List<Character> specialCharacters = new ArrayList<>();
-        for(char c: allowedSpecialCharacters){
+        for (char c : allowedSpecialCharacters) {
             specialCharacters.add(c);
         }
         for (char c : string.toCharArray()) {

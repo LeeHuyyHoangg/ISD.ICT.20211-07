@@ -20,43 +20,46 @@ import java.util.Set;
 /**
  * DO NOT RUN THIS CLASS ARBITRARILY
  * this class is use to inject data into the database for testing purpose
+ *
  * @author hoang.lh
  */
 public class DataInjector {
     private static final String[] bikeUrl = new String[3];
+
     static {
         //bike
-        bikeUrl[0]= "https://cdn.shopify.com/s/files/1/2081/1519/products/1600x1067_US_B_Mint_PROFILE-X2.jpg?v=1590502980";
+        bikeUrl[0] = "https://cdn.shopify.com/s/files/1/2081/1519/products/1600x1067_US_B_Mint_PROFILE-X2.jpg?v=1590502980";
         //ebike
         bikeUrl[1] = "https://cdn.shopify.com/s/files/1/1009/9108/products/HyperScrambler-Alum-RtSide_600x400_crop_center.jpg?v=1599144366";
         //twinbike
         bikeUrl[2] = "https://coynecycles.ie/wp-content/uploads/2020/02/Dawes-Discovery-Twin-web.jpg";
     }
+
     /**
      * inject Bike to bikes collection
      */
-    public static void injectBike(){
+    public static void injectBike() {
         MongoDatabase db = Database.getConnection();
         MongoCollection<Document> bikeCollection = db.getCollection("bikes");
 
         Random random = new Random();
-        for(int i = 0; i<100; i++){
+        for (int i = 0; i < 100; i++) {
             int ran = random.nextInt(10);
             Bike bike;
-            if(ran < 3) {
+            if (ran < 3) {
                 bike = new EBike("model" + i, true, random.nextDouble(),
-                        "color" + i, random.nextDouble(), "" + (char)( random.nextInt(26) +'a'),
-                        random.nextInt(20) * 1000000, "" + (char)( random.nextInt(26) +'a'),
+                        "color" + i, random.nextDouble(), "" + (char) (random.nextInt(26) + 'a'),
+                        random.nextInt(20) * 1000000, "" + (char) (random.nextInt(26) + 'a'),
                         bikeUrl[1], random.nextInt(100));
-            } else if (ran < 5){
+            } else if (ran < 5) {
                 bike = new TwinBike("model" + i, true, random.nextDouble(),
-                        "color" + i, random.nextDouble(), "" + (char)( random.nextInt(26) +'a'),
-                        random.nextInt(20) * 1000000, "" + (char)( random.nextInt(26) +'a'),
+                        "color" + i, random.nextDouble(), "" + (char) (random.nextInt(26) + 'a'),
+                        random.nextInt(20) * 1000000, "" + (char) (random.nextInt(26) + 'a'),
                         bikeUrl[2]);
             } else {
                 bike = new NormalBike("model" + i, true, random.nextDouble(),
-                        "color" + i, random.nextDouble(), "" + (char)( random.nextInt(26) +'a'),
-                        random.nextInt(20) * 1000000, "" + (char)( random.nextInt(26) +'a'),
+                        "color" + i, random.nextDouble(), "" + (char) (random.nextInt(26) + 'a'),
+                        random.nextInt(20) * 1000000, "" + (char) (random.nextInt(26) + 'a'),
                         bikeUrl[2]);
             }
             Document bikeDocument = Utils.objectToDocument(bike);
@@ -102,12 +105,12 @@ public class DataInjector {
 
 
         }
-        stations[0] = new Station("location" + 0, bikes0 );
-        stations[1] = new Station("location" + 1, bikes1 );
-        stations[2] = new Station("location" + 2, bikes2 );
-        stations[3] = new Station("location" + 3, bikes3 );
+        stations[0] = new Station("location" + 0, bikes0);
+        stations[1] = new Station("location" + 1, bikes1);
+        stations[2] = new Station("location" + 2, bikes2);
+        stations[3] = new Station("location" + 3, bikes3);
         Document[] documents = new Document[4];
-        for(int i =0; i< 4 ; i++) {
+        for (int i = 0; i < 4; i++) {
             documents[i] = Utils.objectToDocument(stations[i]);
             bikeCollection.insertOne(documents[i]);
         }

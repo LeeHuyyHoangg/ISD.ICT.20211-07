@@ -1,9 +1,9 @@
 package org.hust.views;
 
+import javafx.fxml.Initializable;
+
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javafx.fxml.Initializable;
 
 public class SplashScreenHandler implements Initializable {
     @Override

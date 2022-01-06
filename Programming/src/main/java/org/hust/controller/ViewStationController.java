@@ -10,17 +10,24 @@ import java.util.List;
 
 /**
  * @author hoang.lh194766
- *
+ * <p>
  * the controller for view station use case
  */
 public class ViewStationController extends BaseController {
 
     private static ViewStationController instance;
 
+    public static ViewStationController getInstance() {
+        if (instance == null) {
+            instance = new ViewStationController();
+        }
+        return instance;
+    }
+
     @SneakyThrows
     public List<Station> searchStationByLocation(String location) {
 
-        if(validateLocation(location)){
+        if (validateLocation(location)) {
             return Station.getStationByLocation(location);
         } else {
             PopupScreen.error(new InvalidLocationFormatException().getMessage());
@@ -28,7 +35,7 @@ public class ViewStationController extends BaseController {
         }
     }
 
-    public List<Station> listStation(){
+    public List<Station> listStation() {
         return Station.listAllStation();
     }
 
@@ -37,13 +44,6 @@ public class ViewStationController extends BaseController {
     }
 
     public boolean validateLocation(String location) {
-        return Validator.validateSomeSpecialCharacterString(location,',','.',' ');
-    }
-
-    public static ViewStationController getInstance() {
-        if(instance == null){
-            instance = new ViewStationController();
-        }
-        return instance;
+        return Validator.validateSomeSpecialCharacterString(location, ',', '.', ' ');
     }
 }
