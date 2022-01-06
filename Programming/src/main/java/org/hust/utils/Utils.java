@@ -11,8 +11,8 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.hust.entity.bike.Bike;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
@@ -29,8 +29,8 @@ import java.util.logging.Logger;
  */
 public class Utils {
 
+    private static final Logger LOGGER = getLogger(Utils.class.getName());
     public static DateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    private static Logger LOGGER = getLogger(Utils.class.getName());
 
     static {
         System.setProperty("java.util.logging.SimpleFormatter.format", "[%4$-4s] [%1$tF %1$tT] [%2$-7s] %5$s %n");
@@ -70,14 +70,14 @@ public class Utils {
         String digest = null;
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] hash = md.digest(message.getBytes("UTF-8"));
+            byte[] hash = md.digest(message.getBytes(StandardCharsets.UTF_8));
             // converting byte array to Hexadecimal String
             StringBuilder sb = new StringBuilder(2 * hash.length);
             for (byte b : hash) {
                 sb.append(String.format("%02x", b & 0xff));
             }
             digest = sb.toString();
-        } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
+        } catch (NoSuchAlgorithmException ex) {
             Utils.getLogger(Utils.class.getName());
             digest = "";
         }
@@ -113,7 +113,7 @@ public class Utils {
      * to be saved to the Database
      *
      * @param object the object needed to be cast
-     * @return {@Link org.bson.Document Document}
+     * @return {@link org.bson.Document Document}
      * @author hoang.lh194766
      */
     public static Document objectToDocument(Object object) {

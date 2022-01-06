@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
  * Bike class is an abstract class that all types of bike need to extend from
  *
  * @author hoang.lh194766, tu.bm194870
- * @implNote To operate properly, the child class need to have:
+ * <p> To operate properly, the child class need to have: </p>
  * <ul>
  *     <li><code>@Getter</code> annotation</li>
  *     <li><code>@NoArgsConstructor</code> annotation</li>
@@ -193,7 +193,7 @@ public abstract class Bike {
     /**
      * Total charge is the total price to pay including deposit, fee, tax...
      * <p>
-     * In case <code>total charge < 0</code>, customer is refunded
+     * In case <code>total charge &lt; 0</code>, customer is refunded
      *
      * @return total charge
      */

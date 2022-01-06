@@ -22,9 +22,9 @@ import java.io.IOException;
  */
 public class PaymentScreenHandler extends BaseScreenHandler {
 
-    private PopupScreen loadingPopup = PopupScreen.loading("Please wait while we are making payment transaction");
+    private final PopupScreen loadingPopup = PopupScreen.loading("Please wait while we are making payment transaction");
 
-    private Object key = new Object();
+    private final Object key = new Object();
     private boolean isSuccess = true;
 
     @FXML

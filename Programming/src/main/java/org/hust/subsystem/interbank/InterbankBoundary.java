@@ -7,7 +7,6 @@ import java.lang.invoke.VarHandle;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -20,11 +19,11 @@ import java.util.logging.Logger;
  */
 public class InterbankBoundary {
 
-    private static Logger LOGGER = Logger.getLogger(InterbankBoundary.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(InterbankBoundary.class.getName());
     private final String interbankUrl = "https://ecopark-system-api.herokuapp.com";
 
     // Used to reset credit card's balance
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         try {
             System.out.println(new InterbankBoundary().resetBalance());
         } catch (Exception e) {
@@ -63,8 +62,8 @@ public class InterbankBoundary {
             respone.append(inputLine + "\n");
         }
         in.close();
-        LOGGER.info("Response Info: " + respone.substring(0, respone.length() - 1).toString());
-        return respone.substring(0, respone.length() - 1).toString();
+        LOGGER.info("Response Info: " + respone.substring(0, respone.length() - 1));
+        return respone.substring(0, respone.length() - 1);
     }
 
     /**
@@ -104,11 +103,11 @@ public class InterbankBoundary {
             response.append(inputLine);
         }
         in.close();
-        LOGGER.info("Respone Info: " + response.toString());
+        LOGGER.info("Respone Info: " + response);
         return response.toString();
     }
 
-    private HttpURLConnection setupConnection(String url) throws MalformedURLException, IOException {
+    private HttpURLConnection setupConnection(String url) throws IOException {
         URL lineApiUrl = new URL(url);
         HttpURLConnection conn = (HttpURLConnection) lineApiUrl.openConnection();
         conn.setDoInput(true);

@@ -78,7 +78,7 @@ public class RentBikeController extends BaseController {
      * confirmation.
      *
      * @param bike - the bike that is requested to be rent
-     * @throws AlreadyRentBikeException - if the bike is already rent
+     * @throws AlreadyRentBikeException if the bike is already rent
      */
     public void requestToRentBike(Bike bike) throws AlreadyRentBikeException {
         if (currentlyRentedBike != null) {
@@ -104,6 +104,7 @@ public class RentBikeController extends BaseController {
      * RentBikeConfirmPopup
      *
      * @param bike - bike to be rent
+     * @throws AlreadyRentBikeException if the bike is already rent
      */
     public void rentBike(Bike bike) throws AlreadyRentBikeException {
         String transactionContents = "Fee for rent bike " + bike.getModel();

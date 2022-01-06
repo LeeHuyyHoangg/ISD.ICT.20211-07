@@ -13,12 +13,12 @@ import java.lang.reflect.Field;
  */
 public class PaymentTransaction {
 
-    private CreditCard card;
+    private final CreditCard card;
+    private final String command;
+    private final String transactionContent;
+    private final int amount;
+    private final String createdAt;
     private String transactionId;
-    private String command;
-    private String transactionContent;
-    private int amount;
-    private String createdAt;
 
     /**
      * Initialize a PaymentTransaction object using credit card, content, amount.

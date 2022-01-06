@@ -15,9 +15,9 @@ public class TransactionController extends BaseController {
 
     private static CreditCard card;
     private static PaymentTransaction transaction;
+    private final InterbankInterface interbank = new InterbankSubsystem();
     private int transactionAmount;
     private String transactionContents;
-    private InterbankInterface interbank = new InterbankSubsystem();
 
     public TransactionController() {
 

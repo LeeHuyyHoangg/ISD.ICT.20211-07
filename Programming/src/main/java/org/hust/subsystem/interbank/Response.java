@@ -9,7 +9,7 @@ import org.hust.entity.payment.PaymentTransaction;
  */
 public class Response {
 
-    private String errorCode;
+    private final String errorCode;
     private String cardCode;
     private String owner;
     private String cvvCode;

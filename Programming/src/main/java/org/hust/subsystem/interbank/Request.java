@@ -15,7 +15,7 @@ public class Request {
     private final String hashCode;
     private final String path = "/api/card/processTransaction";
     private final String version = "1.0.1";
-    private PaymentTransaction transaction;
+    private final PaymentTransaction transaction;
 
     /**
      * Initialize Request object.
