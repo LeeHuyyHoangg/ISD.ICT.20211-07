@@ -1,9 +1,17 @@
 package org.hust.entity.invoice;
 
+import com.mongodb.client.MongoDatabase;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.bson.Document;
+import org.bson.types.ObjectId;
+import org.hust.entity.db.Database;
+import org.hust.entity.payment.CreditCard;
 import org.hust.entity.payment.PaymentTransaction;
+import org.hust.utils.Utils;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -25,9 +33,15 @@ public class Invoice {
         this.bikeIds = bikeIds;
     }
 
-    // TODO: Save invoice to database
     public void save() {
-
+        MongoDatabase db = Database.getConnection();
+        Document invoiceDoc = new Document("_id", new ObjectId());
+        invoiceDoc.append("deposit", this.deposit);
+        invoiceDoc.append("refund", this.refund);
+        invoiceDoc.append("fee", this.fee);
+        invoiceDoc.append("totalCharge", this.totalCharge);
+        invoiceDoc.append("bikes", this.bikeIds);
+        db.getCollection("invoices").insertOne(invoiceDoc);
     }
 
     public String toDetailedString() {
@@ -37,5 +51,17 @@ public class Invoice {
     @Override
     public String toString() {
         return String.format("Deposit: +%s\nUsage fees: -%s\n", deposit, fee) + (refund == 0 ? "Total charge: -" + totalCharge : "Refund: +" + refund) + "\nBike: " + bikeIds.get(0);
+    }
+
+    public void setBikeIds(List<String> bikes) {
+        this.bikeIds = bikes;
+    }
+
+    public static void main(String args[]) {
+        List<String> bikeLst = new ArrayList<String>();
+        bikeLst.add(new ObjectId().toString());
+        bikeLst.add(new ObjectId().toString());
+        Invoice invoice = new Invoice(new PaymentTransaction(new CreditCard(), "contents", 1000), 1000, 0, 1000, 1000, bikeLst);
+        invoice.save();
     }
 }
