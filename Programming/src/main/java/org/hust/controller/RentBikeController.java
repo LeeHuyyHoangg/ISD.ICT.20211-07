@@ -116,6 +116,8 @@ public class RentBikeController extends BaseController {
             paymentScreen.setBController(new TransactionController());
             if (paymentScreen.requestToMakeTransaction(transactionAmount, transactionContents)) {
                 bike.unlock();
+                screenThatCallRentBike.getHomeScreenHandler().setViewStationList();
+                screenThatCallRentBike.getHomeScreenHandler().show();
                 PopupScreen.success("Rent Successfully!");
             }
         } catch (IOException e) {

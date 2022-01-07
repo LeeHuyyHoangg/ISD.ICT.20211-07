@@ -40,17 +40,10 @@ public class PaymentResultScreenHandler extends BaseScreenHandler {
     public PaymentResultScreenHandler(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
         primaryButton.setOnAction(event -> {
-            getHomeScreenHandler().setViewStationList();
-            getHomeScreenHandler().show();
+            PaymentScreenHandler prev = (PaymentScreenHandler) getPreviousScreen();
+            prev.finishPayment();
         });
         secondaryButton.setVisible(false);
-        scanButton.setOnMouseClicked(event -> {
-            requestToScanBarcode();
-        });
-        nowButton.setOnMouseClicked(event -> {
-            getHomeScreenHandler().setViewCurrentBikeInUse();
-            getHomeScreenHandler().show();
-        });
     }
 
     @Override
@@ -78,17 +71,11 @@ public class PaymentResultScreenHandler extends BaseScreenHandler {
      */
     public void showError() {
         subtitleLabel.setText("Transaction fail!");
+        primaryButton.setOnAction(event -> {
+            getHomeScreenHandler().setViewStationList();
+            getHomeScreenHandler().show();
+        });
         show();
     }
 
-    private void requestToScanBarcode() {
-        try {
-            BarcodeScreen barcodeScreen = new BarcodeScreen(this.stage, Configs.BARCODE_PATH);
-            barcodeScreen.setHomeScreenHandler(homeScreenHandler);
-            barcodeScreen.setPreviousScreen(this);
-            barcodeScreen.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

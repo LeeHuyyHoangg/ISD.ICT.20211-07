@@ -52,14 +52,14 @@ public class PaymentScreenHandler extends BaseScreenHandler {
         super(stage, screenPath);
         stage.setOnCloseRequest(event -> {
             isSuccess = false;
-            prepareToClose();
+            finishPayment();
         });
         primaryButton.setOnAction(event -> {
             submitTransactionInfo();
         });
         secondaryButton.setOnAction(event -> {
             isSuccess = false;
-            prepareToClose();
+            finishPayment();
             getPreviousScreen().show();
         });
         methodCheckBox.setSelected(true);
@@ -122,7 +122,6 @@ public class PaymentScreenHandler extends BaseScreenHandler {
             loadingPopup.close(0);
             transaction.save();
             isSuccess = true;
-            prepareToClose();
             PaymentResultScreenHandler resultScreen = new PaymentResultScreenHandler(stage, Configs.PAYMENT_RESULT_PATH);
             resultScreen.setHomeScreenHandler(getHomeScreenHandler());
             resultScreen.setPreviousScreen(this);
@@ -137,7 +136,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
             try {
                 e.printStackTrace();
                 isSuccess = false;
-                prepareToClose();
+                finishPayment();
                 PaymentResultScreenHandler resultScreen =
                         new PaymentResultScreenHandler(stage, Configs.PAYMENT_RESULT_PATH);
                 resultScreen.setHomeScreenHandler(homeScreenHandler);
@@ -153,9 +152,11 @@ public class PaymentScreenHandler extends BaseScreenHandler {
         }
     }
 
-    private void prepareToClose() {
+    public void finishPayment() {
         stage.setOnCloseRequest(null);
-        Platform.exitNestedEventLoop(key, null);
+        if (Platform.isNestedLoopRunning()) {
+            Platform.exitNestedEventLoop(key, null);
+        }
     }
 
     @Override
@@ -166,7 +167,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
     private void requestToScanBarcode() {
         try {
             isSuccess = false;
-            prepareToClose();
+            finishPayment();
             BarcodeScreen barcodeScreen = new BarcodeScreen(this.stage, Configs.BARCODE_PATH);
             barcodeScreen.setHomeScreenHandler(homeScreenHandler);
             barcodeScreen.setPreviousScreen(this);
