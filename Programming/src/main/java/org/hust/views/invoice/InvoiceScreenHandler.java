@@ -64,9 +64,10 @@ public class InvoiceScreenHandler extends BaseScreenHandler implements Initializ
         primaryButton.setText("Confirm");
         primaryButton.setOnMouseClicked(mouseEvent -> {
             try {
-                PopupScreen.success("Thank you for using ECOB service!");
+                getBController().getInvoice().save();
                 getHomeScreenHandler().setViewStationList();
                 getHomeScreenHandler().show();
+                PopupScreen.success("Thank you for using ECOB service!");
             } catch (IOException e) {
                 e.printStackTrace();
             }
