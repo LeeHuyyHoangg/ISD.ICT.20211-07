@@ -56,12 +56,4 @@ public class Invoice {
     public void setBikeIds(List<String> bikes) {
         this.bikeIds = bikes;
     }
-
-    public static void main(String args[]) {
-        List<String> bikeLst = new ArrayList<String>();
-        bikeLst.add(new ObjectId().toString());
-        bikeLst.add(new ObjectId().toString());
-        Invoice invoice = new Invoice(new PaymentTransaction(new CreditCard(), "contents", 1000), 1000, 0, 1000, 1000, bikeLst);
-        invoice.save();
-    }
 }

@@ -27,10 +27,4 @@ public class HomeController extends BaseController {
         return invoices;
     }
 
-    public static void main(String args[]) {
-        ArrayList<Invoice> invoiceLst = new HomeController().getInvoices();
-        for (Invoice invoice: invoiceLst) {
-            System.out.println(invoice);
-        }
-    }
 }
