@@ -40,7 +40,7 @@ public class BaseScreenHandler extends FXMLScreenHandler {
      * Save the bike selected by user from the list
      * used as a cache memory for runtime utility purpose
      */
-    protected Bike selectedBike;
+    protected static Bike selectedBike;
 
     @FXML
     protected TextField searchTextField;

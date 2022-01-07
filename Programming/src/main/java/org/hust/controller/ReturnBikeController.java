@@ -18,7 +18,7 @@ import java.util.List;
 public class ReturnBikeController extends BaseController {
 
     private BaseScreenHandler currentScreen;
-    private Invoice invoice;
+    private static Invoice invoice;
 
     /**
      * Constructor for creating a ReturnBikeController instance.
@@ -80,10 +80,14 @@ public class ReturnBikeController extends BaseController {
             paymentScreen.setBController(new TransactionController());
             if (paymentScreen.requestToMakeTransaction(transactionAmount, transactionContents)) {
                 invoice = new Invoice(TransactionController.getTransaction(), deposit, refund, fee, totalCharge, bikeIds);
-                InvoiceScreenHandler invoiceScreenHandler = new InvoiceScreenHandler(currentScreen.getStage(), Configs.HOME_PATH);
+                InvoiceScreenHandler invoiceScreenHandler = new InvoiceScreenHandler(currentScreen.getStage(), Configs.INVOICE_PATH);
                 invoiceScreenHandler.setHomeScreenHandler(currentScreen.getHomeScreenHandler());
                 invoiceScreenHandler.setPreviousScreen(currentScreen);
+                invoiceScreenHandler.setBController(this);
                 invoiceScreenHandler.show();
+                for (Bike bike : bikes) {
+                    bike.lock();
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

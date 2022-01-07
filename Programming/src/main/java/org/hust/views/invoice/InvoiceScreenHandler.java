@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -46,6 +47,7 @@ public class InvoiceScreenHandler extends BaseScreenHandler implements Initializ
         titleLabel.setText("Invoice");
         subtitleLabel.setText(selectedBike.getModel());
         smallTextLabel.setText(selectedBike.getBikeType());
+        image.setImage(new Image(selectedBike.getImgUrl()));
 
         VBox vBox = new VBox();
         String info = getBController().getInvoice().toDetailedString();

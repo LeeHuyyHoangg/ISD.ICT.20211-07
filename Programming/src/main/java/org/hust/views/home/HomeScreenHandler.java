@@ -103,7 +103,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         primaryButton.setText("Return this bike");
         primaryButton.setOnAction(actionEvent -> {
             try {
-                ReturnBikeScreenHandler returnBikeScreenHandler = new ReturnBikeScreenHandler(this.stage, Configs.HOME_PATH);
+                ReturnBikeScreenHandler returnBikeScreenHandler = new ReturnBikeScreenHandler(this.stage, Configs.RETURN_PATH);
                 returnBikeScreenHandler.setHomeScreenHandler(this);
                 returnBikeScreenHandler.setPreviousScreen(this);
                 returnBikeScreenHandler.runBike(30);
@@ -125,7 +125,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         renderBikeInfo();
         primaryButton.setVisible(true);
         primaryButton.setText("Rent this bike");
-        primaryButton.setOnMouseClicked(mouseEvent -> {
+        primaryButton.setOnAction(event -> {
             try {
                 rentBikeController.requestToRentBike(selectedBike);
             } catch (AlreadyRentBikeException e) {
@@ -169,7 +169,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
         primaryButton.setText("View Bike");
         primaryButton.setVisible(true);
-        primaryButton.setOnMouseClicked(mouseEvent -> setViewBike());
+        primaryButton.setOnAction(event -> setViewBike());
         secondaryButton.setText("Back");
         secondaryButton.setVisible(true);
         secondaryButton.setOnMouseClicked(mouseEvent -> {
@@ -184,6 +184,8 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
      */
     public void setViewStationList() {
         resetStyle();
+        titleLabel.setText("Welcome back!");
+        subtitleLabel.setText("Stations around you:");
         smallTextLabel.setText("");
 
         ObservableList<Station> stationObservableList = FXCollections.observableList(stationList);
@@ -200,7 +202,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
 
         primaryButton.setText("View Station");
         primaryButton.setVisible(true);
-        primaryButton.setOnMouseClicked(mouseEvent -> setViewStation());
+        primaryButton.setOnAction(event -> setViewStation());
         secondaryButton.setVisible(false);
     }
 

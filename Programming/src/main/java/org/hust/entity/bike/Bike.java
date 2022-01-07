@@ -152,6 +152,22 @@ public abstract class Bike {
         RentBikeController.setCurrentlyRentedBike(this);
     }
 
+    public void lock() {
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", this._id);
+
+        BasicDBObject newDocument = new BasicDBObject();
+        newDocument.put("status", true);
+
+        BasicDBObject updateObject = new BasicDBObject();
+        updateObject.put("$set", newDocument);
+
+        Database.getConnection().getCollection("bikes").updateOne(query, updateObject);
+        status = true;
+
+        RentBikeController.setCurrentlyRentedBike(null);
+    }
+
     /**
      * The abstract function require the children class to generate a function
      * to set a document to that children class
