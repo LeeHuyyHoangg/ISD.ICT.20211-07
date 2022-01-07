@@ -6,6 +6,9 @@ package org.hust.common.exception;
  */
 public class SuspiciousTransactionException extends PaymentException {
 
+    /**
+     * Constructor for SuspiciousTransactionException.
+     */
     public SuspiciousTransactionException() {
         super("ERROR: Suspicious Transaction Report!");
     }

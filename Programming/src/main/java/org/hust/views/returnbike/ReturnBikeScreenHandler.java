@@ -23,6 +23,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * This class handle the GUI for Return Bike Screen.
+ */
 public class ReturnBikeScreenHandler extends BaseScreenHandler implements Initializable {
     List<Station> stationList;
 
@@ -31,6 +34,13 @@ public class ReturnBikeScreenHandler extends BaseScreenHandler implements Initia
     @FXML
     private ImageView image;
 
+    /**
+     * Initialize ReturnBikeScreenHandler.
+     *
+     * @param stage      stage to show the GUI
+     * @param screenPath path to GUI's FXML file
+     * @throws IOException if fail to construct the instance
+     */
     public ReturnBikeScreenHandler(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
     }
@@ -75,6 +85,11 @@ public class ReturnBikeScreenHandler extends BaseScreenHandler implements Initia
         super.show();
     }
 
+    /**
+     * Make the currently rented bike run for a set amount of time.
+     *
+     * @param runtime amount of time to run
+     */
     public void runBike(int runtime) {
         selectedBike.run(runtime);
     }

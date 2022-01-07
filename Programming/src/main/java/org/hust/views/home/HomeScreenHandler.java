@@ -33,6 +33,9 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * This class handle the GUI for Home Screen.
+ */
 public class HomeScreenHandler extends BaseScreenHandler implements Initializable {
 
     RentBikeController rentBikeController = new RentBikeController(this);

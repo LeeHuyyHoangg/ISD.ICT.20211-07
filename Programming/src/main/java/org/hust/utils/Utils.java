@@ -30,16 +30,31 @@ import java.util.logging.Logger;
 public class Utils {
 
     private static final Logger LOGGER = getLogger(Utils.class.getName());
+    /**
+     * The common date format for EcoBikeRentalService software.
+     */
     public static DateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
     static {
         System.setProperty("java.util.logging.SimpleFormatter.format", "[%4$-4s] [%1$tF %1$tT] [%2$-7s] %5$s %n");
     }
 
+    /**
+     * Return the {@link java.util.logging.Logger Logger} of a class.
+     *
+     * @param className the name of the class that request a {@link java.util.logging.Logger Logger}
+     * @return {@link java.util.logging.Logger Logger} of that class
+     */
     public static Logger getLogger(String className) {
         return Logger.getLogger(className);
     }
 
+    /**
+     * Convert an integer into a String that represent currency.
+     *
+     * @param num integer to be converted
+     * @return String represent currency
+     */
     public static String getCurrencyFormat(int num) {
         Locale vietnam = new Locale("vi", "VN");
         NumberFormat defaultFormat = NumberFormat.getCurrencyInstance(vietnam);

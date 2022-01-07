@@ -14,6 +14,13 @@ import java.util.List;
  */
 public class Validator {
 
+    /**
+     * Check if a string contain any special characters.
+     *
+     * @param string the string to be checked
+     * @return true - if the string does not contain any special characters <p>
+     *     false - if the string contain any special characters
+     */
     public static boolean validateNoSpecialCharacterString(String string) {
         if (StringUtils.isBlank(string)) {
             return false;
@@ -27,6 +34,14 @@ public class Validator {
         return true;
     }
 
+    /**
+     * Check if a string contains any special characters with a few exception.
+     *
+     * @param string the string to be checked
+     * @param allowedSpecialCharacters list of special characters that is allowed
+     * @return true - if the string does not contain any special characters except for ones in allowed list <p>
+     *     false - otherwise
+     */
     public static boolean validateSomeSpecialCharacterString(String string, char... allowedSpecialCharacters) {
         if (StringUtils.isBlank(string)) {
             return false;

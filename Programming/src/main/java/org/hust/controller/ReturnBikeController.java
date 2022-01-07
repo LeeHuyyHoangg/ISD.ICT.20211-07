@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller for the return bike use case.
+ */
 public class ReturnBikeController extends BaseController {
 
     private BaseScreenHandler currentScreen;

@@ -5,6 +5,9 @@ import org.hust.views.BaseScreenHandler;
 
 import java.io.IOException;
 
+/**
+ * This class handle the GUI for the Pricing Policy Popup.
+ */
 public class PricingPolicyPopup extends BaseScreenHandler {
 
     /**

@@ -26,14 +26,8 @@ public class InterbankSubsystemControl {
             throws UnrecognizedException, PaymentException {
         Request request = new Request(card, contents, amount);
 
-        try {
-            Response response = interbankBoundary.requestToMakeTransaction(request);
-            return response.getPaymentTransaction();
-        } catch (PaymentException e) {
-            throw e;
-        } catch (UnrecognizedException e) {
-            throw e;
-        }
+        Response response = interbankBoundary.requestToMakeTransaction(request);
+        return response.getPaymentTransaction();
     }
 
 }

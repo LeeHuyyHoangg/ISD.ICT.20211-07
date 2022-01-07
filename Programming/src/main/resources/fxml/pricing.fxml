@@ -42,7 +42,7 @@
             </Label>
             <ImageView fx:id="image" fitHeight="432.0" fitWidth="654.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/Error%20Popup.png" />
+                  <Image url="@../img/Error Popup.png" />
                </image>
             </ImageView>
             <ButtonBar>

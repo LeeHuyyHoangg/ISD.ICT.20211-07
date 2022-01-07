@@ -6,6 +6,9 @@ package org.hust.common.exception;
  */
 public class InvalidBarcodeException extends Exception {
 
+    /**
+     * Constructor for InvalidBarcodeException.
+     */
     public InvalidBarcodeException() {
         super("ERROR: Invalid barcode!");
     }

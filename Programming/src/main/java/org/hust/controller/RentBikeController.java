@@ -45,6 +45,11 @@ public class RentBikeController extends BaseController {
         return currentlyRentedBike;
     }
 
+    /**
+     * Set the currently rented bike of the software.
+     *
+     * @param bike bike that have been rented
+     */
     public static void setCurrentlyRentedBike(Bike bike) {
         currentlyRentedBike = bike;
     }

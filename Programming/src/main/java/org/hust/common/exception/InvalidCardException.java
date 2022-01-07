@@ -7,6 +7,9 @@ package org.hust.common.exception;
  */
 public class InvalidCardException extends PaymentException {
 
+    /**
+     * Constructor for InvalidCardException.
+     */
     public InvalidCardException() {
         super("ERROR: Invalid card!");
     }

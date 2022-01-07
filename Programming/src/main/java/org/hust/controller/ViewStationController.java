@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * @author hoang.lh194766
  * <p>
- * the controller for view station use case
+ * The controller for view station use case.
  */
 public class ViewStationController extends BaseController {
 

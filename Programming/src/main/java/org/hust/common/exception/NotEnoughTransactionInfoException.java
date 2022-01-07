@@ -7,6 +7,9 @@ package org.hust.common.exception;
  */
 public class NotEnoughTransactionInfoException extends PaymentException {
 
+    /**
+     * Constructor for NotEnoughTransactionInfoException.
+     */
     public NotEnoughTransactionInfoException() {
         super("ERROR: Not Enough Transcation Information");
     }

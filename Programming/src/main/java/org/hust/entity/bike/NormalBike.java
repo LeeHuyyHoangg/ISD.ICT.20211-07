@@ -15,6 +15,19 @@ import org.hust.utils.Utils;
 @NoArgsConstructor()
 public class NormalBike extends Bike {
 
+    /**
+     * Constructor for Bike class.
+     *
+     * @param model model of the normal bike
+     * @param status status of the normal bike
+     * @param speed maximum speed of the normal bike
+     * @param color color of the normal bike
+     * @param weight weight of the normal bike
+     * @param description description of the normal bike
+     * @param value value of the normal bike
+     * @param barcode barcode of the normal bike
+     * @param imgUrl the image URL of the normal bike
+     */
     public NormalBike(String model, boolean status, double speed, String color,
                       double weight, String description, int value, String barcode, String imgUrl) {
         super(model, status, speed, color, weight, description, value, barcode, imgUrl);

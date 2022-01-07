@@ -9,7 +9,7 @@ import com.mongodb.client.MongoDatabase;
 /**
  * @author hoang.lh194766
  * <p>
- * database of the project
+ * Database of the project.
  */
 public class Database {
 
@@ -24,6 +24,11 @@ public class Database {
         DATABASE = mongoClient.getDatabase("CapstoneProject");
     }
 
+    /**
+     * Get the connection to the database of EcoBikeRentalService software.
+     *
+     * @return the connection to the database
+     */
     public static MongoDatabase getConnection() {
         return DATABASE;
     }

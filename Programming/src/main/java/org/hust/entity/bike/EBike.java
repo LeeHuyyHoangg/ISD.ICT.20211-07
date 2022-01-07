@@ -15,6 +15,20 @@ import org.hust.utils.Utils;
 public class EBike extends Bike {
     private int battery;
 
+    /**
+     * Constructor for EBike class.
+     *
+     * @param model model of the electronic bike
+     * @param status status of the electronic bike
+     * @param speed maximum speed of the electronic bike
+     * @param color color of the electronic bike
+     * @param weight weight of the electronic bike
+     * @param description description of the electronic bike
+     * @param value value of the electronic bike
+     * @param barcode barcode of the electronic bike
+     * @param imgUrl the image URL of the electronic bike
+     * @param battery battery of the electronic bike
+     */
     public EBike(String model, boolean status, double speed, String color,
                  double weight, String description, int value, String barcode, String imgUrl,
                  int battery) {

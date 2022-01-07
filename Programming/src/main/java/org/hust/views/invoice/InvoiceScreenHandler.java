@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * This class handle the GUI for Invoice Screen.
+ */
 public class InvoiceScreenHandler extends BaseScreenHandler implements Initializable {
     @FXML
     private Label smallTextLabel;

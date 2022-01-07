@@ -28,6 +28,11 @@ public class TransactionController extends BaseController {
         return transaction;
     }
 
+    /**
+     * get the credit card used in the transaction.
+     *
+     * @return {@link org.hust.entity.payment.CreditCard CreditCard} used in the transaction
+     */
     public static CreditCard getCard() {
         return card;
     }

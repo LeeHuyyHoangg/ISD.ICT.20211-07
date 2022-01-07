@@ -50,8 +50,17 @@ public abstract class Bike {
     protected static final int UNIT_FEE = 3000;
 
     private final ObjectId _id = new ObjectId();
+    /**
+     * bikeType represent the type of the bike
+     */
     protected Class bikeType;
+    /**
+     * usageTime represent the time this bike has been used
+     */
     protected int usageTime;
+    /**
+     * fee represent the fee to rent the bike
+     */
     protected int fee;
     private String model;
     private boolean status;
@@ -63,6 +72,19 @@ public abstract class Bike {
     private String barcode;
     private String imgUrl;
 
+    /**
+     * The constructor for the abstract class {@link org.hust.entity.bike.Bike Bike}.
+     *
+     * @param model bike's model
+     * @param status bike's status
+     * @param speed bike's max speed
+     * @param color bike's color
+     * @param weight bike's weight
+     * @param description bike's description
+     * @param value bike's value
+     * @param barcode bike's barcode
+     * @param imgUrl bike's image URL
+     */
     protected Bike(String model, boolean status, double speed, String color,
                    double weight, String description, int value, String barcode, String imgUrl) {
 
@@ -152,6 +174,9 @@ public abstract class Bike {
         RentBikeController.setCurrentlyRentedBike(this);
     }
 
+    /**
+     * Lock the bike, then register the new status to the database.
+     */
     public void lock() {
         BasicDBObject query = new BasicDBObject();
         query.put("_id", this._id);
@@ -259,11 +284,22 @@ public abstract class Bike {
      */
     public abstract String getBikeType();
 
+    /**
+     * Run this bike.
+     *
+     * @param runtime the time this bike has been used
+     */
     public void run(int runtime) {
         this.usageTime += runtime;
     }
 
+    /**
+     * The class for Bike Deserializer.
+     */
     public static class BikeDeserializer extends StdDeserializer<Bike> {
+        /**
+         * Constructor for BikeDeserializer.
+         */
         public BikeDeserializer() {
             this(null);
         }

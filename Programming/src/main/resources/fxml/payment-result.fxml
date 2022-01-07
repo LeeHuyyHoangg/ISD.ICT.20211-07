@@ -176,7 +176,17 @@
 								</HBox>
 								<HBox spacing="50.0">
 									<children>
-										<Label fx:id="fifthLabel" minWidth="95.0" text="Transaction Time:">
+										<Label fx:id="fifthLabel" minWidth="109.0" text="Command:">
+											<font>
+												<Font size="14.0" />
+											</font>
+										</Label>
+										<Label fx:id="transactionCommandLabel" prefHeight="19.0" prefWidth="432.0" text="description" HBox.hgrow="ALWAYS" />
+									</children>
+								</HBox>
+								<HBox spacing="50.0">
+									<children>
+										<Label fx:id="sixthLabel" minWidth="95.0" text="Transaction Time:">
 											<font>
 												<Font size="14.0" />
 											</font>

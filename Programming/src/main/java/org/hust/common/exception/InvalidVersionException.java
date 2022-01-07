@@ -7,6 +7,9 @@ package org.hust.common.exception;
  */
 public class InvalidVersionException extends PaymentException {
 
+    /**
+     * Constructor for InvalidVersionException.
+     */
     public InvalidVersionException() {
         super("ERROR: Invalid Version Information!");
     }

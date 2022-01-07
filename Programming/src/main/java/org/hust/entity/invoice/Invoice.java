@@ -10,6 +10,9 @@ import org.hust.entity.payment.PaymentTransaction;
 
 import java.util.List;
 
+/**
+ * This class represent an invoice and hold the information of an invoice.
+ */
 @Getter
 @NoArgsConstructor
 public class Invoice {

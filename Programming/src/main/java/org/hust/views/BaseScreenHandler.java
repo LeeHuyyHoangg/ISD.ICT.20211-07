@@ -20,6 +20,9 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.List;
 
+/**
+ * This class represent all the class that handle the screen in EcoBikeRentalService software.
+ */
 public class BaseScreenHandler extends FXMLScreenHandler {
 
     protected final Stage stage;
@@ -84,6 +87,11 @@ public class BaseScreenHandler extends FXMLScreenHandler {
         stationList = ViewStationController.getInstance().listStation();
     }
 
+    /**
+     * Get the previous screen of the screen.
+     *
+     * @return the previous screen.
+     */
     public BaseScreenHandler getPreviousScreen() {
         return this.prev;
     }
@@ -126,30 +134,55 @@ public class BaseScreenHandler extends FXMLScreenHandler {
         this.stage.show();
     }
 
+    /**
+     * Set the screen title of the screen.
+     *
+     * @param string title to be set
+     */
     public void setScreenTitle(String string) {
         this.stage.setTitle(string);
     }
 
+    /**
+     * Get the controller of the screen.
+     *
+     * @return controller of the screen
+     */
     public BaseController getBController() {
         return this.bController;
     }
 
+    /**
+     * Set the controller for the screen.
+     *
+     * @param bController controller to be set
+     */
     public void setBController(BaseController bController) {
         this.bController = bController;
     }
 
-    public void forward(Hashtable messages) {
-        this.messages = messages;
-    }
-
+    /**
+     * Return the stage that is used to show this screen.
+     *
+     * @return the stage that is used
+     */
     public Stage getStage() {
         return this.stage;
     }
 
+    /**
+     * Return the home screen of the screen.
+     *
+     * @return the home screen of the screen
+     */
     public HomeScreenHandler getHomeScreenHandler() {
         return this.homeScreenHandler;
     }
 
+    /**
+     * Set the home screen for {@link org.hust.views.BaseScreenHandler BaseScreenHandler}.
+     * @param HomeScreenHandler the screen to be set to home screen
+     */
     public void setHomeScreenHandler(HomeScreenHandler HomeScreenHandler) {
         this.homeScreenHandler = HomeScreenHandler;
     }

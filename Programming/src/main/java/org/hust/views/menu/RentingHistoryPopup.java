@@ -16,6 +16,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * This class handle the GUI for Renting History Popup.
+ */
 public class RentingHistoryPopup extends BaseScreenHandler implements Initializable {
     @FXML
     private VBox mainVBox;

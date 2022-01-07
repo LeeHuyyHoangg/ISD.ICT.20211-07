@@ -12,7 +12,9 @@ import org.hust.views.BaseScreenHandler;
 
 import java.io.IOException;
 
-
+/**
+ * This class handle the GUI for Popup screen.
+ */
 public class PopupScreen extends BaseScreenHandler {
     @FXML
     ImageView image;
@@ -20,6 +22,12 @@ public class PopupScreen extends BaseScreenHandler {
     @FXML
     Label message;
 
+    /**
+     * Initialize PopupScreen.
+     *
+     * @param stage      stage to show the GUI
+     * @throws IOException if fail to construct the instance
+     */
     public PopupScreen(Stage stage) throws IOException {
         super(stage, Configs.POPUP_PATH);
         primaryButton.setOnMouseClicked(mouseEvent -> close(0));
@@ -52,12 +60,7 @@ public class PopupScreen extends BaseScreenHandler {
     public static void error(String message) throws IOException {
         popup(message, Configs.IMAGE_PATH + "cancel.png", false).show(false);
     }
-    /**
-     * Popup to show the message of a loading interaction.
-     *
-     * @param message message to be show
-     * @throws IOException if fail to popup
-     */
+
     /**
      * Popup to show the message of a loading interaction.
      *
@@ -69,6 +72,11 @@ public class PopupScreen extends BaseScreenHandler {
         return popup(message, Configs.IMAGE_PATH + "loading.gif", true);
     }
 
+    /**
+     * Set the image of the popup.
+     *
+     * @param path path to the image
+     */
     public void setImage(String path) {
         super.setImage(image, path);
     }

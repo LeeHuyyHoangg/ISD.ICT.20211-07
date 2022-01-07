@@ -7,6 +7,9 @@ package org.hust.common.exception;
  */
 public class InternalServerErrorException extends PaymentException {
 
+    /**
+     * Constructor for InternalServerErrorException.
+     */
     public InternalServerErrorException() {
         super("ERROR: Internal Server Error!");
     }

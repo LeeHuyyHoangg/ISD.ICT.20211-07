@@ -6,6 +6,11 @@ package org.hust.common.exception;
  */
 public class InvalidFormatException extends Exception {
 
+    /**
+     * Constructor for InvalidFormatException.
+     *
+     * @param msg message to be throws
+     */
     public InvalidFormatException(String msg) {
         super(msg);
     }

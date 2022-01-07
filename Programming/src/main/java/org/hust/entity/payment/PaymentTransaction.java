@@ -179,6 +179,13 @@ public class PaymentTransaction {
         return transactionContent;
     }
 
+    /**
+     * Return the command of the transaction.
+     *
+     * @return the transaction command
+     */
+    public String getCommand() { return command; }
+
     @Override
     public String toString() {
         return String.format("Transaction ID: %s\nCard Holder: %s\nAmount: %s\nDescription: %s\nTransaction Time: %s",

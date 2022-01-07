@@ -27,6 +27,9 @@ public class PaymentResultScreenHandler extends BaseScreenHandler {
     private Label transactionContentsLabel;
 
     @FXML
+    private Label transactionCommandLabel;
+
+    @FXML
     private Label transactionTimeLabel;
 
     /**
@@ -61,6 +64,7 @@ public class PaymentResultScreenHandler extends BaseScreenHandler {
         cardHolderLabel.setText(transaction.getOwner());
         transactionAmountLabel.setText(Utils.getCurrencyFormat(transaction.getAmount()));
         transactionContentsLabel.setText(transaction.getContent());
+        transactionCommandLabel.setText(transaction.getCommand());
         transactionTimeLabel.setText(transaction.getTime());
         show();
     }

@@ -10,6 +10,9 @@ import org.hust.utils.Utils;
 
 import java.util.ArrayList;
 
+/**
+ * This class represent the controller for home screen.
+ */
 public class HomeController extends BaseController {
 
     /**

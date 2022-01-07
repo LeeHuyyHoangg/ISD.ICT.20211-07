@@ -7,6 +7,9 @@ package org.hust.common.exception;
  */
 public class InvalidTransactionAmountException extends PaymentException {
 
+    /**
+     * Constructor for InvalidTransactionAmountException.
+     */
     public InvalidTransactionAmountException() {
         super("ERROR: Invalid Transaction Amount!");
     }

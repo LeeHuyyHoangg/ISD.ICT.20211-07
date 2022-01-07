@@ -7,6 +7,11 @@ package org.hust.common.exception;
  */
 public class PaymentException extends Exception {
 
+    /**
+     * Constructor of the PaymentException.
+     *
+     * @param message message to be throws
+     */
     public PaymentException(String message) {
         super(message);
     }

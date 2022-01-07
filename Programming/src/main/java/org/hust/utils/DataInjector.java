@@ -67,6 +67,15 @@ public class DataInjector {
         }
     }
 
+    /**
+     * Inject a random list of station to the database.
+     *
+     * @throws ClassNotFoundException if class not found
+     * @throws NoSuchMethodException if there are no method suitable
+     * @throws InvocationTargetException if the target is invoked
+     * @throws InstantiationException if try to create new instance of a class that can not be instantiated
+     * @throws IllegalAccessException if try to access illegal field or method
+     */
     public static void injectSation() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         MongoDatabase db = Database.getConnection();
         MongoCollection<Document> bikeCollection = db.getCollection("stations");

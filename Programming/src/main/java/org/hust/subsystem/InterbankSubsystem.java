@@ -14,6 +14,9 @@ public class InterbankSubsystem implements InterbankInterface {
 
     private final InterbankSubsystemControl ctrl;
 
+    /**
+     * Constructor for InterbankSubsystem.
+     */
     public InterbankSubsystem() {
         this.ctrl = new InterbankSubsystemControl();
     }

@@ -16,6 +16,9 @@ import org.hust.views.home.HomeScreenHandler;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * This is the Application class for EcoBikeRentalService software.
+ */
 public class App extends Application {
 
     @FXML

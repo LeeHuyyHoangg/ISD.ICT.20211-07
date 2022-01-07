@@ -10,11 +10,21 @@ import org.hust.views.popup.PopupScreen;
 
 import java.io.IOException;
 
+/**
+ * This class handle the GUI for Barcode Screen.
+ */
 public class BarcodeScreen extends BaseScreenHandler {
 
     @FXML
     private TextField barcodeTextField;
 
+    /**
+     * Initialize BarcodeScreen.
+     *
+     * @param stage      stage to show the GUI
+     * @param screenPath path to GUI's FXML file
+     * @throws IOException if fail to construct the instance
+     */
     public BarcodeScreen(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
         setBController(new RentBikeController(this));

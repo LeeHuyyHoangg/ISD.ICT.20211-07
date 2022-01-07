@@ -8,7 +8,7 @@ import org.hust.views.popup.PopupScreen;
 /**
  * @author hoang.lh194766
  * <p>
- * controller for view bike use-case
+ * Controller for view bike use-case.
  */
 public class ViewBikeController extends BaseController {
 

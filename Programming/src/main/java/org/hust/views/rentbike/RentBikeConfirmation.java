@@ -21,6 +21,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * This class handle the GUI for Rent Bike Confirmation Popup.
+ */
 public class RentBikeConfirmation extends BaseScreenHandler implements Initializable {
     @FXML
     private Label confirmLabel;
@@ -48,6 +51,13 @@ public class RentBikeConfirmation extends BaseScreenHandler implements Initializ
 
     private Bike currentlyShowBike;
 
+    /**
+     * Initialize RentBikeConfirmation.
+     *
+     * @param stage      stage to show the GUI
+     * @param screenPath path to GUI's FXML file
+     * @throws IOException if fail to construct the instance
+     */
     public RentBikeConfirmation(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
         confirmLabel.setText("Renting Confirmation");

@@ -29,11 +29,23 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Station {
+    /**
+     * The station capacity
+     */
     public static int CAPACITY = 30;
+    /**
+     * Unique ID of the station
+     */
     public ObjectId _id = new ObjectId();
     private String location;
     private List<String> bikeIds;
 
+    /**
+     * Constructor for Station class.
+     *
+     * @param location location of the station
+     * @param bikeIds id list of bikes in the station
+     */
     public Station(String location, List<String> bikeIds) {
         this.location = location;
         this.bikeIds = bikeIds;
