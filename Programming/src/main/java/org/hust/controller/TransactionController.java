@@ -9,7 +9,7 @@ import org.hust.subsystem.InterbankInterface;
 import org.hust.subsystem.InterbankSubsystem;
 
 /**
- * This class is used to control the pay order process.
+ * This class is used to control the make transaction process.
  */
 public class TransactionController extends BaseController {
 
@@ -19,10 +19,11 @@ public class TransactionController extends BaseController {
     private int transactionAmount;
     private String transactionContents;
 
-    public TransactionController() {
-
-    }
-
+    /**
+     * Return the transaction that is currently in processing.
+     *
+     * @return {@link org.hust.entity.payment.PaymentTransaction PaymentTransaction} that is currently in process
+     */
     public static PaymentTransaction getTransaction() {
         return transaction;
     }
@@ -34,13 +35,13 @@ public class TransactionController extends BaseController {
     /**
      * Make payment transaction.
      *
-     * @param cardCode    - the credit card's code
-     * @param cardOwner   - the credit card's owner
-     * @param cardCvv     - the credit card's security code
-     * @param expiredDate - the credit card's expired date
-     * @return payment transaction if success
-     * @throws PaymentException      - if transaction fail with known reasons
-     * @throws UnrecognizedException - if transaction fail with unknown reasons
+     * @param cardCode    the credit card's code
+     * @param cardOwner   the credit card's owner
+     * @param cardCvv     the credit card's security code
+     * @param expiredDate the credit card's expired date
+     * @return {@link org.hust.entity.payment.PaymentTransaction PaymentTransaction} if success
+     * @throws PaymentException      if transaction fail with known reasons
+     * @throws UnrecognizedException if transaction fail with unknown reasons
      */
     public PaymentTransaction makeTransaction(String cardCode, String cardOwner,
                                               String cardCvv, String expiredDate)
@@ -53,11 +54,11 @@ public class TransactionController extends BaseController {
     /**
      * Check the format of the credit card info user have input.
      *
-     * @param cardCode    - the credit card's code
-     * @param cardOwner   - the credit card's owner
-     * @param cardCvv     - the credit card's security code
-     * @param expiredDate - the credit card's expired date
-     * @throws InvalidFormatException - if the credit card info is in an invalid format
+     * @param cardCode    the credit card's code
+     * @param cardOwner   the credit card's owner
+     * @param cardCvv     the credit card's security code
+     * @param expiredDate the credit card's expired date
+     * @throws InvalidFormatException if the credit card info is in an invalid format
      */
     public void checkTransactionInfo(String cardCode, String cardOwner,
                                      String cardCvv, String expiredDate) throws InvalidFormatException {
@@ -74,8 +75,8 @@ public class TransactionController extends BaseController {
     /**
      * Validate the cvv code format of a credit card.
      *
-     * @param cardCvv - the credit card's security code
-     * @return true  - if the info is in correct format
+     * @param cardCvv the credit card's security code
+     * @return true - if the info is in correct format <p>
      * false - if the info is in an invalid format
      */
     public boolean validateCvvCode(String cardCvv) {
@@ -97,8 +98,8 @@ public class TransactionController extends BaseController {
     /**
      * Validate the expired date of a credit card.
      *
-     * @param expiredDate - the credit card's expired date
-     * @return true  - if the info is in correct format
+     * @param expiredDate the credit card's expired date
+     * @return true - if the info is in correct format <p>
      * false - if the info is in an invalid format
      */
     public boolean validateExpiredDate(String expiredDate) {
@@ -120,10 +121,20 @@ public class TransactionController extends BaseController {
         return true;
     }
 
+    /**
+     * Set the current transaction amount.
+     *
+     * @param amount amount to be transacted
+     */
     public void setTransactionAmount(int amount) {
         this.transactionAmount = amount;
     }
 
+    /**
+     * Set the current transaction contents.
+     *
+     * @param contents contents of the transaction
+     */
     public void setTransactionContents(String contents) {
         this.transactionContents = contents;
     }

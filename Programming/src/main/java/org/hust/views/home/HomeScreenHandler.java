@@ -44,7 +44,13 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     @FXML
     private ImageView image;
 
-
+    /**
+     * Initialize HomeScreenHandler.
+     *
+     * @param stage      stage to show the GUI
+     * @param screenPath path to GUI's FXML file
+     * @throws IOException if fail to construct the instance
+     */
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
         setHomeScreenHandler(this);
@@ -81,6 +87,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         setBController(new HomeController());
     }
 
+    /**
+     * Change the home screen into viewing the current rented bike.
+     */
     public void setViewCurrentBikeInUse() {
         selectedBike = ViewBikeController.getInstance().checkUserRentedBike();
 
@@ -108,6 +117,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         secondaryButton.setOnMouseClicked(mouseEvent -> setViewStation());
     }
 
+    /**
+     * Set the home screen into viewing the information of the selected bike.
+     */
     private void setViewBike() {
         resetStyle();
         renderBikeInfo();
@@ -129,6 +141,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         secondaryButton.setOnMouseClicked(mouseEvent -> setViewStation());
     }
 
+    /**
+     * Set the home screen into viewing the information of a station.
+     */
     private void setViewStation() {
         if (selectedStation == null) {
             setViewStationList();
@@ -164,6 +179,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         });
     }
 
+    /**
+     * Set the home screen into viewing the list of all stations.
+     */
     public void setViewStationList() {
         resetStyle();
         smallTextLabel.setText("");

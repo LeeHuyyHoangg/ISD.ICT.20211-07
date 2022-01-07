@@ -6,12 +6,8 @@ import lombok.NoArgsConstructor;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.hust.entity.db.Database;
-import org.hust.entity.payment.CreditCard;
 import org.hust.entity.payment.PaymentTransaction;
-import org.hust.utils.Utils;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -24,6 +20,16 @@ public class Invoice {
     private int totalCharge;
     private List<String> bikeIds;
 
+    /**
+     * Initialize an Invoice object.
+     *
+     * @param transaction the transaction made in the invoice
+     * @param deposit the deposit made in the invoice
+     * @param refund the amount of money refunded in the invoice
+     * @param fee the fee of the invoice
+     * @param totalCharge the total charge of the invoice
+     * @param bikeIds list of bike used in the invoice
+     */
     public Invoice(PaymentTransaction transaction, int deposit, int refund, int fee, int totalCharge, List<String> bikeIds) {
         this.transaction = transaction;
         this.deposit = deposit;
@@ -33,6 +39,9 @@ public class Invoice {
         this.bikeIds = bikeIds;
     }
 
+    /**
+     * Save the information of the invoice into the database.
+     */
     public void save() {
         MongoDatabase db = Database.getConnection();
         Document invoiceDoc = new Document("_id", new ObjectId());
@@ -44,6 +53,11 @@ public class Invoice {
         db.getCollection("invoices").insertOne(invoiceDoc);
     }
 
+    /**
+     * Return a detail String representation of the invoice.
+     *
+     * @return detail String representation of the invoice
+     */
     public String toDetailedString() {
         return String.format("Deposit: +%s\nUsage fees: -%s\n", deposit, fee) + (refund == 0 ? "Total charge: -" + totalCharge : "Refund: +" + refund);
     }
@@ -53,6 +67,11 @@ public class Invoice {
         return String.format("Deposit: +%s\nUsage fees: -%s\n", deposit, fee) + (refund == 0 ? "Total charge: -" + totalCharge : "Refund: +" + refund) + "\nBike: " + bikeIds.get(0);
     }
 
+    /**
+     * Set the list of the bike in the invoice.
+     *
+     * @param bikes list of bike to be set
+     */
     public void setBikeIds(List<String> bikes) {
         this.bikeIds = bikes;
     }

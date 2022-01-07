@@ -14,6 +14,11 @@ public class ViewBikeController extends BaseController {
 
     private static ViewBikeController instance;
 
+    /**
+     * Return the instance of the ViewBikeController.
+     *
+     * @return {@link org.hust.controller.ViewBikeController ViewBikeController} that control the ViewBike process
+     */
     public static ViewBikeController getInstance() {
         if (instance == null) {
             instance = new ViewBikeController();
@@ -21,6 +26,10 @@ public class ViewBikeController extends BaseController {
         return instance;
     }
 
+    /**
+     *
+     * @return {@link org.hust.entity.bike.Bike Bike} that is currently in rented
+     */
     @SneakyThrows
     public Bike checkUserRentedBike() {
         Bike bike = RentBikeController.getCurrentlyRentedBike();

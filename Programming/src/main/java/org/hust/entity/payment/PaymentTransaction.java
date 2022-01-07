@@ -23,9 +23,9 @@ public class PaymentTransaction {
     /**
      * Initialize a PaymentTransaction object using credit card, content, amount.
      *
-     * @param card    - the credit card used in the payment transaction
-     * @param content - the transaction content
-     * @param amount  - the transaction amount
+     * @param card    the credit card used in the payment transaction
+     * @param content the transaction content
+     * @param amount  the transaction amount
      */
     public PaymentTransaction(CreditCard card, String content, int amount) {
         this.card = card;
@@ -44,12 +44,12 @@ public class PaymentTransaction {
      * Initialize a PaymentTransaction object using credit card,
      * id, content, command, amount, created time.
      *
-     * @param card               - the credit card used in the payment transaction
-     * @param transactionId      - the trasaction id
-     * @param transactionContent - the transaction content
-     * @param command            - the transaction command
-     * @param amount             - the transaction amount
-     * @param createdAt          - the transaction created time
+     * @param card               the credit card used in the payment transaction
+     * @param transactionId      the trasaction id
+     * @param transactionContent the transaction content
+     * @param command            the transaction command
+     * @param amount             the transaction amount
+     * @param createdAt          the transaction created time
      */
     public PaymentTransaction(CreditCard card, String transactionId, String transactionContent,
                               String command, int amount, String createdAt) {
@@ -61,6 +61,9 @@ public class PaymentTransaction {
         this.createdAt = createdAt;
     }
 
+    /**
+     * Save the information of the payment transaction into the database.
+     */
     public void save() {
         MongoDatabase db = Database.getConnection();
         Document creditCard = new Document("_id", new ObjectId());
@@ -135,22 +138,43 @@ public class PaymentTransaction {
         return sb.toString();
     }
 
+    /**
+     * Return the transaction id.
+     *
+     * @return id of the transaction
+     */
     public String getId() {
         return transactionId;
     }
 
-    public int getAmount() {
-        return amount;
-    }
+    /**
+     * Return the transaction amount.
+     *
+     * @return transaction amount
+     */
+    public int getAmount() { return amount; }
 
-    public String getOwner() {
-        return card.getOwner();
-    }
+    /**
+     * Return the owner of the credit card used in the payment transaction.
+     *
+     * @return owner of the credit card
+     */
+    public String getOwner() { return card.getOwner(); }
 
+    /**
+     * Return the time that this payment transaction was made.
+     *
+     * @return the created time of the transaction
+     */
     public String getTime() {
         return createdAt;
     }
 
+    /**
+     * Return the contents of the transaction.
+     *
+     * @return the transaction contents
+     */
     public String getContent() {
         return transactionContent;
     }

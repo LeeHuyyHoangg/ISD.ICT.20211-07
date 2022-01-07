@@ -24,6 +24,13 @@ public class InvoiceScreenHandler extends BaseScreenHandler implements Initializ
     @FXML
     private ImageView image;
 
+    /**
+     * Initialize InvoiceScreenHandler.
+     *
+     * @param stage      stage to show the GUI
+     * @param screenPath path to GUI's FXML file
+     * @throws IOException if fail to construct the instance
+     */
     public InvoiceScreenHandler(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
     }

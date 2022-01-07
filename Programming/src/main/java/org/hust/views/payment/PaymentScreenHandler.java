@@ -45,8 +45,9 @@ public class PaymentScreenHandler extends BaseScreenHandler {
     /**
      * Initialize PaymentScreenHandler.
      *
-     * @param stage      - stage to show the GUI
-     * @param screenPath - path to GUI's FXML file
+     * @param stage      stage to show the GUI
+     * @param screenPath path to GUI's FXML file
+     * @throws IOException if fail to construct the instance
      */
     public PaymentScreenHandler(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
@@ -80,9 +81,9 @@ public class PaymentScreenHandler extends BaseScreenHandler {
     /**
      * Request to make a payment transaction.
      *
-     * @param amount   - amount of money in the transaction
-     * @param contents - the transaction contents
-     * @return true   - if the transaction success
+     * @param amount   amount of money in the transaction
+     * @param contents the transaction contents
+     * @return true   - if the transaction success <p>
      * false  - if the transaction fail
      */
     public boolean requestToMakeTransaction(int amount, String contents) {
@@ -152,6 +153,10 @@ public class PaymentScreenHandler extends BaseScreenHandler {
         }
     }
 
+    /**
+     * Break the nested loop that is currently running so that requestToMakeTransaction
+     * finally return the result of the payment transaction.
+     */
     public void finishPayment() {
         stage.setOnCloseRequest(null);
         if (Platform.isNestedLoopRunning()) {

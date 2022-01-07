@@ -14,10 +14,10 @@ public interface InterbankInterface {
     /**
      * Make payment transaction.
      *
-     * @param card     - the credit card used for payment transaction
-     * @param amount   - the transaction amount
-     * @param contents - the transaction contents
-     * @return PaymentTransactiom - if the payment is successful
+     * @param card     the credit card used for payment transaction
+     * @param amount   the transaction amount
+     * @param contents the transaction contents
+     * @return {@link org.hust.entity.payment.PaymentTransaction PaymentTransaction} if the payment is successful
      * @throws PaymentException      - if payment fail with known reasons
      * @throws UnrecognizedException - if payment fail with unknown reasons
      */

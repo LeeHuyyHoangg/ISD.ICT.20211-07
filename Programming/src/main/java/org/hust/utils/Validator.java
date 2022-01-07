@@ -13,6 +13,7 @@ import java.util.List;
  * of validate fuction in the controllers
  */
 public class Validator {
+
     public static boolean validateNoSpecialCharacterString(String string) {
         if (StringUtils.isBlank(string)) {
             return false;

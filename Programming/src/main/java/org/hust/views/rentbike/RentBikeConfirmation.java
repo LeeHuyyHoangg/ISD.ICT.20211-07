@@ -58,6 +58,11 @@ public class RentBikeConfirmation extends BaseScreenHandler implements Initializ
         secondaryButton.setOnAction(event -> this.stage.close());
     }
 
+    /**
+     * Set up the screen to show the bike information.
+     *
+     * @param bike bike to be show
+     */
     public void renderContent(Bike bike) {
         this.currentlyShowBike = bike;
         titleLabel.setText(bike.getModel());

@@ -44,10 +44,10 @@ public class InterbankBoundary {
     /**
      * Send a GET request to interbank.
      *
-     * @param url   - the interbank's url
-     * @param token - the token of the request
+     * @param url   the interbank's url
+     * @param token the token of the request
      * @return Response from interbank in form of a String if success
-     * @throws Exception - if fail to send request to interbank
+     * @throws Exception if fail to send request to interbank
      */
     public String get(String url, String token) throws Exception {
         LOGGER.info("Request URL: " + url + "\n");
@@ -69,8 +69,8 @@ public class InterbankBoundary {
     /**
      * Send data to interbank.
      *
-     * @param data - data to be sent to interbank
-     * @param path - path to interbank
+     * @param data data to be sent to interbank
+     * @param path path to interbank
      * @return Response from interbank in form of a String if success
      * @throws IOException - if fail to send request to interbank
      */

@@ -5,10 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.hust.entity.payment.PaymentTransaction;
-import org.hust.utils.Configs;
 import org.hust.utils.Utils;
 import org.hust.views.BaseScreenHandler;
-import org.hust.views.rentbike.BarcodeScreen;
 
 import java.io.IOException;
 
@@ -34,8 +32,9 @@ public class PaymentResultScreenHandler extends BaseScreenHandler {
     /**
      * Initialize PaymentResultScreenHandler.
      *
-     * @param stage      - stage to show the GUI
-     * @param screenPath - path to GUI's FXML file
+     * @param stage      stage to show the GUI
+     * @param screenPath path to GUI's FXML file
+     * @throws IOException if fail to construct the instance
      */
     public PaymentResultScreenHandler(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
@@ -54,7 +53,7 @@ public class PaymentResultScreenHandler extends BaseScreenHandler {
     /**
      * Show the result of a successful payment transaction with info.
      *
-     * @param transaction - transaction to be show
+     * @param transaction transaction to be show
      */
     public void show(PaymentTransaction transaction) {
         subtitleLabel.setText("Transaction success!");

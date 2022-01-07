@@ -21,20 +21,21 @@ public class ReturnBikeController extends BaseController {
     private Invoice invoice;
 
     /**
-     * For test only, do not use this.
-     */
-    private ReturnBikeController() {
-    }
-
-    /**
-     * Constructor for creating a RentBikeController instance.
+     * Constructor for creating a ReturnBikeController instance.
      *
-     * @param screenThatCallReturnBike - the screen that need to initiate rent bike use case
+     * @param screenThatCallReturnBike the screen that need to initiate return bike use case
      */
     public ReturnBikeController(BaseScreenHandler screenThatCallReturnBike) {
         this.currentScreen = screenThatCallReturnBike;
     }
 
+    /**
+     * Request to return bike, which will call the return bike confirm screen to show the bike's info and wait for user
+     * confirmation.
+     *
+     * @param bike Bike that need to be returned
+     * @throws HaveNotRentBikeException if the user currently doesn't rent any bike
+     */
     public void requestToReturnBike(Bike bike) throws HaveNotRentBikeException {
         if (bike.isAvailable())
             throw new HaveNotRentBikeException("The bike is not rented yet!");
@@ -51,6 +52,12 @@ public class ReturnBikeController extends BaseController {
         }
     }
 
+    /**
+     * Process to make payment transaction to return bikes, then show the user invoice made by the
+     * return bike process.
+     *
+     * @param bikes list of bike to be return
+     */
     public void returnBike(Bike... bikes) {
         String transactionContents = "Fee for return bike";
         List<String> bikeIds = new ArrayList<>();
@@ -83,6 +90,11 @@ public class ReturnBikeController extends BaseController {
         }
     }
 
+    /**
+     * Return the invoice made by the return bike process.
+     *
+     * @return {@link org.hust.entity.invoice.Invoice Invoice} of the process
+     */
     public Invoice getInvoice() {
         return invoice;
     }

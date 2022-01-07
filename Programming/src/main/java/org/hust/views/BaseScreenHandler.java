@@ -71,6 +71,13 @@ public class BaseScreenHandler extends FXMLScreenHandler {
         this.stage = new Stage();
     }
 
+    /**
+     * Initialize BaseScreenHandler.
+     *
+     * @param stage      stage to show the GUI
+     * @param screenPath path to GUI's FXML file
+     * @throws IOException if fail to construct the instance
+     */
     public BaseScreenHandler(Stage stage, String screenPath) throws IOException {
         super(screenPath);
         this.stage = stage;
@@ -81,6 +88,11 @@ public class BaseScreenHandler extends FXMLScreenHandler {
         return this.prev;
     }
 
+    /**
+     * Set the previous screen of this screen.
+     *
+     * @param prev the previous screen of this screen
+     */
     public void setPreviousScreen(BaseScreenHandler prev) {
         this.prev = prev;
         priceButton.setOnMouseClicked(mouseEvent -> {
@@ -103,6 +115,9 @@ public class BaseScreenHandler extends FXMLScreenHandler {
         });
     }
 
+    /**
+     * Show the screen to the user.
+     */
     public void show() {
         if (this.scene == null) {
             this.scene = new Scene(this.content);

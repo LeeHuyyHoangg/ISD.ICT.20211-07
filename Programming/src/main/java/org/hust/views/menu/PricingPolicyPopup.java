@@ -6,6 +6,14 @@ import org.hust.views.BaseScreenHandler;
 import java.io.IOException;
 
 public class PricingPolicyPopup extends BaseScreenHandler {
+
+    /**
+     * Initialize PricingPolicyPopup.
+     *
+     * @param stage      stage to show the GUI
+     * @param screenPath path to GUI's FXML file
+     * @throws IOException if fail to construct the instance
+     */
     public PricingPolicyPopup(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
         primaryButton.setOnMouseClicked(mouseEvent -> stage.close());

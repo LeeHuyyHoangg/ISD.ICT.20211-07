@@ -20,6 +20,13 @@ public class RentingHistoryPopup extends BaseScreenHandler implements Initializa
     @FXML
     private VBox mainVBox;
 
+    /**
+     * Initialize RentingHistoryPopup.
+     *
+     * @param stage      stage to show the GUI
+     * @param screenPath path to GUI's FXML file
+     * @throws IOException if fail to construct the instance
+     */
     public RentingHistoryPopup(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
     }

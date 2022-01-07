@@ -39,6 +39,12 @@ public class Station {
         this.bikeIds = bikeIds;
     }
 
+    /**
+     * Connect to the database to retrieve the information of the station with that id.
+     *
+     * @param id id of the station to be retrieved
+     * @return {@link org.hust.entity.station.Station Station} with that id
+     */
     @SneakyThrows
     public static Station getStationById(String id) {
         MongoDatabase db = Database.getConnection();
@@ -51,6 +57,12 @@ public class Station {
         return Utils.documentToObject(station, Station.class);
     }
 
+    /**
+     * Connect to the database to search for the station that is currently contain the bike.
+     *
+     * @param bikeId id of bike that need to find
+     * @return {@link org.hust.entity.station.Station Station} that contain the bike
+     */
     @SneakyThrows
     public static Station getStationContainBike(String bikeId) {
         MongoDatabase db = Database.getConnection();
@@ -63,6 +75,12 @@ public class Station {
         return Utils.documentToObject(station, Station.class);
     }
 
+    /**
+     * Connect to the database to retrieve the information of all the station that is in the location.
+     *
+     * @param location location of the stations that need to be retrieved
+     * @return List of {@link org.hust.entity.station.Station Station} that is in that location
+     */
     @SneakyThrows
     public static List<Station> getStationByLocation(String location) {
         MongoDatabase db = Database.getConnection();
@@ -79,6 +97,11 @@ public class Station {
         return result;
     }
 
+    /**
+     * Connect to the database to retrieve the information of every station.
+     *
+     * @return List of all {@link org.hust.entity.station.Station Station}
+     */
     public static List<Station> listAllStation() {
         MongoDatabase db = Database.getConnection();
         MongoCollection<Document> stationCollection = db.getCollection("stations");
@@ -92,6 +115,11 @@ public class Station {
         return result;
     }
 
+    /**
+     * Get list of all bikes that is in the station.
+     *
+     * @return List of {@link org.hust.entity.bike.Bike Bike} that is in the station
+     */
     public List<Bike> getStationBikes() {
         List<Bike> result = new ArrayList<>();
         for (String id : bikeIds) {
@@ -101,10 +129,21 @@ public class Station {
         return result;
     }
 
+    /**
+     * Check if the station is full or not.
+     *
+     * @return true - if the station is full <p>
+     * false - otherwise
+     */
     public boolean isFull() {
         return CAPACITY == bikeIds.size();
     }
 
+    /**
+     * Get the number of empty spots in the station.
+     *
+     * @return number of empty spots
+     */
     public int getEmptyDocksCount() {
         return CAPACITY - bikeIds.size();
     }

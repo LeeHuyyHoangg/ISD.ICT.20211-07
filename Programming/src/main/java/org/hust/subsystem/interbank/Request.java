@@ -20,9 +20,9 @@ public class Request {
     /**
      * Initialize Request object.
      *
-     * @param card     - the credit card to be used in the transaction
-     * @param contents - transaction contents
-     * @param amount   - transaction amount
+     * @param card     the credit card to be used in the transaction
+     * @param contents transaction contents
+     * @param amount   transaction amount
      */
     public Request(CreditCard card, String contents, int amount) {
         transaction = new PaymentTransaction(card, contents, amount);
@@ -50,6 +50,11 @@ public class Request {
         return sb.toString();
     }
 
+    /**
+     * Get the path to send the request.
+     *
+     * @return path to send the request
+     */
     public String getPath() {
         return this.path;
     }

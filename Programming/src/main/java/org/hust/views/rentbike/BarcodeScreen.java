@@ -27,7 +27,7 @@ public class BarcodeScreen extends BaseScreenHandler {
         barcodeTextField.setPromptText("01234567");
     }
 
-    public void submitBarcode() {
+    private void submitBarcode() {
         try {
             RentBikeController controller = (RentBikeController) getBController();
             controller.requestToRentBike(barcodeTextField.getText());

@@ -18,9 +18,9 @@ public class InterbankSubsystem implements InterbankInterface {
         this.ctrl = new InterbankSubsystemControl();
     }
 
+    @Override
     public PaymentTransaction makeTransaction(CreditCard card, int amount, String contents)
             throws PaymentException, UnrecognizedException {
-        PaymentTransaction transaction = ctrl.makeTransaction(card, amount, contents);
-        return transaction;
+        return ctrl.makeTransaction(card, amount, contents);
     }
 }

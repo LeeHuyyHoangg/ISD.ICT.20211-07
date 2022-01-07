@@ -77,6 +77,13 @@ public abstract class Bike {
         this.imgUrl = imgUrl;
     }
 
+    /**
+     * Connect to the database to retrieve the information of the bike with correspond barcode.
+     *
+     * @param barcode the barcode of the bike to retrieved
+     * @return {@link org.hust.entity.bike.Bike Bike} with that barcode
+     * @throws InvalidBarcodeException if fail to retrieve any bike with that barcode
+     */
     public static Bike getBike(String barcode) throws InvalidBarcodeException {
 
         MongoDatabase db = Database.getConnection();
@@ -94,6 +101,12 @@ public abstract class Bike {
         }
     }
 
+    /**
+     * Connect to the database to retrieve the information of the bike with correspond id.
+     *
+     * @param id the id of the bike to retrieved
+     * @return {@link org.hust.entity.bike.Bike Bike} with that id
+     */
     @SneakyThrows
     public static Bike getBikeById(String id) {
         MongoDatabase db = Database.getConnection();
@@ -120,6 +133,9 @@ public abstract class Bike {
         }
     }
 
+    /**
+     * Unlock the bike, then register the new status to the database.
+     */
     public void unlock() {
         BasicDBObject query = new BasicDBObject();
         query.put("_id", this._id);
@@ -137,7 +153,7 @@ public abstract class Bike {
     }
 
     /**
-     * the abstract function require the children class to generate a function
+     * The abstract function require the children class to generate a function
      * to set a document to that children class
      *
      * @param document the document needed to be cast
@@ -145,6 +161,11 @@ public abstract class Bike {
      */
     public abstract Bike documentToBike(Document document);
 
+    /**
+     * Return a detailed String representation of the bike.
+     *
+     * @return detailed String of the bike
+     */
     public String toDetailedString() {
         return String.format("Speed: %.2f km/h\nColor: %s\nWeight: %.2f kg\nDescription: %s\nValue: %s\nRent time: %s minutes\nCurrent fee: %s\n",
                 speed * 100,
@@ -161,18 +182,25 @@ public abstract class Bike {
         return model + " - " + getBikeType();
     }
 
+    /**
+     * Return the location of the bike.
+     *
+     * @return location of the bike
+     */
     public String getLocation() {
         return Objects.requireNonNull(Station.getStationContainBike(this._id.toString())).getLocation();
     }
 
+    /**
+     * Check the availability of the bike
+     *
+     * @return true - if bike is available to rent <p>
+     * false - otherwise
+     */
     public boolean isAvailable() {
         return status;
     }
 
-    public String getType() {
-        String type = this.bikeType.toString();
-        return type.substring(type.lastIndexOf('.') + 1);
-    }
 
     /**
      * Price coefficient differs in each bike type
@@ -201,10 +229,18 @@ public abstract class Bike {
         return fee - getDeposit();
     }
 
+    /**
+     * Calculating the fee to return the bike.
+     */
     public void calculateFee() {
         fee = (int) (getPriceCoefficient() * (usageTime <= 30 ? INITIAL_CHARGE : INITIAL_CHARGE + UNIT_FEE * (usageTime - 30)));
     }
 
+    /**
+     * Return the type of the bike.
+     *
+     * @return type of the bike
+     */
     public abstract String getBikeType();
 
     public void run(int runtime) {

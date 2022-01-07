@@ -21,7 +21,7 @@ public class Response {
     private String createdAt;
 
     /**
-     * Convert the response reveiced from interbank
+     * Convert the response received from interbank
      * from String to Request.
      *
      * @param responseText - response from interbank in form of a String
