@@ -6,8 +6,11 @@ This repository stores ITSS Software Development course's capstone project.
 
 🚵 **EcobikeRental** is a platform which allows novice users to rent and return bikes inside Ecopark township.
 
-‼️ **Important Note:** The [EcoBikeRental Diagrams](Requirement%20Analysis/EcoBikeRental%20Diagrams.asta) file has all
-project diagrams _(activity, class,...)_
+‼️ **Important Note:**
+
+1. The [EcoBikeRental Diagrams](Requirement%20Analysis/EcoBikeRental%20Diagrams.asta) file has all
+   project diagrams _(activity, class,...)_
+2. The [Programming](Programming/) folder contains source code and app's documentation
 
 # 🧑‍💻 Project tracking
 
@@ -157,7 +160,7 @@ Design unit test relating to `View station info`, `View bike info`, `Rent bike`,
 ### Revisions
 
 | Name        | Contribution |
-| ----------- |--------------|
+| ----------- | ------------ |
 | Bui Manh Tu | Revision     |
 
 ## 🔟 Lab 10 - Good Design
@@ -167,14 +170,14 @@ Design unit test relating to `View station info`, `View bike info`, `Rent bike`,
 ### Contributions
 
 | Name           | Contribution                                    |
-|----------------|-------------------------------------------------|
+| -------------- | ----------------------------------------------- |
 | Le Huy Hoang   | `ViewStationInfo`, `ViewBikeInfo` Design Review |
 | Nguyen Vu Minh | `RentBike`, `MakeTransaction` Design Review     |
 
 ### Revisions
 
 | Name        | Contribution |
-|-------------|--------------|
+| ----------- | ------------ |
 | Bui Manh Tu | Everything   |
 
 # 📐 Conventions

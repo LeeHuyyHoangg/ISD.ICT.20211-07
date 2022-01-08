@@ -1,5 +1,20 @@
 # EcoBike Rental: ITSS Software Development Capstone
 
+## Project structure
+
+```
+├── docs                    # Documentation files
+│   ├── index.html          # Documentation home page
+├── src
+│   ├── main
+│   │   ├── java            # Source code files
+│   │   ├── resources       # Resource files including images, fxml, meta, css,...
+│   ├── test                # Test files
+├── *.img                   # Illustrations used in README
+├── pom.xml                 # Maven dependencies
+└── README.md               # README
+```
+
 ## How to run
 
 ### Install dependencies
