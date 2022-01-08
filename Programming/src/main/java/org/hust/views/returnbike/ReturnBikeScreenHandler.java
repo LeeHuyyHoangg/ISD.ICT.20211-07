@@ -85,12 +85,4 @@ public class ReturnBikeScreenHandler extends BaseScreenHandler implements Initia
         super.show();
     }
 
-    /**
-     * Make the currently rented bike run for a set amount of time.
-     *
-     * @param runtime amount of time to run
-     */
-    public void runBike(int runtime) {
-        selectedBike.run(runtime);
-    }
 }

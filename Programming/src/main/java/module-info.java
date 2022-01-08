@@ -21,6 +21,7 @@ module Programming {
     opens org.hust.entity.bike to com.fasterxml.jackson.databind;
     opens org.hust.entity.invoice to com.fasterxml.jackson.databind;
     opens org.hust.entity.payment to com.fasterxml.jackson.databind;
+    opens org.hust.utils to com.fasterxml.jackson.databind;
     opens org.hust.views.invoice to javafx.fxml;
     opens org.hust.views.menu to javafx.fxml;
     exports org.hust;

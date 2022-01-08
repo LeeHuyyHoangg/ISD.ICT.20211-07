@@ -18,6 +18,7 @@ import org.hust.common.exception.InvalidIdException;
 import org.hust.controller.RentBikeController;
 import org.hust.entity.db.Database;
 import org.hust.entity.station.Station;
+import org.hust.utils.Timer;
 import org.hust.utils.Utils;
 import org.reflections.Reflections;
 
@@ -71,6 +72,7 @@ public abstract class Bike {
     private int value;
     private String barcode;
     private String imgUrl;
+    private Timer rentTimer = new Timer();
 
     /**
      * The constructor for the abstract class {@link org.hust.entity.bike.Bike Bike}.
@@ -172,6 +174,7 @@ public abstract class Bike {
         status = false;
 
         RentBikeController.setCurrentlyRentedBike(this);
+        run();
     }
 
     /**
@@ -191,6 +194,8 @@ public abstract class Bike {
         status = true;
 
         RentBikeController.setCurrentlyRentedBike(null);
+        stop();
+        reset();
     }
 
     /**
@@ -214,7 +219,7 @@ public abstract class Bike {
                 weight * 100,
                 description,
                 Utils.getCurrencyFormat(value),
-                TimeUnit.MILLISECONDS.toMinutes(getUsageTime()),
+                TimeUnit.MINUTES.toMinutes(getUsageTime()),
                 Utils.getCurrencyFormat(getFee()));
     }
 
@@ -286,11 +291,35 @@ public abstract class Bike {
 
     /**
      * Run this bike.
-     *
-     * @param runtime the time this bike has been used
      */
-    public void run(int runtime) {
-        this.usageTime += runtime;
+    public void run() {
+        Thread t = new Thread(rentTimer);
+        t.setDaemon(true);
+        t.start();
+    }
+
+    /**
+     * Stop this bike.
+     */
+    public void stop() {
+        rentTimer.stop();
+    }
+
+    /**
+     * Reset the timer counting rent time in this bike.
+     */
+    public void reset() {
+        rentTimer.reset();
+    }
+
+    /**
+     * Return the time this bike has been rented.
+     *
+     * @return bike's rent time
+     */
+    public long getUsageTime() {
+        usageTime = rentTimer.getCount();
+        return usageTime;
     }
 
     /**

@@ -109,7 +109,6 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
                 ReturnBikeScreenHandler returnBikeScreenHandler = new ReturnBikeScreenHandler(this.stage, Configs.RETURN_PATH);
                 returnBikeScreenHandler.setHomeScreenHandler(this);
                 returnBikeScreenHandler.setPreviousScreen(this);
-                returnBikeScreenHandler.runBike(30);
                 returnBikeScreenHandler.show();
             } catch (IOException e) {
                 e.printStackTrace();

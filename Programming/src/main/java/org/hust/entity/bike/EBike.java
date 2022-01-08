@@ -54,12 +54,6 @@ public class EBike extends Bike {
     }
 
     @Override
-    public void run(int runtime) {
-        super.usageTime += runtime;
-        battery -= (runtime / 5);
-    }
-
-    @Override
     public String getBikeType() {
         return "Electronic Bike";
     }
