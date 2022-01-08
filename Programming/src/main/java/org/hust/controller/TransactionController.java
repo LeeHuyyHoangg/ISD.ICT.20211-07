@@ -45,12 +45,14 @@ public class TransactionController extends BaseController {
      * @param cardCvv     the credit card's security code
      * @param expiredDate the credit card's expired date
      * @return {@link org.hust.entity.payment.PaymentTransaction PaymentTransaction} if success
+     * @throws InvalidFormatException if the credit card info is in invalid format
      * @throws PaymentException      if transaction fail with known reasons
      * @throws UnrecognizedException if transaction fail with unknown reasons
      */
     public PaymentTransaction makeTransaction(String cardCode, String cardOwner,
                                               String cardCvv, String expiredDate)
-            throws PaymentException, UnrecognizedException {
+            throws InvalidFormatException, PaymentException, UnrecognizedException {
+        checkTransactionInfo(cardCode, cardOwner, cardCvv, expiredDate);
         card = new CreditCard(cardCode, cardOwner, cardCvv, expiredDate);
         transaction = interbank.makeTransaction(card, transactionAmount, transactionContents);
         return transaction;

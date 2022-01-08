@@ -22,8 +22,6 @@ import java.io.IOException;
  */
 public class PaymentScreenHandler extends BaseScreenHandler {
 
-    private final PopupScreen loadingPopup = PopupScreen.loading("Please wait while we are making payment transaction");
-
     private final Object key = new Object();
     private boolean isSuccess = true;
 
@@ -111,16 +109,10 @@ public class PaymentScreenHandler extends BaseScreenHandler {
     private void submitTransactionInfo() {
         try {
             TransactionController controller = (TransactionController) getBController();
-            controller.checkTransactionInfo(firstTextField.getText(),
-                    secondTextField.getText(),
-                    fifthTextField.getText(),
-                    thirdTextField.getText());
-            loadingPopup.show();
             PaymentTransaction transaction = controller.makeTransaction(firstTextField.getText(),
                     secondTextField.getText(),
                     fifthTextField.getText(),
                     thirdTextField.getText());
-            loadingPopup.close(0);
             transaction.save();
             isSuccess = true;
             PaymentResultScreenHandler resultScreen = new PaymentResultScreenHandler(stage, Configs.PAYMENT_RESULT_PATH);
@@ -148,8 +140,6 @@ public class PaymentScreenHandler extends BaseScreenHandler {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-        } finally {
-            loadingPopup.close(0);
         }
     }
 
