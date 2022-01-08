@@ -1,4 +1,4 @@
-Programming/docs linguist-vendored
-Production/ linguist-vendored
-ClassDiagram/ linguist-vendored
-Requirement%20Analysis/ linguist-vendored
+Programming/docs/* linguist-vendored
+Production/* linguist-vendored
+ClassDiagram/* linguist-vendored
+Requirement%20Analysis/* linguist-vendored
