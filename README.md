@@ -6,15 +6,36 @@ This repository stores ITSS Software Development course's capstone project.
 
 🚵 **EcobikeRental** is a platform which allows novice users to rent and return bikes inside Ecopark township.
 
-‼️ **Important Note:**
+## Project structure
 
-1. The [EcoBikeRental Diagrams](Requirement%20Analysis/EcoBikeRental%20Diagrams.asta) file has all
-   project diagrams _(activity, class,...)_
-2. The [Programming](Programming/) folder contains source code and app's documentation
+| File/Folder                                                                         | Content                                              |
+| ----------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| [Programming](Programming/)                                                         | Source code and documentation (Javadoc)              |
+| [Production](Production/)                                                           | Executable production files and Installation guides  |
+| [EcoBikeRental Diagrams](Requirement%20Analysis/EcoBikeRental%20Diagrams.asta)      | Project diagrams _(activity, class,...)_             |
+| [EcoBikeRental_SRS](Requirement%20Analysis/EcoBikeRental_SRS.pdf)                   | Software Requirement Specification                   |
+| [ITSS Software Development Capstone](ITSS%20Software%20Development%20Capstone.pptx) | Presentation slides                                  |
+| [ClassDiagram](ClassDiagram/)                                                       | General and Detailed class diagrams after production |
+
+# How to install and run ECOB
+
+## Installation requirements
+
+- Software: JDK 15
+- Hardware: PC
+- Database: Database has already been created
+
+## How to run
+
+Open shell, change to `Production/Product` directory, run:
+
+```shell
+java -jar Programming.jar
+```
+
+Or open `Production/Product` directory, double click on `Programming.jar`
 
 # 🧑‍💻 Project tracking
-
-Bui Manh Tu updates README.
 
 ## 1️⃣ Lab 01 - Use Case Diagram
 
