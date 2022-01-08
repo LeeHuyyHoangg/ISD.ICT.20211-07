@@ -279,7 +279,7 @@ public abstract class Bike {
      * Calculating the fee to return the bike.
      */
     public void calculateFee() {
-        fee = (int) (getPriceCoefficient() * (usageTime <= 30 ? INITIAL_CHARGE : INITIAL_CHARGE + UNIT_FEE * (usageTime - 30)));
+        fee = (int) (getPriceCoefficient() * (getUsageTime() <= 30 ? INITIAL_CHARGE : INITIAL_CHARGE + UNIT_FEE * (getUsageTime() - 30)));
     }
 
     /**
