@@ -10,7 +10,7 @@ This repository stores ITSS Software Development course's capstone project.
 
 1. The [EcoBikeRental Diagrams](Requirement%20Analysis/EcoBikeRental%20Diagrams.asta) file has all
    project diagrams _(activity, class,...)_
-2. The [Programming](Programming/) folder contains source code
+2. The [Programming](Programming/) folder contains source code and app's documentation
 
 # 🧑‍💻 Project tracking
 
