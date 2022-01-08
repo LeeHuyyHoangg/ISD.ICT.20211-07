@@ -223,10 +223,12 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
     private void renderBikeInfo() {
         titleLabel.setText(selectedBike.getModel().toUpperCase(Locale.ROOT));
         subtitleLabel.setText(selectedBike.isStatus() ? "Available" : "Unavailable");
-        if (subtitleLabel.getText().equals("Available"))
+        if (subtitleLabel.getText().equals("Available")) {
             subtitleLabel.setStyle("-fx-text-fill: green");
-        else
+        }
+        else {
             subtitleLabel.setStyle("-fx-text-fill: red");
+        }
         smallTextLabel.setText(selectedBike.getBikeType());
 
         VBox vBox = new VBox();
