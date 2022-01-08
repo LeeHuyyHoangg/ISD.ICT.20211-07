@@ -111,6 +111,9 @@ public class RentBikeController extends BaseController {
      * @throws AlreadyRentBikeException if the bike is already rent
      */
     public void rentBike(Bike bike) throws AlreadyRentBikeException {
+        if (currentlyRentedBike != null) {
+            throw new AlreadyRentBikeException("You are already renting a bike");
+        }
         String transactionContents = "Fee for rent bike " + bike.getModel();
         int transactionAmount = bike.getDeposit();
         try {
