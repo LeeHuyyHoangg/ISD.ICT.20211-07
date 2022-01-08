@@ -160,9 +160,10 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         ObservableList<Bike> bikesObservableList = FXCollections.observableList(selectedStation.getStationBikes());
         ListView<Bike> bikesListView = new ListView<>(bikesObservableList);
         bikesListView.setStyle("-fx-font-size: 16");
-        bikesListView.setPrefWidth(infoScrollPane.getPrefWidth());
+        bikesListView.setPrefWidth(infoScrollPane.getPrefWidth() - 10);
         bikesListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         bikesListView.getFocusModel().focus(0);
+        bikesListView.setPrefHeight(bikesObservableList.size() * 35);
         bikesListView.getSelectionModel().selectedItemProperty().addListener((observableValue, station, selected) -> selectedBike = selected);
 
         infoScrollPane.setContent(bikesListView);
@@ -193,9 +194,10 @@ public class HomeScreenHandler extends BaseScreenHandler implements Initializabl
         ObservableList<Station> stationObservableList = FXCollections.observableList(stationList);
         ListView<Station> stationListView = new ListView<>(stationObservableList);
         stationListView.setStyle("-fx-font-size: 16");
-        stationListView.setPrefWidth(infoScrollPane.getPrefWidth());
+        stationListView.setPrefWidth(infoScrollPane.getPrefWidth() - 10);
         stationListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         stationListView.getFocusModel().focus(0);
+        stationListView.setPrefHeight(stationList.size() * 35);
         stationListView.getSelectionModel().selectedItemProperty().addListener((observableValue, station, selected) -> selectedStation = selected);
 
         infoScrollPane.setContent(stationListView);

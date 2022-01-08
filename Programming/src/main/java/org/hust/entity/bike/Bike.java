@@ -213,14 +213,15 @@ public abstract class Bike {
      * @return detailed String of the bike
      */
     public String toDetailedString() {
+        calculateFee();
         return String.format("Speed: %.2f km/h\nColor: %s\nWeight: %.2f kg\nDescription: %s\nValue: %s\nRent time: %s minutes\nCurrent fee: %s\n",
                 speed * 100,
                 color,
                 weight * 100,
                 description,
                 Utils.getCurrencyFormat(value),
-                TimeUnit.MINUTES.toMinutes(getUsageTime()),
-                Utils.getCurrencyFormat(getFee()));
+                getUsageTime(),
+                Utils.getCurrencyFormat(this.fee));
     }
 
     @Override
@@ -279,7 +280,7 @@ public abstract class Bike {
      * Calculating the fee to return the bike.
      */
     public void calculateFee() {
-        fee = (int) (getPriceCoefficient() * (getUsageTime() <= 30 ? INITIAL_CHARGE : INITIAL_CHARGE + UNIT_FEE * (getUsageTime() - 30)));
+        this.fee = (int) (getPriceCoefficient() * (getUsageTime() <= 30 ? INITIAL_CHARGE : INITIAL_CHARGE + UNIT_FEE * (getUsageTime() - 30)));
     }
 
     /**

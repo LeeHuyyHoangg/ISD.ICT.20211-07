@@ -9,6 +9,7 @@ module Programming {
     requires commons.lang3;
     requires reflections;
     requires java.sql;
+    requires java.base;
 
     opens org.hust to javafx.fxml;
     opens org.hust.views to javafx.fxml;
